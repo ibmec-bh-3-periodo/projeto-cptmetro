@@ -29,6 +29,15 @@ main {
     padding: 20px;
 }
 
+footer div div{
+display: flex;
+justify-content: space-between;
+}
+
+footer img{
+    height: 30px;
+}
+
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
