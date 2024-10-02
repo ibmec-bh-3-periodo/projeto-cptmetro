@@ -29,21 +29,12 @@ main {
     padding: 20px;
 }
 
-footer div div{
-display: flex;
-justify-content: space-between;
-}
-
-footer img{
-    height: 30px;
-}
-
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; /* Alterado para 'relative' */
+    position: relative; 
     bottom: 0;
     width: 100%;
 }
@@ -60,16 +51,12 @@ footer {
     margin-bottom: 10px;
 }
 
-.footer-icon {
-    color: white;
+.footer-icons a {
     margin: 0 15px;
-    text-decoration: none;
-    font-size: 24px;
-    transition: color 0.3s;
 }
 
-.footer-icon:hover {
-    color: #ffcc00; /* Cor ao passar o mouse */
+.footer-icons img {
+    height: 30px;
 }
 
 p {
@@ -82,7 +69,8 @@ p {
         flex-direction: column;
     }
 
-    .footer-icon {
+    .footer-icons a {
         margin: 10px 0;
     }
 }
+
