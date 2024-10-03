@@ -19,6 +19,10 @@ main {
     padding: 20px;
 }
 
+h1{
+    font-size: 30px;
+}
+
 .container {
     display: flex;
     flex-direction: column; 
@@ -77,12 +81,14 @@ footer {
 
 p {
     margin: 0;
+    font-size: 11px;
 }
 
 
 @media (max-width: 600px) {
     .footer-icons {
-        flex-direction: column;
+        display: flex;
+        justify-content: space-around;
     }
 
     .footer-icons a {
