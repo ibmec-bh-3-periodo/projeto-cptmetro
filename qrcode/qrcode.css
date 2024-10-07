@@ -52,9 +52,9 @@ h2 {
     width: 80%;
     margin: 10px auto;
     padding: 10px;
-    background-color: #ea1c1c;
+    background-color: #FE0000;
     color: white;
-    border: 1px solid black;
+    border:none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
