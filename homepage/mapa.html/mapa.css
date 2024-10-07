@@ -19,6 +19,10 @@ main {
     padding: 20px;
 }
 
+h1{
+    font-size: 30px;
+}
+
 .container {
     display: flex;
     flex-direction: column; 
@@ -42,7 +46,12 @@ main {
 }
 
 .box:hover {
-    background-color: #95c2df;
+    background-color: #6b6d6e;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
 }
 
 footer {
@@ -50,7 +59,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
+    position: absolute; 
     bottom: 0;
     width: 100%;
 }
@@ -69,11 +78,15 @@ footer {
 
 .footer-icons a {
     margin: 0 15px;
-    font-size: 11px;
 }
 
 .footer-icons img {
     height: 30px;
+}
+
+p {
+    margin: 0;
+    font-size: 11px;
 }
 
 
@@ -87,4 +100,3 @@ footer {
         margin: 10px 0;
     }
 }
-

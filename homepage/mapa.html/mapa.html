@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa com Geolocalização no Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="mapa.css">
+
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Mapa</h1>
+</header>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([-23.55052, -46.633308], 12);
+
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var userLocation = [position.coords.latitude, position.coords.longitude];
+            map.setView(userLocation, 13);
+
+            L.marker(userLocation).addTo(map)
+                .bindPopup('Você está aqui!')
+                .openPopup();
+        }, function() {
+            alert('Não foi possível obter sua localização.');
+        });
+    } else {
+        alert('Seu navegador não suporta geolocalização.');
+    }
+</script>
+<footer>
+    <div class="footer-container">
+        <div class="footer-icons">
+            <a href="./home" class="link"><img src="../icones/home.png" alt=""></a>
+            <a href="./ticket" class="link"><img src="../icones/bilhete.png" alt=""></a>
+            <a href="./mapa" class="link"><img src="../icones/mapa.png" alt=""></a>
+            <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>
+        </div>
+        <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
+    </div>
+</footer>
+</body>
+</html>
