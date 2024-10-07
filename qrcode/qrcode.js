@@ -1,5 +1,5 @@
 // Simulação de saldo e viagens restantes
-let saldoAtual = 7.90;
+let saldoAtual = 4.40;
 let viagensRestantes = 1;
 
 // Função para gerar QR Code
