@@ -17,10 +17,13 @@ document.getElementById("generate-qrcode-btn").addEventListener("click", generat
 
 // Função para recarregar saldo (simulada)
 function recarregarSaldo() {
-    saldoAtual += 10;
-    viagensRestantes += 2;
-    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(2)}`;
-    document.getElementById("viagens-restantes").innerText = viagensRestantes;
-}
+    // Simula uma recarga de saldo
+    let saldoElement = document.getElementById('saldo');
+    let currentSaldo = parseFloat(saldoElement.innerText.replace('R$', '').replace(',', '.'));
+    let newSaldo = currentSaldo + 5;  // Adiciona R$ 5 ao saldo
+    saldoElement.innerText = 'R$ ' + newSaldo.toFixed(2).replace('.', ',');
 
-document.getElementById("recarregar-saldo-btn").addEventListener("click", recarregarSaldo);
+    // Exibe o mapa e as linhas quando o saldo for atualizado
+    document.getElementById('mapa').style.display = 'block';
+    document.getElementById('linhas').style.display = 'block';
+}

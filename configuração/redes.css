@@ -42,7 +42,7 @@ main {
 }
 
 .box:hover {
-    background-color: #95c2df;
+    background-color: #a1a1a1;
 }
 
 footer {
@@ -69,6 +69,7 @@ footer {
 
 .footer-icons a {
     margin: 0 15px;
+    font-size: 11px;
 }
 
 .footer-icons img {
@@ -82,7 +83,8 @@ p {
 
 @media (max-width: 600px) {
     .footer-icons {
-        flex-direction: column;
+        display: flex;
+        justify-content: space-around;
     }
 
     .footer-icons a {
