@@ -1,4 +1,3 @@
-// Simulação de saldo e viagens restantes
 let saldoAtual = 4.40;
 let viagensRestantes = 1;
 
@@ -9,17 +8,16 @@ let qrcode = new QRCode(document.getElementById("qrcode"), {
 });
 
 function generateQRCode() {
-    let dynamicData = `QR Code - Saldo: R$${saldoAtual.toFixed(2)}, Viagens: ${viagensRestantes}`;
+    let dynamicData = `QR Code - Saldo: R$${saldoAtual.toFixed(1)}, Viagens: ${viagensRestantes}`;
     qrcode.makeCode(dynamicData); // Atualiza o QR Code com dados dinâmicos
 }
 
 document.getElementById("generate-qrcode-btn").addEventListener("click", generateQRCode);
 
-// Função para recarregar saldo (simulada)
 function recarregarSaldo() {
-    saldoAtual += 10;
-    viagensRestantes += 2;
-    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(2)}`;
+    saldoAtual += 4.40;
+    viagensRestantes += 1;
+    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(1)}`;
     document.getElementById("viagens-restantes").innerText = viagensRestantes;
 }
 
