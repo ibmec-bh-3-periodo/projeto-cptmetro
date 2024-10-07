@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site do Metrô</title>
+    <link rel="stylesheet" href="./home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <img src="cptm-logo.png" alt="Logo CPTM" class="logo">
+        <h1>Bom dia, Usuário!</h1>
+    </header>
+
+    <main class="main-container">
+        <div class="saldo-info">
+            <div class="saldo-box">
+                <p>Saldo:</p>
+                <span id="saldo-valor">R$7,90</span>
+                <button id="recarregar-saldo-btn" class="btn">Recarregar saldo</button>
+            </div>
+        <button class="btn linhas-favoritas">Viagens Favoritas</button>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-icons">
+                <a href="./home" class="link"><img src="../icones/home.png" alt=""></a>
+                <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt=""></a>
+                <a href="../homepage/mapa.html" class="link"><img src="../icones/mapa.png" alt=""></a>
+                <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>
+            </div>
+            <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="../homepage/home.js"></script>
+</body>
+</html>
