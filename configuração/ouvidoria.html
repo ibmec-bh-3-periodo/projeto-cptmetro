@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Ouvidoria - Metrô</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="ouvidoria.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Formulário de Ouvidoria</h2>
+    <form id="ouvidoriaForm" onsubmit="return handleSubmit(event)">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone">
+
+        <label for="tipo">Tipo de Solicitação:</label>
+        <select id="tipo" name="tipo" required>
+            <option value="sugestao">Sugestão</option>
+            <option value="reclamacao">Reclamação</option>
+            <option value="elogio">Elogio</option>
+            <option value="informacao">Informação</option>
+        </select>
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
+    <div class="message" id="confirmationMessage">Obrigado pela sua mensagem! Em breve entraremos em contato.</div>
+</div>
+<footer>
+    <div class="footer-container">
+        <div class="footer-icons">
+            <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt=""></a>
+            <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt=""></a>
+            <a href="../homepage/mapa.html" class="link"><img src="../icones/mapa.png" alt=""></a>
+            <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>
+        </div>
+        <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
+    </div>
+</footer>
+<script src="ouvidoria.js"></script>
+
+</body>
+</html>
