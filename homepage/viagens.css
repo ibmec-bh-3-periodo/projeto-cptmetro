@@ -1,4 +1,4 @@
-/* Estilo base */
+
 * {
     font-family: "Jost", sans-serif;
 }
@@ -23,7 +23,7 @@ h1 {
     font-size: 30px;
 }
 
-/* Container principal */
+
 .container {
     display: flex;
     flex-direction: column; 
@@ -32,7 +32,7 @@ h1 {
     margin-top: 20px;
 }
 
-/* Caixa de conteúdo */
+
 .box {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
@@ -52,11 +52,11 @@ h1 {
     background-color: #95c2df;
 }
 
-/* Seção de viagens favoritas */
+
 .viagens-favoritas {
     margin-top: 20px;
     padding: 15px;
-    background-color: #ffffff; /* Mantém a mesma cor de fundo das caixas */
+    background-color: #ffffff; 
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -72,11 +72,10 @@ input[type="text"] {
     border-radius: 5px;
 }
 
-/* Botão de adicionar */
 button {
     width: 100%;
     padding: 10px;
-    background: #28a745;
+    background: #FE0000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -84,11 +83,12 @@ button {
     transition: background-color 0.3s;
 }
 
+
 button:hover {
-    background: #218838;
+    background: #a1a1a1;
 }
 
-/* Lista de viagens */
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -100,7 +100,7 @@ li {
     border-bottom: 1px solid #ccc;
 }
 
-/* Rodapé */
+
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
@@ -131,13 +131,12 @@ footer {
     height: 30px;
 }
 
-/* Texto do rodapé */
+
 p {
     margin: 0;
     font-size: 11px;
 }
 
-/* Responsividade para telas menores */
 @media (max-width: 600px) {
     .footer-icons {
         display: flex;

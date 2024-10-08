@@ -76,6 +76,10 @@ footer {
     height: 30px;
 }
 
+p{
+    font-size: 11px;
+    margin: 0;
+}
 
 @media (max-width: 600px) {
     .footer-icons {

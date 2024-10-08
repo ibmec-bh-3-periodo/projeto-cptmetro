@@ -47,6 +47,10 @@ h2 {
     border: 1px solid #ccc;
 }
 
+a{
+    text-decoration: none;
+}
+
 .btn {
     display: block;
     width: 80%;
@@ -106,6 +110,7 @@ footer {
 
 .footer-icons a {
     margin: 0 15px;
+    
 }
 
 .footer-icons img {
@@ -114,6 +119,7 @@ footer {
 
 p {
     margin: 0;
+    font-size: 11px;
 }
 
 @media (max-width: 600px) {
