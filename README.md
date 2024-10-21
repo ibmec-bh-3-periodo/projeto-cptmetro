@@ -63,13 +63,8 @@ Exemplo: chore: atualizar pacotes NPM
 
 ### 4. Organização de Pastas e Arquivos
 
-- **/src**: Contém o código fonte do projeto.
-  - **/index**: Arquivos HTML.
-  - **/css**: Folhas de estilo CSS.
-  - **/js**: Arquivos JS.
-  - **/img**: Imagens.
-- **/docs**: Documentação do projeto.
-
+- Páginas relacionadas organizadas na mesma pasta
+- Pasta de ícones e imagens separadas
 
 ### 5. Requisitos Funcionais
 
