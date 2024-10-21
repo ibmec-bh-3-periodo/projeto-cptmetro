@@ -1,7 +1,6 @@
 # projeto-cptm-grupo4
 
-- [Link dos slides]
-- [Modelo de registro de Dailies](https://docs.google.com/document/d/1D0h7AgVgcb1xzSg7Hnw3ze4euTFOjOXcYOAkQtqAha0/edit?usp=sharing)
+- [Registro de Dailies](https://docs.google.com/document/d/1D0h7AgVgcb1xzSg7Hnw3ze4euTFOjOXcYOAkQtqAha0/edit?usp=sharing)
   
 ## Integrantes
 
@@ -9,13 +8,13 @@
 - Antônia Villela: Desenvolvimento
 - Melina Pissolato: Desenvolvimento
 
-# 1. Nome do Projeto: IbmecFood
+# 1. Nome do Projeto: Grupo 4
 
 Um aplicativo para utilização do metrô.
 
 ## 2. Apresentação do Projeto
 
-Este projeto é um sistema para automatizar a gestão de pedidos em restaurantes. Ele permite que os garçons enviem pedidos diretamente para a cozinha e o caixa, gerando relatórios em tempo real. O projeto foi pensado para pequenos e médios estabelecimentos que buscam maior agilidade no atendimento e controle sobre o fluxo de pedidos.
+Este projeto é um sistema para automatizar a experiência do usuário ao utilizar o metrô de São Paulo. Ele permite que os usuários possam realizar pagamentos, acompanhar o seu transporte e entrar em contato com a CPTM em caso de problemas. O projeto foi pensado para facilitar e melhorar a experiência do usuário.
 
 ## 3. Gestão de Código
 
