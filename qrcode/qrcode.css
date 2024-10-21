@@ -19,6 +19,11 @@ header {
     text-align: center;
 }
 
+header img {
+    height: 60px;
+    width: auto;
+}
+
 nav {
     margin: 10px 0;
 }

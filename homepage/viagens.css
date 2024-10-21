@@ -7,20 +7,27 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    height: 100vh;
 }
 
+header img {
+    height: 60px;
+    width: auto;
+}
 
 .header {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
-    padding: 10px 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     text-align: center;
     width: 100%;
 }
 
 
-h1 {
+h2 {
     font-size: 30px;
+    padding-left: 12px;
 }
 
 
@@ -52,6 +59,9 @@ h1 {
     background-color: #95c2df;
 }
 
+.favorite-trips{
+    padding: 15px;
+}
 
 .viagens-favoritas {
     margin-top: 20px;
@@ -106,7 +116,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
+    position: absolute; 
     bottom: 0;
     width: 100%;
 }

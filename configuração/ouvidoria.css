@@ -8,11 +8,18 @@ body {
     background-color: #f0f0f0;
 }
 
-header {
+header img {
+    height: 60px;
+    width: auto;
+}
+
+.header {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
-    padding: 10px 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     text-align: center;
+    width: 100%;
 }
 
 main {
