@@ -50,7 +50,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
+    position: absolute; 
     bottom: 0;
     width: 100%;
 }
@@ -78,7 +78,7 @@ footer {
 
 p {
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 

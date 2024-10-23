@@ -27,6 +27,10 @@ main {
     margin-top: 20px;
 }
 
+.seta{
+    height: 25px;
+}
+
 .box {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
@@ -87,7 +91,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
+    position: absolute; 
     bottom: 0;
     width: 100%;
 }
@@ -111,14 +115,14 @@ footer {
 
 .footer-icons img {
     height: 30px;
-}
+} */
 
 p {
-    font-size: 11px;
+    font-size: 16px;
     margin: 0;
 }
 
-@media (max-width: 600px) {
+ @media (max-width: 600px) {
     .footer-icons {
         display: flex;
         justify-content: space-around;
