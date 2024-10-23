@@ -10,31 +10,26 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
-header {
+header img {
+    height: 60px;
+    width: auto;
+}
+
+.header {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
-    padding: 10px 20px;
-    text-align: center;
-}
-
-nav {
-    margin: 10px 0;
-}
-
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
-.main-container {
-    flex-grow: 1;
-    padding: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     text-align: center;
     width: 100%;
+}
 
+.main-container{
+    padding: 15px;
 }
 
 h2 {
@@ -98,11 +93,40 @@ h3{
 
 .carousel{
     width: 100%;
-    height: 30%;
+    height: 20vh;
+    margin-top: 30px;
 }
 
 .carousel img{
-    height: 30vh;
+    height: 10vh;
+}
+
+
+.map{
+width: 100%;
+height: 10vh;
+background-color: aqua;
+margin: 3px;
+background-image: url(../img/maps.jpg);
+border-radius: 5px;
+background-size: cover;
+background-position: center;
+
+
+}
+
+.map img{
+    height: 10vh;
+    width: 100%;
+    margin: 3px;
+}
+
+#final{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 footer {
