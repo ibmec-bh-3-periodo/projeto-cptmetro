@@ -1,61 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Mapa com Geolocalização no Leaflet</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <title>Mapa com Geolocalização no Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
     <link rel="stylesheet" href="mapa.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
-<header>
-    <h1>Mapa</h1>
-</header>
-<!-- aplicação da biblioteca Leaflet -->
-<div id="map"></div>
-<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-<script>
-    var map = L.map('map').setView([-23.55052, -46.633308], 12);
-
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var userLocation = [position.coords.latitude, position.coords.longitude];
-            map.setView(userLocation, 13);
-
-            L.marker(userLocation).addTo(map)
-                .bindPopup('Você está aqui!')
-                .openPopup();
-        }, function() {
-            alert('Não foi possível obter sua localização.');
-        });
-    } else {
-        alert('Seu navegador não suporta geolocalização.');
-    }
-</script>
-<footer>
-    <div class="footer-container">
-        <div class="footer-icons">
-            <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt=""></a>
-            <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt=""></a>
-            <a href="../homepage/mapa.html" class="link"><img src="../icones/mapa.png" alt=""></a>
-            <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>
+    <header>
+        <h1>Mapa</h1>
+    </header>
+    <div class="tudo">
+        <div id="map"></div>
+        <div class="pagina">
+            <form id="searchForm">
+                <input type="text" id="searchInputStart" name="pesquisaStart" placeholder="Local de partida">
+                <input type="text" id="searchInputEnd" name="pesquisaEnd" placeholder="Local de destino">
+                <p></p>
+                <input type="submit" class="botao" value="Pesquisar">
+            </form>
         </div>
-        <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
     </div>
-</footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="./mapa.js"></script> <!-- Separar o JavaScript em script.js -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-icons">
+                <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt=""></a>
+                <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt=""></a>
+                <a href="../homepage/mapa.html" class="link"><img src="../icones/mapa.png" alt=""></a>
+                <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>
+            </div>
+            <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
