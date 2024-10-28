@@ -85,6 +85,16 @@ h2 {
 .viagens-box{
     width: 100%;
     height: 8vh;
+    margin-top: 24px;
+    margin-bottom: -10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: black;
 }
 
 h3{
@@ -93,19 +103,18 @@ h3{
 
 .carousel{
     width: 100%;
-    height: 20vh;
+    height: 30vh;
     margin-top: 30px;
 }
 
 .carousel img{
-    height: 10vh;
+    height: 30vh;
 }
 
 
 .map{
 width: 100%;
 height: 10vh;
-background-color: aqua;
 margin: 3px;
 background-image: url(../img/maps.jpg);
 border-radius: 5px;
