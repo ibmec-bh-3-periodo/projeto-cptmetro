@@ -25,10 +25,11 @@ main {
     align-items: center; 
     gap: 20px; 
     margin-top: 20px;
+    padding-bottom: 150px;
 }
 
-.seta{
-    height: 25px;
+.seta a img{
+    height: 40px;
 }
 
 .box {
