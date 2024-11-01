@@ -1,0 +1,145 @@
+* {
+    font-family: "Jost", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+header {
+    background: linear-gradient(to right, #FE0000, #930707);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header img {
+    height: 60px;
+    width: auto;
+}
+
+.main-container {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.pagamento-box {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pagamento-opcoes {
+    margin-bottom: 20px;
+}
+
+.pagamento-opcoes h3 {
+    color: #FE0000;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.select-pagamento {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+.form-container label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 10px;
+    background-color: #FE0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cadastrar:hover {
+    background-color: #a1a1a1;
+}
+
+footer {
+    background: linear-gradient(to right, #FE0000, #930707);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.footer-icons a {
+    margin: 0 15px;
+}
+
+.footer-icons img {
+    height: 30px;
+}
+
+p {
+    margin: 0;
+    font-size: 11px;
+}
+
+@media (max-width: 600px) {
+    .footer-icons {
+        justify-content: space-around;
+    }
+
+    .footer-icons a {
+        margin: 10px 0;
+    }
+}

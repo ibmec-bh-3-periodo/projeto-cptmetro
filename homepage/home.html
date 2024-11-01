@@ -14,11 +14,10 @@
 </head>
 <body>
 
-    <header class="header">
-        <img src="cptm-logo.png" alt="Logo CPTM" class="logo">
-        <h1>Bom dia, Usuário!</h1>
-    </header>
-
+  <header class="header">
+    <img src="../icones/logo-branco-sem-fundo.png" alt="Logo CPTM" class="logo">
+    <h1>Bom dia, Usuário!</h1>
+</header>
     <main class="main-container">
         <div class="saldo-info">
             <div class="saldo-box">
@@ -27,42 +26,43 @@
                 <button id="recarregar-saldo-btn" class="saldo btn">Recarregar saldo</button>
             </div>
         
-            <button class="btn viagens-box">Viagens Favoritas</button>
+            <a href="./viagens.html"><button class="btn viagens-box">Viagens Favoritas</button></a>
             
           
       </main>
-    <div class="map">
-        <h3>Mapa</h3>
-        mapa
-    </div>
+      <div id="final">
+        
+            <a href="mapa.html"><div class="map"></div></a>
+    
 
-    <div class="carousel">
-        <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <div class="carousel">
+          <div id="carouselExampleIndicators" class="carousel slide">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a href="../homepage/metro.html"> <img src="../img/mapa-metro-1024x763.png" class="d-block w-100" alt="..."></a>
+                </div>
+                <div class="carousel-item">
+                  <a href="../homepage/news ta errado/notícias.html"><img src="../img/maps.jpg" class="d-block w-100" alt="..."></a>
+                </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../icones/linkedin.png" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="../icones/bilhete.png" class="d-block w-100" alt="...">
-              </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-    </div>
+      </div>
+  </div>
     <footer>
         <div class="footer-container">
             <div class="footer-icons">
-                <a href="./home" class="link"><img src="../icones/home.png" alt=""></a>
+                <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt=""></a>
                 <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt=""></a>
                 <a href="../homepage/mapa.html" class="link"><img src="../icones/mapa.png" alt=""></a>
                 <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>

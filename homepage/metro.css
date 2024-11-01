@@ -6,6 +6,8 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -15,46 +17,28 @@ header {
     text-align: center;
 }
 
-main {
-    padding: 20px;
+header img {
+    height: 60px;
+    width: auto;
 }
 
-h1{
-    font-size: 30px;
+main{
+    width: 100%;
+    height: auto;
+    margin-top: 15%;
 }
 
-.container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    gap: 20px; 
-    margin-top: 20px;
+main img {
+    width: 100%;
 }
 
-.box {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    padding: 20px; 
-    width: 100%; 
-    max-width: 600px; 
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    font-size: 1.2em;
-    border-radius: 1px;
-}
-
-.box:hover {
-    background-color: #a1a1a1;
-}
 
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
+    position: absolute; 
     bottom: 0;
     width: 100%;
 }

@@ -144,7 +144,7 @@ footer {
 
 p {
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 @media (max-width: 600px) {
