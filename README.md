@@ -62,16 +62,19 @@ Exemplo: test: adicionar testes unitários para componente Header
 Exemplo: chore: atualizar pacotes NPM
 
 ### 4. Organização de Pastas e Arquivos
-
-- Páginas relacionadas organizadas na mesma pasta
-- Pasta de ícones e imagens separadas
+- Pastas para cada página.
+- Páginas relacionadas organizadas na mesma pasta (ex: redes sociais da configuração).
+- Pasta de ícones e imagens separadas.
 
 ### 5. Requisitos Funcionais
 
-1. **Cadastro de Usuários:** Permite o registro de novos usuários (admin e funcionários).
+1. **Cadastro de Usuários:** Permite o registro de novos usuários.
 2. **Pagamento:** Usuários podem adicionar uma forma de pagamento.
-3. **Mapas:** O usuário consegue ver os mapas dos metrôs e o histórico de viagens.
-4. **Ticket:** Usuário pode criar um QR CODE para utilizar nas catracas das estações
-5. **Login e Autenticação:** Sistema seguro de login com autenticação JWT.
+3. **Mapas:** O usuário consegue ver os mapas das linhas dos metrôs e o caminho percorrido pelo metrô para chegar até ele.
+4. **Ticket:** Usuário pode criar um QR CODE para utilizar nas catracas das estações.
+5. **Notícias** Usuário consegue acompanhar as notícias que interferem no funcionamento do metrô.
+6. **Viagens favoritas** Usuário consegue selecionar suas viagens favoritas.
+7. **Contato** Usuário tem acesso às páginas de contato e ouvidoria para fazer qualquer reclamação, elogio ou sugestão.
+
 
 
