@@ -99,6 +99,11 @@ h2 {
     background-color: #a1a1a1;
 }
 
+.salvar{
+    margin-top: 10px;
+}
+
+
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
