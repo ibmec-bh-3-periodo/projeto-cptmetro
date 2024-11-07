@@ -46,9 +46,6 @@ h1{
     border-radius: 1px;
 }
 
-.box:hover {
-    background-color: #a1a1a1;
-}
 
 footer {
     background: linear-gradient(to right, #FE0000, #930707);

@@ -1,0 +1,161 @@
+* {
+    font-family: "Jost", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+header {
+    background: linear-gradient(to right, #FE0000, #930707);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header img.logo {
+    width: 50px;
+    height: auto;
+}
+
+.main-container {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.qrcode-box {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #FE0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #a1a1a1;
+}
+
+.saldo-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+    max-width: 80%;
+    text-align: left;
+}
+
+.saldo-box, .viagens-box {
+    flex-basis: 45%;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.linhas-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.linha {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+}
+
+.linha h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.status {
+    font-weight: bold;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.atraso {
+    background-color: #d32f2f;
+}
+
+.chegando {
+    background-color: #388e3c;
+}
+
+.no_horario {
+    background-color: #fbc02d;
+}
+
+footer {
+    background: linear-gradient(to right, #FE0000, #930707);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.footer-icons a {
+    margin: 0 15px;
+}
+
+.footer-icons img {
+    height: 30px;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+@media (max-width: 600px) {
+    .footer-icons {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .footer-icons a {
+        margin: 10px 0;
+    }
+}
