@@ -22,3 +22,16 @@ function recarregarSaldo() {
 }
 
 document.getElementById("recarregar-saldo-btn").addEventListener("click", recarregarSaldo);
+
+function reduzirSaldo(){
+    if (saldoAtual <= 0) {
+        alert("Saldo insuficiente!");
+        return; 
+    }
+    saldoAtual-=4.40;
+    viagensRestantes-=1;
+    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(1)}`;
+    document.getElementById("viagens-restantes").innerText = viagensRestantes;
+
+}
+document.getElementById("generate-qrcode-btn").addEventListener("click", reduzirSaldo);
