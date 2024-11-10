@@ -24,16 +24,6 @@ header img {
     width: auto;
 }
 
-nav {
-    margin: 10px 0;
-}
-
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
 .main-container {
     flex-grow: 1;
     padding: 20px;
@@ -45,49 +35,72 @@ h2 {
     color: #333;
 }
 
-.qrcode-box {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 20px;
+.pagamento-box {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pagamento-opcoes {
+    margin-bottom: 20px;
+}
+
+.pagamento-opcoes h3 {
+    color: #FE0000;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.select-pagamento {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-a{
-    text-decoration: none;
+.form-container {
+    margin-top: 20px;
 }
 
-.btn {
+.form-container label {
     display: block;
-    width: 80%;
-    margin: 10px auto;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-cadastrar {
+    width: 100%;
     padding: 10px;
     background-color: #FE0000;
     color: white;
-    border:none;
+    border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
+.btn-cadastrar:hover {
     background-color: #a1a1a1;
 }
 
-.saldo-info {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px auto;
-    max-width: 80%;
-    text-align: left;
-}
-
-.saldo-box, .viagens-box {
-    flex-basis: 45%;
-    background-color: #f8f8f8;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.salvar{
+    margin-top: 10px;
 }
 
 
@@ -96,7 +109,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -115,7 +128,6 @@ footer {
 
 .footer-icons a {
     margin: 0 15px;
-    
 }
 
 .footer-icons img {
@@ -129,7 +141,6 @@ p {
 
 @media (max-width: 600px) {
     .footer-icons {
-        display: flex;
         justify-content: space-around;
     }
 
@@ -137,4 +148,3 @@ p {
         margin: 10px 0;
     }
 }
-

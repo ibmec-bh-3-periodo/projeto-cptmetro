@@ -16,8 +16,14 @@ header {
     text-align: center;
 }
 
+header img {
+    height: 60px;
+    width: auto;
+}
+
 main {
     padding: 20px;
+    height: 100vh;
 }
 
 h1{
