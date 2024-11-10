@@ -21,6 +21,15 @@ header img {
     text-align: center;
     width: 100%;
 }
+.seta{
+    position: absolute;
+    top: 35px;
+    left: 20px;
+}
+.seta img{
+    height: 40px;
+    width: 40px;
+}
 
 main {
     padding: 20px;
@@ -33,6 +42,12 @@ main {
     gap: 20px; 
     margin-top: 20px;
 }
+
+    #ouvidoriaForm{
+        flex-direction: column;
+        align-items: center;
+        margin-top: -30px;
+    }
 
 .box {
     background-color: #ffffff;
@@ -94,7 +109,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
+    position: absolute; 
     bottom: 0;
     width: 100%;
 }
@@ -118,14 +133,14 @@ footer {
 
 .footer-icons img {
     height: 30px;
-}
+} */
 
 p {
-    font-size: 11px;
+    font-size: 16px;
     margin: 0;
 }
 
-@media (max-width: 600px) {
+ @media (max-width: 600px) {
     .footer-icons {
         display: flex;
         justify-content: space-around;
