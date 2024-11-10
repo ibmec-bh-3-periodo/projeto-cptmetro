@@ -1,5 +1,5 @@
 const linhas = [
-    { nome: "Linha Rubi" }, 
+    { nome: "Linha Rubi", }, 
     { nome: "Linha Turquesa" },
     { nome: "Linha Coral" },
     { nome: "Linha Safira" },
@@ -35,7 +35,7 @@ function atualizarLinhas() {
         linhaDiv.innerHTML = `
             <h4>Tempo de chegada ${horarioChegada}</h4>
             <p>${linha.nome}</p>
-            <p>Saí em ${Math.floor(Math.random() * 10) + 1} min</p>
+            <p>O metrô sai em ${Math.floor(Math.random() * 10) + 1} min</p>
             <span class="status ${status.classe}">${status.texto}</span>
         `;
 
@@ -46,8 +46,8 @@ function atualizarLinhas() {
 atualizarLinhas(); 
 
 
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-    text: "https://www.cptm.sp.gov.br",
-    width: 200,
-    height: 200,
-});
+// var qrcode = new QRCode(document.getElementById("qrcode"), {
+//     text: "https://www.cptm.sp.gov.br",
+//     width: 200,
+//     height: 200,
+// });
