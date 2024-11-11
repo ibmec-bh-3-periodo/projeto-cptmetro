@@ -35,3 +35,15 @@ function reduzirSaldo(){
 
 }
 document.getElementById("generate-qrcode-btn").addEventListener("click", reduzirSaldo);
+
+// Script para exibir a saudação
+document.addEventListener("DOMContentLoaded", function () {
+const loggedInUser = localStorage.getItem("loggedInUser");
+const greetingMessage = document.getElementById("greetingMessage");
+
+if (greetingMessage && loggedInUser) {
+    greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
+} else {
+    greetingMessage.textContent = "Bem-vindo ao Metrô!";
+}
+});

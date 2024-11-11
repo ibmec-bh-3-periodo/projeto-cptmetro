@@ -35,6 +35,12 @@ h2 {
     color: #333;
 }
 
+h1{
+    font-size: calc(1.375rem + 1.5vw);
+    line-height: 1.2;
+    font-weight: 500;
+}
+
 .pagamento-box {
     max-width: 400px;
     margin: 0 auto;

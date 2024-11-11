@@ -16,13 +16,15 @@
 
   <header class="header">
     <img src="../icones/logo-branco-sem-fundo.png" alt="Logo CPTM" class="logo">
-    <h1>Olá, Usuário!</h1>
+    <div class="welcome-message">
+      <h1 id="greetingMessage">Bem-vindo!</h1>
+  </div>
 </header>
     <main class="main-container">
         <div class="saldo-info">
-            <div class="saldo-box">
+            <a href="../qrcode/qrcode.html"><div class="saldo-box">
                 <p>Saldo:</p>
-                <span id="saldo-valor">R$4,40</span>
+                <span id="saldo-valor">R$4,40</span></a>
                 <button id="recarregar-saldo-btn" class="saldo btn">Recarregar saldo</button>
             </div>
         
@@ -65,7 +67,7 @@
       </div>
       </div>
 
-    <footer>
+      <footer>
         <div class="footer-container">
             <div class="footer-icons">
                 <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt=""></a>
