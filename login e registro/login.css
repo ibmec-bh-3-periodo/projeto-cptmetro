@@ -35,7 +35,7 @@ h2 {
 }
 
 p a {
-    color: #FE0000;
+    color: #EE0000;
 }
 
 input[type="text"],
@@ -52,7 +52,7 @@ input[type="email"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #FE0000;
+    background-color: #EE0000;
     color: white;
     border: none;
     border-radius: 4px;
@@ -103,7 +103,7 @@ footer {
 
 p {
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 

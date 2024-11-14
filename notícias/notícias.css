@@ -33,7 +33,7 @@ h1 {
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 32px;
     padding-left: 12px;
     margin: 15px 0;
     color: #333;
@@ -94,7 +94,7 @@ h2 {
     display: inline-block;
     margin: 15px 0;
     padding: 10px 20px;
-    background: #FE0000;
+    background: #EE0000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -139,12 +139,12 @@ footer {
 
 footer p {
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 p {
     margin: 0;
-    font-size: 15px;
+    font-size: 16px;
     padding: 0 15px 15px;
  
 }

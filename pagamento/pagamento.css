@@ -55,8 +55,8 @@ h1{
 }
 
 .pagamento-opcoes h3 {
-    color: #FE0000;
-    font-size: 18px;
+    color: #EE0000;
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
@@ -74,7 +74,7 @@ h1{
 
 .form-container label {
     display: block;
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
     margin-bottom: 5px;
     text-align: left;
@@ -92,7 +92,7 @@ h1{
 .btn-cadastrar {
     width: 100%;
     padding: 10px;
-    background-color: #FE0000;
+    background-color: #EE0000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -142,7 +142,7 @@ footer {
 
 p {
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 @media (max-width: 600px) {

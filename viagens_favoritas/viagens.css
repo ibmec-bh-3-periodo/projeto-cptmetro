@@ -26,7 +26,7 @@ header img {
 
 
 h2 {
-    font-size: 30px;
+    font-size: 32px;
     padding-left: 12px;
 }
 
@@ -84,7 +84,7 @@ input[type="text"] {
 button {
     width: 100%;
     padding: 10px;
-    background: #FE0000;
+    background: #EE0000;
     color: white;
     border: none;
     border-radius: 5px;
