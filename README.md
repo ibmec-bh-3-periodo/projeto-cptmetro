@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # [Grupo 4] Projeto CPTMetrô
+=======
+# Projeto CPTMetrô
+>>>>>>> f9eeb49991c60c3383b010179eb5c5c96a92a8c3
 
 - [Registro de Dailies](https://docs.google.com/document/d/1D0h7AgVgcb1xzSg7Hnw3ze4euTFOjOXcYOAkQtqAha0/edit?usp=sharing)
 - [Apresentação no Power Point](https://docs.google.com/presentation/d/1HmFXLpo6D4nh54Ol-A4I6Ummylo9N-IeL4LoG4LOqRY/edit?usp=sharing)
@@ -15,7 +19,11 @@ Um aplicativo para utilização do metrô de São Paulo.
 
 ## 2. Apresentação do Projeto
 
+<<<<<<< HEAD
 Este projeto é um sistema para automatizar a experiência do usuário ao utilizar o metrô de São Paulo. Ele permite que os usuários possam realizar pagamentos, acompanhar o seu transporte e entrar em contato com a CPTM em caso de necessidade. O projeto foi pensado para facilitar e melhorar a jornada do usuário.
+=======
+Este projeto é um sistema para automatizar a experiência do usuário ao utilizar o metrô de São Paulo. Ele permite que os usuários possam realizar pagamentos, acompanhar o seu transporte e entrar em contato com a CPTM em caso de problemas. O projeto foi pensado para facilitar e melhorar a jornada do usuário.
+>>>>>>> f9eeb49991c60c3383b010179eb5c5c96a92a8c3
 
 ## 3. Gestão de Código
 
@@ -42,7 +50,11 @@ Exemplo: chore/atualizacao-da-documentacao
 ### Tipos de Commits
 
 - add: Adição de uma nova funcionalidade.
+<<<<<<< HEAD
 Exemplo: add: implementação do sistema de login com JavaScript
+=======
+Exemplo: add: implementar sistema de login com JavaScript
+>>>>>>> f9eeb49991c60c3383b010179eb5c5c96a92a8c3
 
 - bug: Correção de bugs.
 Exemplo: bug: correção do erro no cálculo de desconto
@@ -67,7 +79,11 @@ Exemplo: merge: chore/atualizacao-da-documentacao e main
 
 ### 4. Organização de Pastas e Arquivos
 - Pastas para cada página.
+<<<<<<< HEAD
 - Páginas relacionadas organizadas na mesma pasta (ex: página de redes sociais e de configuração).
+=======
+- Páginas relacionadas organizadas na mesma pasta (ex: redes sociais da configuração).
+>>>>>>> f9eeb49991c60c3383b010179eb5c5c96a92a8c3
 - Pastas de ícones e de imagens separadas.
 
 ### 5. Requisitos Funcionais
