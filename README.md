@@ -31,7 +31,7 @@ Este projeto utiliza as seguintes tecnologias e ferramentas:
 Exemplo: feature/adicao-login-social
 
 - bug/: Usado para correção de bugs.
-Exemplo: bug/corrigicao-botao-de-envio
+Exemplo: bug/correcao-botao-de-envio
 
 - fix/: Usado para correções urgentes em produção.
 Exemplo: fix/correcao-falha-autenticacao
@@ -61,6 +61,9 @@ Exemplo: test: adição de testes unitários para componente Header
 
 - chore: Atualizações gerais que não alteram código funcional (ex: atualizações de dependências).
 Exemplo: chore: atualização de responsividade
+
+- merge: Merge entre branches.
+Exemplo: merge: chore/atualizacao-da-documentacao e main
 
 ### 4. Organização de Pastas e Arquivos
 - Pastas para cada página.
