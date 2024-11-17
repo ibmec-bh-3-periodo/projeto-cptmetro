@@ -1,4 +1,4 @@
-# projeto-cptm-grupo4
+# Projeto CPTMetrô
 
 - [Registro de Dailies](https://docs.google.com/document/d/1D0h7AgVgcb1xzSg7Hnw3ze4euTFOjOXcYOAkQtqAha0/edit?usp=sharing)
 - [Apresentação no Power Point](https://docs.google.com/presentation/d/1HmFXLpo6D4nh54Ol-A4I6Ummylo9N-IeL4LoG4LOqRY/edit?usp=sharing)
