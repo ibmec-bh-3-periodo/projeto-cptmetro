@@ -71,11 +71,12 @@ Exemplo: chore: atualizar pacotes NPM
 
 1. **Cadastro de Usuários:** Permite o registro de novos usuários.
 2. **Pagamento:** Usuários podem adicionar uma forma de pagamento.
-3. **Mapas:** O usuário consegue ver os mapas das linhas dos metrôs e o caminho percorrido pelo metrô para chegar até ele.
+3. **Mapas:** Usuário consegue ver os mapas das linhas dos metrôs e o caminho percorrido pelo metrô para chegar até ele.
 4. **Ticket:** Usuário pode criar um QR CODE para utilizar nas catracas das estações.
-5. **Notícias:** Usuário consegue acompanhar as notícias que interferem no funcionamento do metrô.
+5. **Notícias:** Usuário consegue acompanhar as notícias relacionadas ao metrô.
 6. **Viagens favoritas:** Usuário consegue selecionar suas viagens favoritas.
-7. **Contato:** Usuário tem acesso às páginas de contato e ouvidoria para fazer qualquer reclamação, elogio ou sugestão.
+7. **Situação das linhas:** Usuário consegue acompanhar se a linha que deseja se encontra em atraso, no horário de funcionamento ou chegando.
+8. **Contato:** Usuário tem acesso às páginas de contato e ouvidoria para fazer qualquer reclamação, elogio ou sugestão.
 
 
 
