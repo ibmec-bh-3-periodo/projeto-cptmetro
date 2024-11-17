@@ -32,6 +32,11 @@ h1{
     margin-top: 20px;
 }
 
+.box img{
+    width: 24px;
+    height: 24px;
+}
+
 .box {
     background-color: #ffffff;
     color: rgb(0, 0, 0);

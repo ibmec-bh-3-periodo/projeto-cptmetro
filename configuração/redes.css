@@ -15,6 +15,16 @@ header {
     text-align: center;
 }
 
+.seta{
+    position: absolute;
+    top: 35px;
+    left: 20px;
+}
+.seta img{
+    height: 40px;
+    width: 40px;
+}
+
 main {
     padding: 20px;
 }
