@@ -35,6 +35,12 @@ h2 {
     color: #333;
 }
 
+h1{
+    font-size: calc(1.375rem + 1.5vw);
+    line-height: 1.2;
+    font-weight: 500;
+}
+
 .pagamento-box {
     max-width: 400px;
     margin: 0 auto;
@@ -49,8 +55,8 @@ h2 {
 }
 
 .pagamento-opcoes h3 {
-    color: #FE0000;
-    font-size: 18px;
+    color: #EE0000;
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
@@ -68,7 +74,7 @@ h2 {
 
 .form-container label {
     display: block;
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
     margin-bottom: 5px;
     text-align: left;
@@ -86,7 +92,7 @@ h2 {
 .btn-cadastrar {
     width: 100%;
     padding: 10px;
-    background-color: #FE0000;
+    background-color: #EE0000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -136,7 +142,7 @@ footer {
 
 p {
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 @media (max-width: 600px) {

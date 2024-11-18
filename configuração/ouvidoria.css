@@ -35,6 +35,11 @@ main {
     padding: 20px;
 }
 
+
+.img{
+    height: 5git px;
+}
+
 .container {
     display: flex;
     flex-direction: column; 
@@ -84,7 +89,7 @@ input, textarea, select {
 }
 
 button {
-    background-color: #a50101ef;
+    background-color: #EE0000;
     color: white;
     border: none;
     padding: 10px;
@@ -94,14 +99,14 @@ button {
 }
 
 button:hover {
-    background-color: #FE0000;
+    background-color: #EE0000;
 }
 
 .message {
     display: none;
     margin-top: 20px;
     text-align: center;
-    color: #FE0000;
+    color: #EE0000;
 }
 
 footer {

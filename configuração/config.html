@@ -27,7 +27,7 @@
         <a href="./contatos.html" class="box">
             <i class="fas fa-envelope"></i> Contato
         </a>
-        <a href="../login e registro/registro.html" class="box">
+        <a href="#" class="box" id="logoutButton">
             <i class="fas fa-sign-out-alt"></i> Sair da Conta
         </a>
     </div>
@@ -35,14 +35,22 @@
 <footer>
     <div class="footer-container">
         <div class="footer-icons">
-            <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt=""></a>
-            <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt=""></a>
-            <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt=""></a>
-            <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>
+            <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
+            <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code"></a>
+            <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa"></a>
+            <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de Configurações"></a>
         </div>
         <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
     </div>
 </footer>
-
+<script> 
+        document.getElementById("logoutButton").addEventListener("click", function (event) {
+        event.preventDefault(); 
+        localStorage.removeItem("loggedInUser"); // Remove o usuário logado do localStorage
+        alert("Você saiu da conta.");
+        window.location.href = "../login e registro/login.html"; // Redireciona para a página de login
+    });
+    
+</script>
 </body>
 </html>

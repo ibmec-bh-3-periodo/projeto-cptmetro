@@ -15,7 +15,9 @@ body {
 header {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
-    padding: 10px 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 100%;
     text-align: center;
 }
 
@@ -23,20 +25,15 @@ header img {
     height: 60px;
     width: auto;
 }
-
-nav {
-    margin: 10px 0;
-}
-
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
+h1{
+    font-size: calc(1.375rem + 1.5vw);
+    line-height: 1.2;
+    font-weight: 500;
 }
 
 .main-container {
     flex-grow: 1;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
 }
 
@@ -61,7 +58,7 @@ a{
     width: 80%;
     margin: 10px auto;
     padding: 10px;
-    background-color: #FE0000;
+    background-color: #EE0000;
     color: white;
     border:none;
     border-radius: 5px;
@@ -124,7 +121,7 @@ footer {
 
 p {
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 @media (max-width: 600px) {

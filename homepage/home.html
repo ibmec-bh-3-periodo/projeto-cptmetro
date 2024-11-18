@@ -16,13 +16,15 @@
 
   <header class="header">
     <img src="../icones/logo-branco-sem-fundo.png" alt="Logo CPTM" class="logo">
-    <h1>Olá, Usuário!</h1>
+    <div class="welcome-message">
+      <h1 id="greetingMessage">Bem-vindo!</h1>
+  </div>
 </header>
     <main class="main-container">
         <div class="saldo-info">
-            <div class="saldo-box">
+            <a href="../qrcode/qrcode.html"><div class="saldo-box">
                 <p>Saldo:</p>
-                <span id="saldo-valor">R$4,40</span>
+                <span id="saldo-valor">R$4,40</span></a>
                 <button id="recarregar-saldo-btn" class="saldo btn">Recarregar saldo</button>
             </div>
         
@@ -44,13 +46,13 @@
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <a href="../homepage/metro.html"> <img src="../img/mapa-metro-1024x763.png" class="d-block w-100" alt="...">
+              <a href="../homepage/metro.html"> <img src="../img/mapa-metro-1024x763.png" class="d-block w-100" alt="imagem de mapa das linhas de metrô que direciona para a página de mapa das linhas">
             </div>
             <div class="carousel-item">
-              <a href="../horários/horarios.html"> <img src="../img/situacao.png" class="d-block w-100" alt="...">
+              <a href="../horários/horarios.html"> <img src="../img/situacao.png" class="d-block w-100" alt="imagem da situação das redes que direciona para a página de situações">
             </div>
             <div class="carousel-item">
-              <a href="../notícias/notícias.html"><img src="../img/outubro rosa.jpg" class="d-block w-100" alt="...">
+              <a href="../notícias/notícias.html"><img src="../img/outubro rosa.jpg" class="d-block w-100" alt="imagem de notícias do metrô que direciona para a página de notícias">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -65,13 +67,13 @@
       </div>
       </div>
 
-    <footer>
+      <footer>
         <div class="footer-container">
             <div class="footer-icons">
-                <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt=""></a>
-                <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt=""></a>
-                <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt=""></a>
-                <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt=""></a>
+                <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
+                <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code"></a>
+                <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa"></a>
+                <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de configurações"></a>
             </div>
             <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
         </div>

@@ -43,3 +43,16 @@ document.getElementById("submit-btn").addEventListener("click", function() {
         alert("Por favor, selecione um método de pagamento.");
     }
 });
+
+
+// Script para exibir a saudação
+document.addEventListener("DOMContentLoaded", function () {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    const greetingMessage = document.getElementById("greetingMessage");
+    
+    if (greetingMessage && loggedInUser) {
+        greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
+    } else {
+        greetingMessage.textContent = "Bem-vindo ao Metrô!";
+    }
+    });
