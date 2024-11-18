@@ -49,13 +49,26 @@ main {
     width: 100%; 
     max-width: 600px; 
     text-align: center;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: background-color 0.3s;
     font-size: 1.2em;
 }
 
 .box:hover {
     background-color: #a1a1a1;
+}
+
+.box img{
+    width: 24px;
+    height: 24px;
+}
+
+a{
+    text-decoration: none;
+}
+
+img .box{
+    margin-bottom: -2px;
 }
 
 h2 {
