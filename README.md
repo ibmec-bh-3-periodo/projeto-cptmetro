@@ -60,9 +60,6 @@ Exemplo: test: adição de testes unitários para componente Header
 - chore: Atualizações gerais que não alteram código funcional (ex: atualizações de dependências).
 Exemplo: chore: atualização de responsividade
 
-- merge: Merge entre branches.
-Exemplo: merge: chore/atualizacao-da-documentacao e main
-
 ### 4. Organização de Pastas e Arquivos
 - Pastas para cada página.
 - Páginas relacionadas organizadas na mesma pasta (ex: página de redes sociais e de configuração).

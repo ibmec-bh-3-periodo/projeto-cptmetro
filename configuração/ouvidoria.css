@@ -13,14 +13,13 @@ header img {
     width: auto;
 }
 
-.header {
+header {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px 20px;
     text-align: center;
-    width: 100%;
 }
+
 .seta{
     position: absolute;
     top: 35px;
@@ -151,7 +150,7 @@ footer {
 
 .footer-icons img {
     height: 30px;
-} */
+} 
 
 p {
     font-size: 16px;
