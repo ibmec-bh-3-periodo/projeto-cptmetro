@@ -1,0 +1,51 @@
+{
+    "linha": "13 - Jade",
+    "trecho": "Eng. Goulart - Aeroporto Guarulhos",
+    "horarios": [
+      {
+        "dia": "Dias Úteis",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "04:20",
+            "intervalo_minutos": 20
+          },
+          {
+            "inicio": "04:20",
+            "fim": "24:00",
+            "intervalo_minutos": 15
+          }
+        ]
+      },
+      {
+        "dia": "Sábados",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "04:20",
+            "intervalo_minutos": 20
+          },
+          {
+            "inicio": "04:20",
+            "fim": "20:00",
+            "intervalo_minutos": 15
+          },
+          {
+            "inicio": "20:00",
+            "fim": "24:00",
+            "intervalo_minutos": 35
+          }
+        ]
+      },
+      {
+        "dia": "Domingos e Feriados",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "24:00",
+            "intervalo_minutos": 35
+          }
+        ]
+      }
+    ]
+  }
