@@ -1,20 +1,36 @@
 # 🏁 Relatório de Abertura - Sprint X
 
 ## 🎯 Objetivos da Sprint
-- [ ] Objetivo 1
-- [ ] Objetivo 2
-- [ ] Objetivo 3
+- [ ] Implementar saldo via API e reconfigurar o design (#27)  
+- [ ] Integrar opções dinâmicas no Select com dados da API (mapa) (#28)  
+- [ ] Desenvolver login via API (#29)  
+- [ ] Criar a linha do tempo na home (#30)  
+- [ ] Organizar estrutura geral do projeto (#31)  
+- [ ] Implementar página de pagamento (#32)  
+- [ ] Reestruturar layout da home (#33)  
+- [ ] Criar estrutura inicial do banco de dados (#34)
 
 ## 👥 Distribuição de Tarefas
-| Integrante | Tarefa | Prazo |
-|------------|--------|-------|
-| Nome       |        |       |
-| Nome       |        |       |
+| Integrante                        | Tarefa                                                  | Prazo       |
+|----------------------------------|----------------------------------------------------------|-------------|
+| Laura Furtado & Melina Pissolato | Saldo via API / Reconfigurar o Design (#27)              | dd/mm/yyyy  |
+| Vitor Neves & João Pedro         | Select com opções da API (mapa) (#28)                    | dd/mm/yyyy  |
+| Antônia Monteiro & Gabriel Borges| Login API (#29)                                          | dd/mm/yyyy  |
+| Antônia Monteiro & Gabriel Borges| Linha do tempo (home) (#30)                              | dd/mm/yyyy  |
+| Vitor Neves & João Pedro         | Organização geral (#31)                                  | dd/mm/yyyy  |
+| Laura Furtado & Melina Pissolato | Página de pagamento (#32)                                | dd/mm/yyyy  |
+| Antônia Monteiro & Gabriel Borges| Reestruturação da home (#33)                             | dd/mm/yyyy  |
+| Vitor Neves & João Pedro         | Criação do database (#34)                                | dd/mm/yyyy  |
 
 ## 🛠️ Ferramentas e Tecnologias Previstas
-- Ferramenta 1
-- Ferramenta 2
+- GitHub Projects (Kanban)  
+- Figma (Design UI/UX)  
+- VS Code  
+- Node.js / Express  
+- API REST
 
 ## 📌 Critérios de Entrega
-- Critério 1
-- Critério 2
+- Todas as funcionalidades devem estar integradas e testadas  
+- Código organizado e documentado  
+- Banco de dados funcionando com as rotas definidas  
+- Interface responsiva e alinhada ao design
