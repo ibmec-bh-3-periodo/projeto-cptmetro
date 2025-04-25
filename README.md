@@ -1,12 +1,15 @@
 # [Grupo 4] Projeto CPTMetrô
 - [Registro de Dailies](https://docs.google.com/document/d/1D0h7AgVgcb1xzSg7Hnw3ze4euTFOjOXcYOAkQtqAha0/edit?usp=sharing)
-- [Apresentação no Power Point](https://docs.google.com/presentation/d/1HmFXLpo6D4nh54Ol-A4I6Ummylo9N-IeL4LoG4LOqRY/edit?usp=sharing)
+- [Apresentação no Power Point(Front-End)](https://docs.google.com/presentation/d/1HmFXLpo6D4nh54Ol-A4I6Ummylo9N-IeL4LoG4LOqRY/edit?usp=sharing)
   
 ## Integrantes
 
-- Laura Furtado: Scrum Master/Desenvolvedor
+- Laura Furtado: Desenvolvedor
 - Antônia Villela: Desenvolvedor
 - Melina Pissolato: Desenvolvedor
+- João Pedro Castro: Desenvolvedor
+- Gabriel Borem: Desenvolvedor
+- Vitor Neves: Scrum Master
 
 # 1. Nome do Projeto: CPTMetrô
 
@@ -19,8 +22,8 @@ Este projeto é um sistema para automatizar a experiência do usuário ao utiliz
 
 Este projeto utiliza as seguintes tecnologias e ferramentas:
 
-- **Linguagens:** HTML, CSS e JS
-- **Framework:** Bootstrap
+- **Linguagens:** HTML, CSS, TS e JS
+- **Framework:** Bootstrap, Express
 - **Versionamento de código:** Git
 
 ### Padrão para nomes de branches
@@ -61,9 +64,9 @@ Exemplo: test: adição de testes unitários para componente Header
 Exemplo: chore: atualização de responsividade
 
 ### 4. Organização de Pastas e Arquivos
-- Pastas para cada página.
+- Pasta src -> Pastas exclusivas para cada página, ícones e de imagens separadas.
 - Páginas relacionadas organizadas na mesma pasta (ex: página de redes sociais e de configuração).
-- Pastas de ícones e de imagens separadas.
+- Pasta docs -> Documentação do projeto, com Aberturas de sprints, backlog, daily e a retrospectiva.
 
 ### 5. Requisitos Funcionais
 
