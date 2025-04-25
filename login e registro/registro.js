@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("loggedInUser", username);
 
             alert("Login bem-sucedido!");
-            window.location.href = "../homepage/home.html"; // Redireciona para a página inicial
+            window.location.href = "homepage/index.html"; // Redireciona para a página inicial
         } else {
             alert("Email ou senha incorretos.");
         }
