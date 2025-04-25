@@ -1,0 +1,41 @@
+Backlog
+Saldo via API/Reconfig o Design
+-No saldo, tirar o botão recarregar saldo
+-Saldo deverá atualizar automaticamente após o usuário recarregar o saldo
+
+•⁠  ⁠Melina
+•⁠  ⁠Laura
+
+Select com opções vindas da API (mapa)
+
+•⁠  ⁠João
+•⁠  ⁠Vitor
+
+Login API:
+-home será o login, posteriormente quando a
+pessoa fazer login terá outra home
+
+*Gabriel
+*Antônia
+
+Linha do tempo (home)
+•⁠  ⁠Todos os integrantes
+
+
+Organização geral
+•⁠  ⁠João
+•⁠  ⁠Vitor
+
+Página de pagamento:
+
+-Na hora do pagamento terá uma parte
+para selecionar quantos bilhetes a pessoa deseja comprar,
+-Botão de cancelar ou confirmar o pagamento
+
+*Laura
+*Melina
+
+Home
+-Ao clicar no botão de recarregar saldo, direcionar para a pág de pagamento
+*Antônia
+*Gabriel
