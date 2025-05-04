@@ -23,6 +23,8 @@ function recarregarSaldo() {
 
 document.getElementById("recarregar-saldo-btn").addEventListener("click", recarregarSaldo);
 
+module.exports = { recarregarSaldo, getSaldoAtual: () => saldoAtual, getViagensRestantes: () => viagensRestantes };
+
 function reduzirSaldo(){
     if (saldoAtual <= 0) {
         alert("Saldo insuficiente!");
