@@ -1,4 +1,4 @@
-var map = L.map('map').setView([-23.5505, -46.6333], 13); // São Paulo, Brasil
+var map = L.map('map').setView([-23.5505, -46.6333], 13);
 L.tileLayer('https://tile.jawg.io/jawg-streets/{z}/{x}/{y}.png?access-token=PQtOM8nvetA4UCUCLUDfnhG4br0fSjvyW5wW6yw24HfrmboFWuGXBABOiEMYE4bC', {
     attribution: 'Map data ©️ <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©️ <a href="https://www.jawg.io">Jawg</a>',
     maxZoom: 18
@@ -10,11 +10,25 @@ L.marker([-23.5505, -46.6333]).addTo(map)
 
 var startMarker, endMarker, routeLayer;
 
+const cities = ["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Brasília", "Salvador", "Curitiba", "Porto Alegre", "Fortaleza"];
+const citySelect = document.getElementById('citySelect');
+cities.forEach(city => {
+    const option = document.createElement('option');
+    option.value = city;
+    option.textContent = city;
+    citySelect.appendChild(option);
+});
+citySelect.addEventListener('change', function () {
+    const selectedCity = citySelect.value;
+    if (selectedCity) {
+        document.getElementById('searchInputEnd').value = selectedCity;
+    }
+});
+
 document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault();
     var startQuery = document.getElementById('searchInputStart').value;
     var endQuery = document.getElementById('searchInputEnd').value;
-    console.log('Pesquisando por:', startQuery, 'e', endQuery);
 
     Promise.all([
         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(startQuery)}`).then(response => response.json()),
@@ -26,7 +40,6 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
             var startLon = data[0][0].lon;
             var endLat = data[1][0].lat;
             var endLon = data[1][0].lon;
-            console.log('Coordenadas encontradas:', startLat, startLon, endLat, endLon);
 
             if (startMarker) map.removeLayer(startMarker);
             if (endMarker) map.removeLayer(endMarker);
