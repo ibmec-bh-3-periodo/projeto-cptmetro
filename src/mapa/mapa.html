@@ -19,6 +19,9 @@
             <form id="searchForm">
                 <input type="text" id="searchInputStart" name="pesquisaStart" placeholder="Local de partida">
                 <input type="text" id="searchInputEnd" name="pesquisaEnd" placeholder="Local de destino">
+                <select id="citySelect">
+                    <option value="">Selecionar cidade de destino</option>
+                </select>
                 <p></p>
                 <input type="submit" class="botao" value="Pesquisar">
             </form>
@@ -26,7 +29,7 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="./mapa.js"></script> <!-- Separar o JavaScript em script.js -->
+    <script src="./mapa.js"></script>
     <footer>
         <div class="footer-container">
             <div class="footer-icons">
