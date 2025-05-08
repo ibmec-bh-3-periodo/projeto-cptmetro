@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("password", password);
 
             alert("Conta criada com sucesso!");
-            window.location.href = "../../index.html"; // Redireciona para a página de login
+            window.location.href = "login.html"; // Redireciona para a página de login
         } else {
             alert("Por favor, preencha todos os campos.");
         }
