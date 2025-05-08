@@ -1,0 +1,30 @@
+{
+  "name": "projeto-cptmetro",
+  "version": "1.0.0",
+  "description": "- [Registro de Dailies](https://docs.google.com/document/d/1D0h7AgVgcb1xzSg7Hnw3ze4euTFOjOXcYOAkQtqAha0/edit?usp=sharing) - [Apresentação no Power Point(Front-End)](https://docs.google.com/presentation/d/1HmFXLpo6D4nh54Ol-A4I6Ummylo9N-IeL4LoG4LOqRY/edit?usp=sharing)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibmec-bh-3-periodo/projeto-cptmetro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibmec-bh-3-periodo/projeto-cptmetro/issues"
+  },
+  "homepage": "https://github.com/ibmec-bh-3-periodo/projeto-cptmetro#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom"
+  }
+}
