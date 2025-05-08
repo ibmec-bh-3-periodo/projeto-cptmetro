@@ -1,51 +1,52 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("registerForm")?.addEventListener("submit", function (event) {
-        event.preventDefault();
+    const registerForm = document.getElementById("registerForm");
+    const loginForm = document.getElementById("loginForm");
 
-        const username = document.getElementById("registerUsername").value;
-        const email = document.getElementById("registerEmail").value;
-        const password = document.getElementById("registerPassword").value;
+    // Cadastro
+    if (registerForm) {
+        registerForm.addEventListener("submit", function (event) {
+            event.preventDefault();
 
-        if (username && email && password) {
-            // Armazena os dados do usuário no localStorage
-            localStorage.setItem("username", username);
-            localStorage.setItem("email", email);
-            localStorage.setItem("password", password);
+            const username = document.getElementById("registerUsername").value;
+            const email = document.getElementById("registerEmail").value;
+            const password = document.getElementById("registerPassword").value;
 
-            alert("Conta criada com sucesso!");
-            window.location.href = "login.html"; // Redireciona para a página de login
-        } else {
-            alert("Por favor, preencha todos os campos.");
-        }
-    });
+            if (username && email && password) {
+                localStorage.setItem("username", username);
+                localStorage.setItem("email", email);
+                localStorage.setItem("password", password);
+
+                alert("Conta criada com sucesso!");
+                window.location.href = "../../index.html"; // volta para o login na raiz
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        });
+    }
+
+    // Login
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const emailInput = document.getElementById("loginEmail").value;
+            const passwordInput = document.getElementById("passwordInput").value;
+
+            const storedEmail = localStorage.getItem("email");
+            const storedPassword = localStorage.getItem("password");
+
+            if (emailInput === storedEmail && passwordInput === storedPassword) {
+                const username = localStorage.getItem("username");
+                localStorage.setItem("loggedInUser", username);
+
+                alert("Login bem-sucedido!");
+                window.location.href = "./src/homepage/home.html"; // redireciona após login
+            } else {
+                alert("Email ou senha incorretos.");
+            }
+        });
+    }
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("loginForm")?.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const emailInput = document.getElementById("registerEmail").value;
-        const passwordInput = document.getElementById("passwordInput").value;
-
-        const storedEmail = localStorage.getItem("email");
-        const storedPassword = localStorage.getItem("password");
-
-        if (emailInput === storedEmail && passwordInput === storedPassword) {
-            // Armazena o usuário logado no localStorage
-            const username = localStorage.getItem("username");
-            localStorage.setItem("loggedInUser", username);
-
-            alert("Login bem-sucedido!");
-            window.location.href = "../homepage/home.html"; // Redireciona para a página inicial
-        } else {
-            alert("Email ou senha incorretos.");
-        }
-    });
-});
-
-
-
-
 
 
 
