@@ -11,30 +11,30 @@ L.marker([-23.5505, -46.6333]).addTo(map)
 var startMarker, endMarker, routeLayer;
 
 var stations = [
-    "Luz","Brás","Tatuapé","Santo Amaro","Sé","Pinheiros",
-    "Barra Funda","República","Paraíso","Butantã","Moema",
-    "Vila Madalena","Hospital São Paulo","Móoca","Salto do Itararé"
+    "Tucuruvi", "Santana", "Sé", "Jabaquara",
+    "Vila Madalena", "Clínicas", "Consolação", "Ana Rosa",
+    "Palmeiras–Barra Funda", "Brás", "Tatuapé", "Corinthians–Itaquera"
 ];
 
-var stationSelect = document.getElementById('stationSelect');
-stations.forEach(function(s) {
-    var o = document.createElement('option');
-    o.value = s;
-    o.textContent = s;
-    stationSelect.appendChild(o);
-});
+var searchSelectStart = document.getElementById('searchSelectStart');
+var searchSelectEnd   = document.getElementById('searchSelectEnd');
 
-stationSelect.addEventListener('change', function() {
-    var s = this.value;
-    if (s) {
-        document.getElementById('searchInputEnd').value = s;
-    }
+stations.forEach(function(s) {
+    var optionStart = document.createElement('option');
+    optionStart.value = s;
+    optionStart.textContent = s;
+    searchSelectStart.appendChild(optionStart);
+
+    var optionEnd = document.createElement('option');
+    optionEnd.value = s;
+    optionEnd.textContent = s;
+    searchSelectEnd.appendChild(optionEnd);
 });
 
 document.getElementById('searchForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    var a = document.getElementById('searchInputStart').value;
-    var b = document.getElementById('searchInputEnd').value;
+    var a = searchSelectStart.value;
+    var b = searchSelectEnd.value;
 
     Promise.all([
         fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(a)).then(r => r.json()),
@@ -45,11 +45,11 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
             var lb = d[1][0].lat, ob = d[1][0].lon;
 
             if (startMarker) map.removeLayer(startMarker);
-            if (endMarker) map.removeLayer(endMarker);
-            if (routeLayer) map.removeLayer(routeLayer);
+            if (endMarker)   map.removeLayer(endMarker);
+            if (routeLayer)  map.removeLayer(routeLayer);
 
             startMarker = L.marker([la, lo]).addTo(map).bindPopup('Partida: ' + a).openPopup();
-            endMarker = L.marker([lb, ob]).addTo(map).bindPopup('Destino: ' + b).openPopup();
+            endMarker   = L.marker([lb, ob]).addTo(map).bindPopup('Destino: ' + b).openPopup();
 
             map.fitBounds([[la, lo], [lb, ob]]);
 

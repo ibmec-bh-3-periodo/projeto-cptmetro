@@ -31,9 +31,8 @@ h1 {
     max-width: 600px;
 }
 
-input[type="text"],
-input[type="submit"],
-select {
+select,
+input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -49,6 +48,7 @@ select {
     border: 0.5px solid #EE0000;
     margin: 8px 0;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #map {
@@ -88,7 +88,6 @@ footer {
     .footer-icons {
         justify-content: space-around;
     }
-
     .footer-icons a {
         margin: 10px 0;
     }
