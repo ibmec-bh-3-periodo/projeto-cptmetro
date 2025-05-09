@@ -1,58 +1,41 @@
-document.getElementById("forma-pagamento").addEventListener("change", function() {
-    let selectedMethod = this.value;
-    
- 
-    document.getElementById("form-container").style.display = "block";
-    document.getElementById("pix-form").style.display = "none";
-    document.getElementById("debito-form").style.display = "none";
-    document.getElementById("credito-form").style.display = "none";
-    
+// Função para gerar o código PIX no formato esperado
+function gerarCodigoPix(chavePix, valor, descricao) {
+    let payload = `00020126330014BR.GOV.BCB.PIX0114${chavePix}5204000053039865404${valor}5802BR5914Metrô São Paulo6009São Paulo62070503***6304`;
+    return payload;
+}
 
-    if (selectedMethod === "pix") {
-        document.getElementById("pix-form").style.display = "block";
-    } else if (selectedMethod === "debito") {
-        document.getElementById("debito-form").style.display = "block";
-    } else if (selectedMethod === "credito") {
-        document.getElementById("credito-form").style.display = "block";
-    }
-});
+// Função para exibir o QR Code PIX
+function gerarQRCodePix() {
+    let chavePix = document.getElementById("pix-key").value;
+    let valorPix = "10.00"; // Valor fixo, mas pode ser um campo do usuário
+    let descricaoPix = "Passagem Metrô";
 
-document.getElementById("submit-btn").addEventListener("click", function() {
-    let selectedMethod = document.getElementById("forma-pagamento").value;
-    let paymentData;
+    let codigoPix = gerarCodigoPix(chavePix, valorPix, descricaoPix);
 
-    if (selectedMethod === "pix") {
-        paymentData = document.getElementById("pix-key").value;
-        alert("Chave PIX cadastrada: " + paymentData);
-    } else if (selectedMethod === "debito") {
-        paymentData = {
-            number: document.getElementById("debito-number").value,
-            name: document.getElementById("debito-name").value,
-            validade: document.getElementById("debito-validade").value
-        };
-        alert("Cartão de Débito cadastrado: " + JSON.stringify(paymentData));
-    } else if (selectedMethod === "credito") {
-        paymentData = {
-            number: document.getElementById("credito-number").value,
-            name: document.getElementById("credito-name").value,
-            validade: document.getElementById("credito-validade").value,
-            cvv: document.getElementById("credito-cvv").value
-        };
-        alert("Cartão de Crédito cadastrado: " + JSON.stringify(paymentData));
-    } else {
-        alert("Por favor, selecione um método de pagamento.");
-    }
-});
+    let qrContainer = document.getElementById("qr-code-container");
+    qrContainer.innerHTML = ""; // Limpa o conteúdo anterior
 
+    let qrCanvas = document.createElement("canvas");
+    qrContainer.appendChild(qrCanvas);
 
-// Script para exibir a saudação
-document.addEventListener("DOMContentLoaded", function () {
-    const loggedInUser = localStorage.getItem("loggedInUser");
-    const greetingMessage = document.getElementById("greetingMessage");
-    
-    if (greetingMessage && loggedInUser) {
-        greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
-    } else {
-        greetingMessage.textContent = "Bem-vindo ao Metrô!";
-    }
+    // Geração do QR Code usando a biblioteca qrcode.js
+    QRCode.toCanvas(qrCanvas, codigoPix, function (error) {
+        if (error) {
+            console.error("Erro ao gerar QR Code:", error);
+        }
     });
+}
+
+// Evento de mudança para exibir o formulário PIX ao selecionar a opção
+document.getElementById("forma-pagamento").addEventListener("change", function () {
+    if (this.value === "pix") {
+        document.getElementById("form-container").style.display = "block";
+        document.getElementById("pix-form").style.display = "block";
+    } else {
+        document.getElementById("form-container").style.display = "none";
+        document.getElementById("pix-form").style.display = "none";
+    }
+});
+
+// Evento de clique para gerar o QR Code ao clicar no botão
+document.getElementById("generate-qr-btn").addEventListener("click", gerarQRCodePix);
