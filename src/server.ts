@@ -9,7 +9,7 @@ server.use(express.json());
 
 const usuariosPath = path.join(__dirname, 'usuarios.json');
 
-server.post('/usuarios', (req, res) => {
+server.post('/usuarios', (req:any, res:any) => {
     const { nome, email, senha } = req.body;
 
     if (!nome || !email || !senha) {
@@ -31,7 +31,7 @@ server.post('/usuarios', (req, res) => {
     return res.status(201).json(novoUsuario);
 });
 
-server.put('/usuarios/:email', (req, res) => {
+server.put('/usuarios/:email', (req:any, res:any) => {
     const { email } = req.params;
     const { nome, senha } = req.body;
 
@@ -50,7 +50,7 @@ server.put('/usuarios/:email', (req, res) => {
     return res.json(usuarios[index]);
 });
 
-server.delete('/usuarios/:email', (req, res) => {
+server.delete('/usuarios/:email', (req:any, res:any) => {
     const { email } = req.params;
 
     const usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
