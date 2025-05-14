@@ -28,7 +28,7 @@ server.post('/cadastro', (req:any, res:any) => {
         return res.status(409).json({ success: false, message: 'Email já cadastrado' });
     }
 
-    const novoUsuario = { nome, email, senha };
+    const novoUsuario = { nome, email, senha, saldo: 0, viagens: 0 };
     usuarios.push(novoUsuario);
     try {
         fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
@@ -71,6 +71,41 @@ server.post('/login', (req:any, res:any) => {
 
     return res.json({ message: 'Usuário removido', usuario: usuarioRemovido });
 });*/
+
+const saldosPath = path.join(__dirname, 'saldos.json');
+
+// Retornar saldo do usuário
+server.get('/saldo/:email', (req: any, res: any) => {
+    const { email } = req.params;
+    const saldos = JSON.parse(fs.readFileSync(saldosPath, 'utf-8'));
+    const usuario = saldos.find((s: any) => s.email === email);
+
+    if (!usuario) {
+        return res.status(404).json({ message: "Usuário não encontrado no saldo." });
+    }
+
+    res.json({ saldo: usuario.saldo, viagens: usuario.viagens });
+});
+
+// Atualizar saldo do usuário
+server.put('/saldo/:email', (req: any, res: any) => {
+    const { email } = req.params;
+    const { saldo, viagens } = req.body;
+
+    let saldos = JSON.parse(fs.readFileSync(saldosPath, 'utf-8'));
+    const index = saldos.findIndex((s: any) => s.email === email);
+
+    if (index === -1) {
+        return res.status(404).json({ message: "Usuário não encontrado no saldo." });
+    }
+
+    if (typeof saldo === 'number') saldos[index].saldo = saldo;
+    if (typeof viagens === 'number') saldos[index].viagens = viagens;
+
+    fs.writeFileSync(saldosPath, JSON.stringify(saldos, null, 2));
+    res.json({ message: "Saldo atualizado com sucesso." });
+});
+
 
 const porta = 3000;
 server.listen(porta, () => {

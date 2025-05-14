@@ -1,95 +1,66 @@
-qrcode.js
-
-
 let saldoAtual = 0;
 let viagensRestantes = 0;
-const username = localStorage.getItem("loggedInUser");
-const apiBaseUrl = "http://localhost:3000"; // altere se estiver em produção
+let email = localStorage.getItem("loggedInEmail");
 
-// Inicializa QR Code
-let qrcode = new QRCode(document.getElementById("qrcode"), {
-    width: 200,
-    height: 200
+document.addEventListener("DOMContentLoaded", async function () {
+    await carregarSaldo();
+
+    document.getElementById("generate-qrcode-btn").addEventListener("click", async () => {
+        if (saldoAtual >= 4.40 && viagensRestantes > 0) {
+            saldoAtual -= 4.40;
+            viagensRestantes -= 1;
+            atualizarTela();
+            await salvarSaldo();
+            gerarQRCode(); 
+        } else {
+            alert("Saldo ou viagens insuficientes para gerar o QR Code.");
+        }
+    });
+
+    document.getElementById("recarregar-saldo-btn").addEventListener("click", async () => {
+        saldoAtual += 4.40;
+        viagensRestantes += 1;
+        atualizarTela();
+        await salvarSaldo();
+    });
 });
 
-function updateUI() {
-    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(2)}`;
-    document.getElementById("viagens-restantes").innerText = viagensRestantes;
-}
-
-function generateQRCode() {
-    if (saldoAtual < 4.40 || viagensRestantes <= 0) {
-        alert("Saldo insuficiente para gerar o QR Code!");
-        return;
-    }
-
-    fetch(`${apiBaseUrl}/usuario/${username}/reduzir`, {
-        method: "POST"
-    })
-    .then(res => res.json())
-    .then(data => {
+async function carregarSaldo() {
+    try {
+        const response = await fetch(`http://localhost:3000/saldo/${email}`);
+        const data = await response.json();
         saldoAtual = data.saldo;
         viagensRestantes = data.viagens;
-        updateUI();
-
-        const dynamicData = `QR Code - Saldo: R$${saldoAtual.toFixed(2)}, Viagens: ${viagensRestantes}`;
-        qrcode.makeCode(dynamicData);
-    })
-    .catch(err => {
-        console.error("Erro ao reduzir saldo:", err);
-        alert("Erro ao processar a viagem.");
-    });
-}
-
-function recarregarSaldo() {
-    fetch(`${apiBaseUrl}/usuario/${username}/recarregar`, {
-        method: "POST"
-    })
-    .then(res => res.json())
-    .then(data => {
-        saldoAtual = data.saldo;
-        viagensRestantes = data.viagens;
-        updateUI();
-    })
-    .catch(err => {
-        console.error("Erro ao recarregar saldo:", err);
-        alert("Erro ao recarregar.");
-    });
-}
-
-function carregarDadosDoUsuario() {
-    if (!username) {
-        alert("Usuário não identificado.");
-        return;
+        atualizarTela();
+    } catch (err) {
+        console.error("Erro ao carregar saldo:", err);
     }
-
-    fetch(`${apiBaseUrl}/usuario/${username}`)
-    .then(res => {
-        if (!res.ok) throw new Error("Usuário não encontrado");
-        return res.json();
-    })
-    .then(data => {
-        saldoAtual = data.saldo;
-        viagensRestantes = data.viagens;
-        updateUI();
-    })
-    .catch(err => {
-        console.warn("Usuário ainda não tem dados. Será criado ao recarregar.");
-        updateUI(); // mostra saldo inicial zerado
-    });
 }
 
-document.getElementById("generate-qrcode-btn").addEventListener("click", generateQRCode);
-document.getElementById("recarregar-saldo-btn").addEventListener("click", recarregarSaldo);
-
-document.addEventListener("DOMContentLoaded", function () {
-    const greetingMessage = document.getElementById("greetingMessage");
-
-    if (greetingMessage && username) {
-        greetingMessage.textContent = `Bem-vindo ao Metrô, ${username}!`;
-    } else {
-        greetingMessage.textContent = "Bem-vindo ao Metrô!";
+async function salvarSaldo() {
+    try {
+        await fetch(`http://localhost:3000/saldo/${email}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ saldo: saldoAtual, viagens: viagensRestantes })
+        });
+    } catch (err) {
+        console.error("Erro ao salvar saldo:", err);
     }
+}
 
-    carregarDadosDoUsuario();
-});
+function atualizarTela() {
+    document.getElementById("saldo-valor").textContent = `R$${saldoAtual.toFixed(2)}`;
+    document.getElementById("viagens-restantes").textContent = viagensRestantes;
+}
+
+function gerarQRCode() {
+    const container = document.getElementById("qrcode");
+    container.innerHTML = ""; 
+
+    const qrCode = new QRCode(container, {
+        text: `Usuário: ${email} | Saldo: R$${saldoAtual.toFixed(2)} | Viagens: ${viagensRestantes}`,
+        width: 180,
+        height: 180
+    });
+}

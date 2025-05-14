@@ -2,46 +2,65 @@
   {
     "nome": "João Pedro",
     "email": "joao.pedro@example.com",
-    "senha": "joao123"
+    "senha": "joao123",
+    "saldo": 0,
+    "viagens": 0
   },
   {
     "nome": "Vitor Neves",
     "email": "vitor.neves@example.com",
-    "senha": "vitor456"
+    "senha": "vitor456",
+    "saldo": 0,
+    "viagens": 0
   },
   {
     "nome": "Gabriel Borem",
     "email": "gabriel.borem@example.com",
-    "senha": "gab789"
+    "senha": "gab789",
+    "saldo": 0,
+    "viagens": 0
   },
   {
     "nome": "Melina",
     "email": "melina@example.com",
-    "senha": "meli@2025"
+    "senha": "meli@2025",
+    "saldo": 0,
+    "viagens": 0
+
   },
   {
     "nome": "Laura",
     "email": "laura@example.com",
-    "senha": "laura321"
+    "senha": "laura321",
+    "saldo": 0,
+    "viagens": 0
   },
   {
     "nome": "Antonia",
     "email": "antonia@example.com",
-    "senha": "ant@senha"
+    "senha": "ant@senha",
+    "saldo": 0,
+    "viagens": 0
   },
   {
     "nome": "as",
     "email": "vitornevesl@hotmail.com",
-    "senha": "asas"
+    "senha": "asas",
+    "saldo": 0,
+    "viagens": 0
   },
   {
     "nome": "as",
     "email": "macacosamigos@hotmail.com",
-    "senha": "asasas"
+    "senha": "asasas",
+    "saldo": 0,
+    "viagens": 0
   },
   {
     "nome": "Buccini",
     "email": "lucasmbuccini@teste.com",
-    "senha": "Odeioojoao"
+    "senha": "Odeioojoao",
+    "saldo": 0,
+    "viagens": 0
   }
 ]
