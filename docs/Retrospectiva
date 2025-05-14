@@ -33,3 +33,9 @@
 - Contribuições principais: Deixar a pagina de Login como principal, organização nos links do site,criação de teste unitario do login/registro e as instalações das dependências 
 - Dificuldade enfrentada: conseguir trocar todos os links e um pouco na parte da criação dos testes
 - Nota para meu desempenho (0 a 10): 10
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Laura Furtado dos Reis
+- Contribuições principais: Criação do teste de logout, interligação da API de usuários com a página de pagamento.
+- Dificuldade enfrentada: Conseguir modificar o valor do saldo a partir da conta do usuário
+- Nota para meu desempenho (0 a 10): 10
