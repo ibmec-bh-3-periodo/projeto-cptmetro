@@ -1,14 +1,13 @@
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
-const app = express();
 
+const app = express();
 app.use(express.json());
 app.use(cors());
 
 const DB_FILE = "data.json";
 
-// Função para carregar os dados do arquivo
 function loadData() {
   if (!fs.existsSync(DB_FILE)) {
     fs.writeFileSync(DB_FILE, JSON.stringify({}));
@@ -16,7 +15,6 @@ function loadData() {
   return JSON.parse(fs.readFileSync(DB_FILE));
 }
 
-// Função para salvar os dados
 function saveData(data) {
   fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 }
@@ -29,7 +27,7 @@ app.get("/usuario/:username", (req, res) => {
   res.json(user);
 });
 
-// Criar ou atualizar saldo
+// Recarregar
 app.post("/usuario/:username/recarregar", (req, res) => {
   const { username } = req.params;
   const data = loadData();
@@ -43,7 +41,7 @@ app.post("/usuario/:username/recarregar", (req, res) => {
   res.json(user);
 });
 
-// Reduzir saldo (ex: após uso do QR Code)
+// Reduzir saldo
 app.post("/usuario/:username/reduzir", (req, res) => {
   const { username } = req.params;
   const data = loadData();
