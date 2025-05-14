@@ -72,39 +72,38 @@ server.post('/login', (req:any, res:any) => {
     return res.json({ message: 'Usuário removido', usuario: usuarioRemovido });
 });*/
 
-const saldosPath = path.join(__dirname, 'saldos.json');
-
-// Retornar saldo do usuário
+// Obter saldo e viagens de um usuário
 server.get('/saldo/:email', (req: any, res: any) => {
     const { email } = req.params;
-    const saldos = JSON.parse(fs.readFileSync(saldosPath, 'utf-8'));
-    const usuario = saldos.find((s: any) => s.email === email);
+    const usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
+    const usuario = usuarios.find((u: any) => u.email === email);
 
     if (!usuario) {
-        return res.status(404).json({ message: "Usuário não encontrado no saldo." });
+        return res.status(404).json({ message: "Usuário não encontrado." });
     }
 
     res.json({ saldo: usuario.saldo, viagens: usuario.viagens });
 });
 
-// Atualizar saldo do usuário
+// Atualizar saldo e viagens
 server.put('/saldo/:email', (req: any, res: any) => {
     const { email } = req.params;
     const { saldo, viagens } = req.body;
 
-    let saldos = JSON.parse(fs.readFileSync(saldosPath, 'utf-8'));
-    const index = saldos.findIndex((s: any) => s.email === email);
+    let usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
+    const index = usuarios.findIndex((u: any) => u.email === email);
 
     if (index === -1) {
-        return res.status(404).json({ message: "Usuário não encontrado no saldo." });
+        return res.status(404).json({ message: "Usuário não encontrado." });
     }
 
-    if (typeof saldo === 'number') saldos[index].saldo = saldo;
-    if (typeof viagens === 'number') saldos[index].viagens = viagens;
+    if (typeof saldo === 'number') usuarios[index].saldo = saldo;
+    if (typeof viagens === 'number') usuarios[index].viagens = viagens;
 
-    fs.writeFileSync(saldosPath, JSON.stringify(saldos, null, 2));
+    fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
     res.json({ message: "Saldo atualizado com sucesso." });
 });
+
 
 
 const porta = 3000;
