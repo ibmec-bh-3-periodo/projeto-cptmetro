@@ -67,3 +67,27 @@ MODELO:
 
 ## 🗓️ Próximo passo
 •⁠  ⁠Finalizar os ajustes e ajudar na preparação para a entrega do projeto.
+vou mandar p cada um, muda so oq vc achar necessario ai, mas tp, vc vai precisar copiar isso dps e colocar vc mesma no docs, na parte de dailys isso aq e o commit é docs: dailys/melina
+
+
+
+
+# 📆 Relatório de Acompanhamento - Melina
+
+## 🙋 O que eu fiz desde o último relatório?
+- *Dia 1/7 (13/05)*: Trabalhei na implementação do design de reconfiguração de saldo junto com a Laura. Ajustei o botão de recarregar saldo e implementei a atualização automática do saldo.
+- *Dia 2/7 (14/05)*: Finalizei as mudanças na página de pagamento, incluindo a parte para selecionar os bilhetes desejados.
+
+## 🚧 O que estou fazendo agora?
+- Finalizando os ajustes finais da página de pagamento e preparando os elementos gráficos para a apresentação.
+
+## 🧱 Quais dificuldades encontrei?
+- *Dia 1/7*: A atualização automática do saldo foi um pouco mais complexa devido a problemas com a integração da API.
+- *Dia 2/7*: A parte de pagamento teve ajustes na interface para garantir que os usuários compreendessem facilmente como selecionar os bilhetes.
+
+## 🧠 O que aprendi até agora?
+- A integração de APIs exige uma atenção extra para garantir que o sistema funcione corretamente.
+- Detalhes na interface de pagamento são essenciais para uma experiência do usuário mais fluida.
+
+## 🗓️ Próximo passo
+- Finalizar todos os detalhes e começar a preparação para a entrega final.
