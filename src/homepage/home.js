@@ -1,23 +1,15 @@
-// Simulação de saldo e viagens restantes
-let saldoAtual = 4.40;
-
-
-// Função para recarregar saldo (simulada)
-function recarregarSaldo() {
-    saldoAtual += 4.40;
-    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(1)}`;
-}
-
-document.getElementById("recarregar-saldo-btn").addEventListener("click", recarregarSaldo);
-
-// Script para exibir a saudação
 document.addEventListener("DOMContentLoaded", function () {
-const loggedInUser = localStorage.getItem("loggedInUser");
-const greetingMessage = document.getElementById("greetingMessage");
+    const greetingMessage = document.getElementById("greetingMessage");
+    const saldoSpan = document.getElementById("saldo-valor");
 
-if (greetingMessage && loggedInUser) {
-    greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
-} else {
-    greetingMessage.textContent = "Bem-vindo ao Metrô!";
-}
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
+    if (loggedInUser && saldoSpan) {
+        const saldo = parseFloat(localStorage.getItem(`saldo_${loggedInUser}`)) || 0;
+        saldoSpan.textContent = `R$${saldo.toFixed(2)}`;
+    }
+
+    if (greetingMessage && loggedInUser) {
+        greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
+    }
 });
