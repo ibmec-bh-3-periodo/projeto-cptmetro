@@ -44,3 +44,26 @@ MODELO:
 ## 🗓️ Próximo passo
 - Orientação de cada integrante do grupo e espera do proximo backlog
 
+# 📆 Relatório de Acompanhamento - João
+
+## 🙋 O que eu fiz desde o último relatório?
+•⁠  ⁠*Dia 1/7 (24/04)*: Iniciei a organização dos documentos do projeto e trabalhei com o Vitor na definição da estrutura das APIs no backend.
+•⁠  ⁠*Dia 2/7 (25/04)*: Concluí a organização do código backend e comecei a implementar as funções da API. Trabalhei na criação da base de dados.
+•⁠  ⁠*Dia 3/7 (08/05)*: Concluí a criação da base de dados e comecei a integrar as funcionalidades de backend com a interface.
+•⁠  ⁠*Dia 4/7 (09/05)*: Continuei a integração e fiz testes para verificar se as funções estavam sendo executadas corretamente.
+•⁠  ⁠*Dia 5/7 (12/05)*: Finalizei os testes de integração e revisei o código junto com o Vitor para garantir que não houvesse falhas.
+
+## 🚧 O que estou fazendo agora?
+•⁠  ⁠Finalizando a revisão de todos os documentos e ajustando os detalhes finais do projeto.
+
+## 🧱 Quais dificuldades encontrei?
+•⁠  ⁠*Dia 1/7*: A organização inicial dos arquivos foi mais demorada do que o esperado.
+•⁠  ⁠*Dia 2/7*: Encontrei alguns problemas na integração do banco de dados, o que fez os testes demorarem mais.
+•⁠  ⁠*Dia 4/7*: Alguns erros nas integrações de dados causaram falhas que precisaram ser corrigidas.
+
+## 🧠 O que aprendi até agora?
+•⁠  ⁠A organização eficiente dos arquivos e a revisão constante do código são essenciais para evitar falhas.
+•⁠  ⁠Integrar o backend com o frontend requer atenção cuidadosa aos detalhes.
+
+## 🗓️ Próximo passo
+•⁠  ⁠Finalizar os ajustes e ajudar na preparação para a entrega do projeto.
