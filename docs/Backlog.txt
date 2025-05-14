@@ -42,6 +42,11 @@ Tarefa: Reestruturação da Home:
 •⁠  Antônia
 •⁠  Gabriel
 
+Tarefa: Criação da data base
+
+•⁠  ⁠João
+•⁠  ⁠Vitor
+
 Tarefa: Testes unitários:
 
 •⁠  Todos os integrantes (1 por cada) 
