@@ -91,3 +91,24 @@ vou mandar p cada um, muda so oq vc achar necessario ai, mas tp, vc vai precisar
 
 ## 🗓️ Próximo passo
 - Finalizar todos os detalhes e começar a preparação para a entrega final.
+
+
+# 📆 Relatório de Acompanhamento - Antônia
+
+## 🙋 O que eu fiz desde o último relatório?
+- *Dia 1/7 (13/05)*: - Colocando a página de login para ser a home inicial.
+- *Dia 2/7 (14/05)*: Fiz o testes unitarios e reorganizei os links de todas as paginas.
+
+## 🚧 O que estou fazendo agora?
+- Trabalhar na reestruturação da home, criando o redirecionamento após o usuário realizar o pagamento.
+- Fazer a implementação da home, ajustando a navegação para garantir que o fluxo fosse intuitivo.
+
+## 🧱 Quais dificuldades encontrei?
+- *Dia 1/7*: Tive dificuldade na parte da criação dos testes unitários jest com DOM.
+
+## 🧠 O que aprendi até agora?
+- Como colocar uma pagina como a inicial e como fazer testes unitários.
+
+## 🗓 Próximo passo
+- Finalizar os ajustes e garantir que o sistema de navegação esteja perfeito.
+
