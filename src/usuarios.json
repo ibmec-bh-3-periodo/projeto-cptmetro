@@ -28,5 +28,20 @@
     "nome": "Antonia",
     "email": "antonia@example.com",
     "senha": "ant@senha"
+  },
+  {
+    "nome": "as",
+    "email": "vitornevesl@hotmail.com",
+    "senha": "asas"
+  },
+  {
+    "nome": "as",
+    "email": "macacosamigos@hotmail.com",
+    "senha": "asasas"
+  },
+  {
+    "nome": "Buccini",
+    "email": "lucasmbuccini@teste.com",
+    "senha": "Odeioojoao"
   }
 ]
