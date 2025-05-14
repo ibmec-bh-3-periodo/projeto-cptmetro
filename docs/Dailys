@@ -112,3 +112,22 @@ vou mandar p cada um, muda so oq vc achar necessario ai, mas tp, vc vai precisar
 ## 🗓 Próximo passo
 - Finalizar os ajustes e garantir que o sistema de navegação esteja perfeito.
 
+# 📆 Relatório de Acompanhamento - Laura
+
+## 🙋 O que eu fiz desde o último relatório?
+- *Dia 1/7 (13/05)*: Junto com a Melina, fiz ajustes no design do saldo, removendo o botão de recarregar e configurando a atualização automática.
+- *Dia 2/7 (14/05)*: Fiz meu teste unitário de logout e iniciei a criação da API que permite salvar o saldo de cada usuário.
+
+## 🚧 O que estou fazendo agora?
+- Finalizando os ajustes de interligação da API.
+
+## 🧱 Quais dificuldades encontrei?
+- *Dia 1/7*: Não encontrei dificuldades.
+- *Dia 2/7*: A integração da atualização automática do saldo está sendo mais trabalhosa do que o esperado.
+
+## 🧠 O que aprendi até agora?
+- A interação entre a interface e a API requer um bom entendimento de como cada parte do sistema se comunica.
+- A clareza na interface de pagamento é crucial para evitar erros por parte dos usuários.
+
+## 🗓️ Próximo passo
+- Finalizar a interação das APIs e preparar os detalhes para a entrega final.
