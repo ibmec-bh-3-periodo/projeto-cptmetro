@@ -2,7 +2,7 @@ const { generateQRCode } = require("./teste_qrcode");
 
 describe("Geração de QR Code no DOM", () => {
     beforeEach(() => {
-        // Configura um container fake para o teste
+        
         document.body.innerHTML = `<div id="qrcode" class="qrcode-box"></div>`;
     });
 
@@ -13,7 +13,7 @@ describe("Geração de QR Code no DOM", () => {
         const result = generateQRCode("qrcode", saldo, viagens);
 
         const container = document.getElementById("qrcode");
-        const generatedDiv = container.querySelector(".qrcode-box"); // Corrigido o seletor
+        const generatedDiv = container.querySelector(".qrcode-box"); 
 
         expect(generatedDiv).not.toBeNull();
         expect(generatedDiv.textContent).toBe("QR Code - Saldo: R$4.4, Viagens: 1");
