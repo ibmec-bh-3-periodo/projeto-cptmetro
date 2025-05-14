@@ -6,10 +6,11 @@
 }
 
 body {
+    background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
 }
 
 header {
@@ -17,79 +18,86 @@ header {
     color: white;
     padding: 10px 20px;
     text-align: center;
+    width: 100%;
 }
 
-header img {
-    height: 60px;
-    width: auto;
+h1 {
+    font-size: 2.5rem; /* Ajuste para telas maiores */
 }
 
 .main-container {
-    flex-grow: 1;
+    width: 90%;
+    max-width: 430px; /* Adaptado ao iPhone 14 Pro Max */
     padding: 20px;
     text-align: center;
 }
 
-h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-h1 {
-    font-size: calc(1.375rem + 1.5vw);
-    line-height: 1.2;
-    font-weight: 500;
-}
-
 .pagamento-box {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
     background-color: #ffffff;
-    border-radius: 5px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.pagamento-opcoes h3 {
-    color: #B30000; /* Cor ajustada para melhor contraste */
-    font-size: 28px;
+label {
+    display: block;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
-.select-pagamento {
+input[type="number"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 18px;
+    border: 1px solid #6b6d6e;
     border-radius: 5px;
-    font-size: 16px;
+    text-align: center;
 }
 
-.form-container {
-    margin-top: 20px;
+p#valor-total {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
 }
 
-.btn-cadastrar {
+button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    font-size: 18px;
     background-color: #EE0000;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 15px;
 }
 
-.btn-cadastrar:hover {
+button:hover {
     background-color: #cc0000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.footer-container {
-    padding: 10px 20px;
-    background-color: #cc0000;
+#qr-code-container {
+    margin-top: 15px;
+}
+
+/* Ajustes no footer */
+footer {
+    background: linear-gradient(to right, #FE0000, #930707);
     color: white;
     text-align: center;
+    padding: 15px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .footer-icons {
@@ -100,7 +108,6 @@ h1 {
 }
 
 .footer-icons a {
-    color: white;
     text-decoration: none;
 }
 
@@ -109,12 +116,29 @@ h1 {
     width: auto;
 }
 
-@media (max-width: 600px) {
+p {
+    font-size: 16px;
+}
+
+/* Media Query para telas do iPhone 14 Pro Max */
+@media (max-width: 430px) {
+    .main-container {
+        width: 95%;
+    }
+
+    .pagamento-box {
+        width: 100%;
+    }
+
     .footer-icons {
         justify-content: space-around;
     }
 
-    .pagamento-box {
-        width: 90%;
+    button {
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
     }
 }

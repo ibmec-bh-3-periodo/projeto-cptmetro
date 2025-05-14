@@ -1,41 +1,33 @@
-// Função para gerar o código PIX no formato esperado
-function gerarCodigoPix(chavePix, valor, descricao) {
-    let payload = `00020126330014BR.GOV.BCB.PIX0114${chavePix}5204000053039865404${valor}5802BR5914Metrô São Paulo6009São Paulo62070503***6304`;
-    return payload;
+const valorUnitario = 4.40;
+
+// Atualiza o valor total com base na quantidade
+function atualizarValorTotal() {
+    const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
+    const total = (quantidade * valorUnitario).toFixed(2);
+    document.getElementById("valor-total").textContent = `Valor total: R$ ${total}`;
+    return total;
 }
 
-// Função para exibir o QR Code PIX
-function gerarQRCodePix() {
-    let chavePix = document.getElementById("pix-key").value;
-    let valorPix = "10.00"; // Valor fixo, mas pode ser um campo do usuário
-    let descricaoPix = "Passagem Metrô";
+// Copia a chave PIX e mostra mensagem
+function copiarChavePix() {
+    const pixKeyInput = document.getElementById("pix-key");
+    pixKeyInput.select();
+    pixKeyInput.setSelectionRange(0, 99999); // Para mobile
 
-    let codigoPix = gerarCodigoPix(chavePix, valorPix, descricaoPix);
+    navigator.clipboard.writeText(pixKeyInput.value).then(() => {
+        const msg = document.getElementById("copy-msg");
+        msg.textContent = "Chave PIX copiada!";
+        msg.style.color = "green";
 
-    let qrContainer = document.getElementById("qr-code-container");
-    qrContainer.innerHTML = ""; // Limpa o conteúdo anterior
-
-    let qrCanvas = document.createElement("canvas");
-    qrContainer.appendChild(qrCanvas);
-
-    // Geração do QR Code usando a biblioteca qrcode.js
-    QRCode.toCanvas(qrCanvas, codigoPix, function (error) {
-        if (error) {
-            console.error("Erro ao gerar QR Code:", error);
-        }
+        setTimeout(() => {
+            msg.textContent = "";
+        }, 2000);
     });
 }
 
-// Evento de mudança para exibir o formulário PIX ao selecionar a opção
-document.getElementById("forma-pagamento").addEventListener("change", function () {
-    if (this.value === "pix") {
-        document.getElementById("form-container").style.display = "block";
-        document.getElementById("pix-form").style.display = "block";
-    } else {
-        document.getElementById("form-container").style.display = "none";
-        document.getElementById("pix-form").style.display = "none";
-    }
-});
+// Eventos
+document.getElementById("quantidade-tickets").addEventListener("input", atualizarValorTotal);
+document.getElementById("copy-pix-btn").addEventListener("click", copiarChavePix);
 
-// Evento de clique para gerar o QR Code ao clicar no botão
-document.getElementById("generate-qr-btn").addEventListener("click", gerarQRCodePix);
+// Inicializa valor
+atualizarValorTotal();
