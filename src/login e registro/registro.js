@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registerForm");
     const loginForm = document.getElementById("loginForm");
 
-    // Cadastro
+    // ✅ Cadastro
     if (registerForm) {
-        registerForm.addEventListener("submit", function (event) {
+        registerForm.addEventListener("submit", async function (event) {
             event.preventDefault();
 
             const username = document.getElementById("registerUsername").value;
@@ -12,128 +12,59 @@ document.addEventListener("DOMContentLoaded", function () {
             const password = document.getElementById("registerPassword").value;
 
             if (username && email && password) {
-                localStorage.setItem("username", username);
-                localStorage.setItem("email", email);
-                localStorage.setItem("password", password);
+                try {
+                    const response = await fetch("http://localhost:3000/usuarios", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ nome: username, email, senha: password })
+                    });
 
-                alert("Conta criada com sucesso!");
-                window.location.href = "../../index.html"; // volta para o login na raiz
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert("Conta criada com sucesso!");
+                        window.location.href = "../../index.html";
+                    } else {
+                        alert("Erro: " + data.message);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert("Erro ao conectar com o servidor.");
+                }
             } else {
-                alert("Por favor, preencha todos os campos.");
+                alert("Preencha todos os campos.");
             }
         });
     }
 
-    // Login
+    // ✅ Login
     if (loginForm) {
-        loginForm.addEventListener("submit", function (event) {
+        loginForm.addEventListener("submit", async function (event) {
             event.preventDefault();
 
             const emailInput = document.getElementById("loginEmail").value;
             const passwordInput = document.getElementById("passwordInput").value;
 
-            const storedEmail = localStorage.getItem("email");
-            const storedPassword = localStorage.getItem("password");
+            try {
+                const response = await fetch("http://localhost:3000/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: emailInput, senha: passwordInput })
+                });
 
-            if (emailInput === storedEmail && passwordInput === storedPassword) {
-                const username = localStorage.getItem("username");
-                localStorage.setItem("loggedInUser", username);
+                const data = await response.json();
 
-                alert("Login bem-sucedido!");
-                window.location.href = "./src/homepage/home.html"; // redireciona após login
-            } else {
-                alert("Email ou senha incorretos.");
+                if (response.ok) {
+                    sessionStorage.setItem("loggedInUser", data.nome);
+                    alert("Login bem-sucedido!");
+                    window.location.href = "./src/homepage/home.html";
+                } else {
+                    alert("Erro: " + data.message);
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Erro ao conectar com o servidor.");
             }
         });
     }
 });
-
-
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     // === Registro de Novo Usuário ===
-//     document.getElementById("registerForm")?.addEventListener("submit", function (event) {
-//         event.preventDefault();
-        
-//         const username = document.getElementById("registerUsername").value;
-//         const password = document.getElementById("registerPassword").value;
-
-//         if (username && password) {
-//             // Armazena os dados do usuário no localStorage
-//             localStorage.setItem("username", username);
-//             localStorage.setItem("password", password);
-
-//             alert("Conta criada com sucesso!");
-//             window.location.href = "login.html"; // Redireciona para a página de login
-//         } else {
-//             alert("Por favor, preencha todos os campos.");
-//         }
-//     });
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     document.getElementById("registerForm")?.addEventListener("submit", function (event) {
-//         event.preventDefault();
-
-//         const username = document.getElementById("registerUsername").value;
-//         const email = document.getElementById("email").value;
-//         const password = document.getElementById("registerPassword").value;
-
-//         if (username && email && password) {
-//             // Armazena os dados do usuário no localStorage
-//             localStorage.setItem("username", username);
-//             localStorage.setItem("email", email);
-//             localStorage.setItem("password", password);
-
-//             alert("Conta criada com sucesso!");
-//             window.location.href = "login.html"; // Redireciona para a página de login
-//         } else {
-//             alert("Por favor, preencha todos os campos.");
-//         }
-//     });
-// });
-
-
-//     // === Login de Usuário Existente ===
-//     document.getElementById("loginForm")?.addEventListener("submit", function (event) {
-//         event.preventDefault();
-        
-//         const username = document.getElementById("usernameInput").value;
-//         const password = document.getElementById("passwordInput").value;
-        
-//         const storedUsername = localStorage.getItem("username");
-//         const storedPassword = localStorage.getItem("password");
-
-//         if (username === storedUsername && password === storedPassword) {
-//             localStorage.setItem("loggedInUser", username);  // Salva o nome do usuário logado
-//             alert("Login bem-sucedido!");
-//             window.location.href = "home.html"; 
-//         } else {
-//             alert("Nome de usuário ou senha incorretos.");
-//         }
-//     });
-
-
-//     document.addEventListener("DOMContentLoaded", function () {
-//         // Recupera o nome do usuário logado
-//         const loggedInUser = localStorage.getItem("loggedInUser");
-//         const greetingMessage = document.getElementById("greetingMessage");
-    
-//         // Exibe a saudação personalizada se o usuário estiver logado
-//         if (greetingMessage && loggedInUser) {
-//             greetingMessage.textContent = `Bom dia, ${loggedInUser}! Seja bem-vindo ao Metrô!`;
-//         } else {
-//             greetingMessage.textContent = "Bem-vindo ao Metrô!";
-//         }
-//     });
-    
-
-//     // === Logout do Usuário ===
-//     document.getElementById("logoutButton")?.addEventListener("click", function () {
-//         localStorage.removeItem("loggedInUser"); // Remove o usuário logado do localStorage
-//         alert("Você saiu da conta.");
-//         window.location.href = "login.html"; // Redireciona para a página de login
-//     });
-// });
-
-
