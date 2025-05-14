@@ -1,3 +1,5 @@
+MODELO:
+
 # 📆 Relatório de Acompanhamento - Semana X/Y
 
 ## 🙋 O que eu fiz desde o último relatório?
@@ -17,3 +19,28 @@
 
 ## 🗓️ Próximo passo
 - Tarefa próxima
+
+------------------------------------------>
+
+# 📆 Relatório de Acompanhamento - Vitor
+
+## 🙋 O que eu fiz desde o último relatório?
+- **Dia 1/7 (24/04)**: Iniciei a organização dos documentos junto com o João e comecei a revisar a estrutura da API.
+- **Dia 2/7 (25/04)**: Trabalhei com o João na base de dados e comecei a integrar a API com a interface.
+- **Dia 3/7 (08/05)**: Finalizei a integração de backend com o frontend e comecei a testar as funcionalidades.
+- **Dia 4/7 (09/05)**: Finalizei meu teste unitário.
+- **Dia 5/7 (12/05)**: Revisei todos os documentos, finalizei com o João a integração do registro com o login.
+
+## 🚧 O que estou fazendo agora?
+- Trabalhando nas revisões finais e ajudando na finalização do projeto.
+
+## 🧱 Quais dificuldades encontrei?
+- **Dia 2/7**: Algumas falhas na integração com o frontend exigiram ajustes no fluxo de dados.
+- **Dia 3/7**: O processo de validação de dados foi mais demorado do que o esperado.
+
+## 🧠 O que aprendi até agora?
+- Testar a integração de dados em diferentes situações é essencial para garantir a estabilidade do sistema.
+
+## 🗓️ Próximo passo
+- Espera do proximo backlog
+
