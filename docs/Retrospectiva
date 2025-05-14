@@ -1,23 +1,35 @@
 # 🔄 Retrospectiva da Sprint X
 
 ## ✅ O que deu certo?
-- Ponto positivo 1
-- Ponto positivo 2
+- O trabalho em duplas foi muito positivo, pois um ajudou o outro em momentos de dificuldade, promovendo uma boa troca de conhecimento e aprendizado.
+- A integração das APIs foi bem-sucedida, com todos os membros conseguindo aplicar a integração de maneira eficaz.
+- A parte de testes unitários foi aprendida por todos os membros e realizada de forma satisfatória.
 
 ## 🚫 O que não deu certo?
-- Ponto de melhoria 1
-- Ponto de melhoria 2
+- Houve alguns conflitos com a branch principal no merge, o que causou atrasos em algumas tarefas e exigiu mais tempo para resolver os conflitos de código.
 
 ## 🛠️ O que podemos melhorar para a próxima sprint?
-- Melhoria 1
-- Melhoria 2
+- Melhorar o tempo de entrega das tarefas, focando na gestão do tempo para que as entregas sejam feitas mais cedo.
+- Adicionar mais tarefas para os membros que tiveram maior facilidade com as tarefas atribuídas, a fim de equilibrar o trabalho entre todos.
 
 ## 🧠 Aprendizados da sprint
-- Aprendizado 1
-- Aprendizado 2
+- Aprendemos a realizar testes unitários de forma eficiente, garantindo que cada parte do código estivesse funcionando corretamente.
+- Aprendemos a integrar diferentes APIs no projeto e a lidar com a comunicação entre elas, melhorando a funcionalidade do sistema.
 
 ## 🙋 Avaliação individual (cada aluno preenche)
-- Nome:
-- Contribuições principais:
-- Dificuldade enfrentada:
-- Nota para meu desempenho (0 a 10):
+- Nome: João Pedro Castro
+- Contribuições principais: Criação das APIS, criação dos banco de dados, criação teste unitário. 
+- Dificuldade enfrentada: não sabia linkar o registro com a autenticação com api
+- Nota para meu desempenho (0 a 10): 10
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Vitor Neves de Lima
+- Contribuições principais: APIS (mapa), ajuda no criação dos banco de dados, criação teste unitário. 
+- Dificuldade enfrentada: alguns conflitos no ambiente de testes e no link do registro com autenticação.
+- Nota para meu desempenho (0 a 10): 10
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Antônia Villela Monteiro
+- Contribuições principais: Deixar a pagina de Login como principal, organização nos links do site,criação de teste unitario do login/registro e as instalações das dependências 
+- Dificuldade enfrentada: conseguir trocar todos os links e um pouco na parte da criação dos testes
+- Nota para meu desempenho (0 a 10): 10
