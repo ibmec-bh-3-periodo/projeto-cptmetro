@@ -1,9 +1,16 @@
+import { error } from "console";
+
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
+
+
+
 
 const server = express();
 server.use(express.json());
+server.use(cors());
 
 const usuariosPath = path.join(__dirname, 'usuarios.json');
 
@@ -11,21 +18,24 @@ server.post('/cadastro', (req:any, res:any) => {
     const { nome, email, senha } = req.body;
 
     if (!nome || !email || !senha) {
-        return res.status(400).json({ message: 'Nome, email e senha são obrigatórios' });
+        return res.status(400).json({ success: false, message: 'Nome, email e senha são obrigatórios' });
     }
 
     const usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
     const existente = usuarios.find((u:any) => u.email === email);
 
     if (existente) {
-        return res.status(409).json({ message: 'Email já cadastrado' });
+        return res.status(409).json({ success: false, message: 'Email já cadastrado' });
     }
 
     const novoUsuario = { nome, email, senha };
     usuarios.push(novoUsuario);
-    fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
-
-    return res.status(201).json(novoUsuario);
+    try {
+        fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
+        res.status(201).json({ success: true, message: 'Usuário cadastrado com sucesso' });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: 'Erro ao salvar o usuário' });
+    }
 });
 
 server.post('/login', (req:any, res:any) => {

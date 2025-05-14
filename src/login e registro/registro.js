@@ -7,23 +7,23 @@ document.addEventListener("DOMContentLoaded", function () {
         registerForm.addEventListener("submit", async function (event) {
             event.preventDefault();
 
-            const username = document.getElementById("registerUsername").value;
+            const nome = document.getElementById("registerUsername").value;
             const email = document.getElementById("registerEmail").value;
-            const password = document.getElementById("registerPassword").value;
+            const senha = document.getElementById("registerPassword").value;
 
-            if (username && email && password) {
+            if (nome && email && senha) {
                 try {
-                    const response = await fetch("http://localhost:3000/usuarios", {
+                    const response = await fetch("http://localhost:3000/cadastro", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ nome: username, email, senha: password })
+                        body: JSON.stringify({ nome, email, senha})
                     });
 
                     const data = await response.json();
 
-                    if (response.ok) {
-                        alert("Conta criada com sucesso!");
+                    if (data.success) {
                         window.location.href = "../../index.html";
+                        alert(data.message);
                     } else {
                         alert("Erro: " + data.message);
                     }
