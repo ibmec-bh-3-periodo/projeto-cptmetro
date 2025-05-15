@@ -1,51 +1,66 @@
-let saldoAtual = 4.40;
-let viagensRestantes = 1;
+let saldoAtual = 0;
+let viagensRestantes = 0;
+let email = localStorage.getItem("loggedInEmail");
 
-// Função para gerar QR Code
-let qrcode = new QRCode(document.getElementById("qrcode"), {
-    width: 200,
-    height: 200
+document.addEventListener("DOMContentLoaded", async function () {
+    await carregarSaldo();
+
+    document.getElementById("generate-qrcode-btn").addEventListener("click", async () => {
+        if (saldoAtual >= 4.40 && viagensRestantes > 0) {
+            saldoAtual -= 4.40;
+            viagensRestantes -= 1;
+            atualizarTela();
+            await salvarSaldo();
+            gerarQRCode(); 
+        } else {
+            alert("Saldo ou viagens insuficientes para gerar o QR Code.");
+        }
+    });
+
+    document.getElementById("recarregar-saldo-btn").addEventListener("click", async () => {
+        saldoAtual += 4.40;
+        viagensRestantes += 1;
+        atualizarTela();
+        await salvarSaldo();
+    });
 });
 
-function generateQRCode() {
-    let dynamicData = `QR Code - Saldo: R$${saldoAtual.toFixed(1)}, Viagens: ${viagensRestantes}`;
-    qrcode.makeCode(dynamicData); // Atualiza o QR Code com dados dinâmicos
-}
-
-document.getElementById("generate-qrcode-btn").addEventListener("click", generateQRCode);
-
-function recarregarSaldo() {
-    saldoAtual += 4.40;
-    viagensRestantes += 1;
-    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(1)}`;
-    document.getElementById("viagens-restantes").innerText = viagensRestantes;
-}
-
-document.getElementById("recarregar-saldo-btn").addEventListener("click", recarregarSaldo);
-
-module.exports = { recarregarSaldo, getSaldoAtual: () => saldoAtual, getViagensRestantes: () => viagensRestantes };
-
-function reduzirSaldo(){
-    if (saldoAtual <= 0) {
-        alert("Saldo insuficiente!");
-        return; 
+async function carregarSaldo() {
+    try {
+        const response = await fetch(`http://localhost:3000/saldo/${email}`);
+        const data = await response.json();
+        saldoAtual = data.saldo;
+        viagensRestantes = data.viagens;
+        atualizarTela();
+    } catch (err) {
+        console.error("Erro ao carregar saldo:", err);
     }
-    saldoAtual-=4.40;
-    viagensRestantes-=1;
-    document.getElementById("saldo-valor").innerText = `R$${saldoAtual.toFixed(1)}`;
-    document.getElementById("viagens-restantes").innerText = viagensRestantes;
-
 }
-document.getElementById("generate-qrcode-btn").addEventListener("click", reduzirSaldo);
 
-// Script para exibir a saudação
-document.addEventListener("DOMContentLoaded", function () {
-const loggedInUser = localStorage.getItem("loggedInUser");
-const greetingMessage = document.getElementById("greetingMessage");
-
-if (greetingMessage && loggedInUser) {
-    greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
-} else {
-    greetingMessage.textContent = "Bem-vindo ao Metrô!";
+async function salvarSaldo() {
+    try {
+        await fetch(`http://localhost:3000/saldo/${email}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ saldo: saldoAtual, viagens: viagensRestantes })
+        });
+    } catch (err) {
+        console.error("Erro ao salvar saldo:", err);
+    }
 }
-});
+
+function atualizarTela() {
+    document.getElementById("saldo-valor").textContent = `R$${saldoAtual.toFixed(2)}`;
+    document.getElementById("viagens-restantes").textContent = viagensRestantes;
+}
+
+function gerarQRCode() {
+    const container = document.getElementById("qrcode");
+    container.innerHTML = ""; 
+
+    const qrCode = new QRCode(container, {
+        text: `Usuário: ${email} | Saldo: R$${saldoAtual.toFixed(2)} | Viagens: ${viagensRestantes}`,
+        width: 180,
+        height: 180
+    });
+}

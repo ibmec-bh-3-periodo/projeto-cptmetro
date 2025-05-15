@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registerForm");
     const loginForm = document.getElementById("loginForm");
 
-    // ✅ Cadastro
+    // Cadastro
     if (registerForm) {
         registerForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Login
+    // Login
     if (loginForm) {
         loginForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -55,7 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const data = await response.json();
 
                 if (response.ok) {
-                    sessionStorage.setItem("loggedInUser", data.nome);
+                    localStorage.setItem("loggedInUser", data.nome);
+                    localStorage.setItem("loggedInEmail", data.email);
                     alert("Login bem-sucedido!");
                     window.location.href = "./src/homepage/home.html";
                 } else {
