@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (nome && email && senha) {
                 try {
-                    // CORREÇÃO: Enviando 'nome', 'email', 'senha' para o backend
                     const response = await fetch("http://localhost:3000/register", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if (response.ok) {
                         alert(data.message);
-                        window.location.href = "../../index.html"; // Ajuste conforme seu login.html
+                        window.location.href = "../../index.html";
                     } else {
                         alert("Erro: " + (data.message || "Ocorreu um erro no cadastro."));
                     }
@@ -42,11 +41,22 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
 
             const emailInput = document.getElementById("loginEmail").value;
-            const passwordInput = document.getElementById("passwordInput").value; // Este é o valor da senha digitada
+            const passwordInput = document.getElementById("passwordInput").value;
 
             try {
-                // CORREÇÃO: Enviando 'email' e 'senha' para o backend
-                // Note que o input HTML se chama 'passwordInput', mas a propriedade JSON deve ser 'senha'
+                // Carrega usuários para validação local (opcional, já que o backend valida)
+                let users = [];
+                try {
+                    const usersResponse = await fetch('../usuarios.json'); // Caminho corrigido!
+                    if (!usersResponse.ok) {
+                        throw new Error(`Erro ao carregar usuários para login! Status: ${usersResponse.status}`);
+                    }
+                    users = await usersResponse.json();
+                } catch (loadError) {
+                    console.error("Erro ao carregar usuários para verificação de login:", loadError);
+                    // Não impede o login via backend, mas registra o erro local
+                }
+
                 const response = await fetch("http://localhost:3000/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -56,14 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 const data = await response.json();
 
                 if (response.ok) {
-                    // CORREÇÃO: Recebendo 'nome' do backend
-                    localStorage.setItem("loggedInUser", data.user.nome);
                     localStorage.setItem("loggedInUserEmail", data.user.email);
-
                     alert("Login bem-sucedido!");
                     window.location.href = "./src/homepage/home.html";
-                }
-                    else {
+                } else {
                     alert("Erro: " + (data.message || "Credenciais inválidas."));
                 }
             } catch (err) {
