@@ -1,4 +1,5 @@
-{
+[
+  {
     "linha": "13 - Jade",
     "trecho": "Eng. Goulart - Aeroporto Guarulhos",
     "horarios": [
@@ -48,4 +49,142 @@
         ]
       }
     ]
+  },
+  {
+    "linha": "11 - Coral",
+    "trecho": "Luz - Estudantes",
+    "horarios": [
+      {
+        "dia": "Dias Úteis",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "08:00",
+            "intervalo_minutos": 7
+          },
+          {
+            "inicio": "08:00",
+            "fim": "15:30",
+            "intervalo_minutos": 11
+          },
+          {
+            "inicio": "15:30",
+            "fim": "20:00",
+            "intervalo_minutos": 7
+          },
+          {
+            "inicio": "20:00",
+            "fim": "23:30",
+            "intervalo_minutos": 8
+          },
+          {
+            "inicio": "23:30",
+            "fim": "24:00",
+            "intervalo_minutos": 15
+          }
+        ]
+      },
+      {
+        "dia": "Sábados",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "10:00",
+            "intervalo_minutos": 11
+          },
+          {
+            "inicio": "10:00",
+            "fim": "19:00",
+            "intervalo_minutos": 8
+          },
+          {
+            "inicio": "19:00",
+            "fim": "20:00",
+            "intervalo_minutos": 10
+          },
+          {
+            "inicio": "20:00",
+            "fim": "24:00",
+            "intervalo_minutos": 35
+          }
+        ]
+      },
+      {
+        "dia": "Domingos e Feriados",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "24:00",
+            "intervalo_minutos": 35
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "linha": "12 - Safira",
+    "trecho": "Brás - Calmon Viana",
+    "horarios": [
+      {
+        "dia": "Dias Úteis",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "04:30",
+            "intervalo_minutos": 10
+          },
+          {
+            "inicio": "04:30",
+            "fim": "08:30",
+            "intervalo_minutos": 10
+          },
+          {
+            "inicio": "08:30",
+            "fim": "16:00",
+            "intervalo_minutos": 8
+          },
+          {
+            "inicio": "16:00",
+            "fim": "20:00",
+            "intervalo_minutos": 10
+          },
+          {
+            "inicio": "20:00",
+            "fim": "24:00",
+            "intervalo_minutos": 10
+          }
+        ]
+      },
+      {
+        "dia": "Sábados",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "18:00",
+            "intervalo_minutos": 8
+          },
+          {
+            "inicio": "18:00",
+            "fim": "20:00",
+            "intervalo_minutos": 10
+          },
+          {
+            "inicio": "20:00",
+            "fim": "24:00",
+            "intervalo_minutos": 35
+          }
+        ]
+      },
+      {
+        "dia": "Domingos e Feriados",
+        "faixas": [
+          {
+            "inicio": "04:00",
+            "fim": "24:00",
+            "intervalo_minutos": 35
+          }
+        ]
+      }
+    ]
   }
+]
