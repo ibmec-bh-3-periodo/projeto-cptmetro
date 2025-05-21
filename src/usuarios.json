@@ -4,63 +4,82 @@
     "email": "joao.pedro@example.com",
     "senha": "joao123",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": [
+      "Linha 11 - Coral",
+      "Linha 13 - Jade"
+    ]
   },
   {
     "nome": "Vitor Neves",
     "email": "vitor.neves@example.com",
     "senha": "vitor456",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": []
   },
   {
     "nome": "Gabriel Borem",
     "email": "gabriel.borem@example.com",
     "senha": "gab789",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": []
   },
   {
     "nome": "Melina",
     "email": "melina@example.com",
     "senha": "meli@2025",
     "saldo": 0,
-    "viagens": 0
-
+    "viagens": 0,
+    "rotasFavoritas": []
   },
   {
     "nome": "Laura",
     "email": "laura@example.com",
     "senha": "laura321",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": []
   },
   {
     "nome": "Antonia",
     "email": "antonia@example.com",
     "senha": "ant@senha",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": []
   },
   {
     "nome": "as",
     "email": "vitornevesl@hotmail.com",
     "senha": "asas",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": []
   },
   {
     "nome": "as",
     "email": "macacosamigos@hotmail.com",
     "senha": "asasas",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": []
   },
   {
     "nome": "Buccini",
     "email": "lucasmbuccini@teste.com",
     "senha": "Odeioojoao",
     "saldo": 0,
-    "viagens": 0
+    "viagens": 0,
+    "rotasFavoritas": []
+  },
+  {
+    "nome": "Muppet",
+    "email": "muppet@email.com",
+    "senha": "123",
+    "saldo": 0,
+    "viagens": 0,
+    "rotasFavoritas": []
   }
 ]

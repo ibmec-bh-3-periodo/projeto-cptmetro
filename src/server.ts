@@ -1,112 +1,186 @@
-import { error } from "console";
-
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const cors = require('cors');
-
-
-
+import express, { Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import fs from 'fs/promises';
+import path from 'path';
 
 const server = express();
-server.use(express.json());
+const PORT = 3000;
+
+server.use(bodyParser.json());
 server.use(cors());
 
-const usuariosPath = path.join(__dirname, 'usuarios.json');
+const usersFilePath = path.join(__dirname, 'usuarios.json');
 
-server.post('/cadastro', (req:any, res:any) => {
-    const { nome, email, senha } = req.body;
-
-    if (!nome || !email || !senha) {
-        return res.status(400).json({ success: false, message: 'Nome, email e senha são obrigatórios' });
-    }
-
-    const usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const existente = usuarios.find((u:any) => u.email === email);
-
-    if (existente) {
-        return res.status(409).json({ success: false, message: 'Email já cadastrado' });
-    }
-
-    const novoUsuario = { nome, email, senha, saldo: 0, viagens: 0 };
-    usuarios.push(novoUsuario);
+async function readJsonFile(filePath: string): Promise<any[]> {
     try {
-        fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
-        res.status(201).json({ success: true, message: 'Usuário cadastrado com sucesso' });
+        const data = await fs.readFile(filePath, 'utf8');
+        return JSON.parse(data);
+    } catch (error: any) {
+        if (error.code === 'ENOENT') {
+            console.log(`Arquivo não encontrado em ${filePath}. Criando um vazio.`);
+            return []; // Retorna um array vazio se o arquivo não existe
+        }
+        console.error(`Erro ao ler o arquivo ${filePath}:`, error);
+        throw new Error(`Falha ao ler o arquivo: ${error.message}`);
+    }
+}
+
+async function writeJsonFile(filePath: string, data: any[]): Promise<void> {
+    try {
+        await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
+        console.log(`Dados escritos em ${filePath}.`);
+    } catch (error: any) {
+        throw new Error(`Falha ao escrever no arquivo: ${error.message}`);
+    }
+}
+
+// =======================================================
+// ROTAS DE AUTENTICAÇÃO E USUÁRIOS
+// =======================================================
+
+// Rota de registro
+server.post('/register', async (req: any, res: any) => {
+    // CORREÇÃO: Usando 'nome', 'email', 'senha' para o registro
+    const { nome, email, senha } = req.body as any;
+    if (!nome || !email || !senha) {
+        return res.status(400).json({ message: 'Todos os campos são obrigatórios!' });
+    }
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+
+        if (users.some((user: any) => user.email === email)) {
+            return res.status(409).json({ message: 'Este e-mail já está registrado.' });
+        }
+
+        const newUser = {
+            nome,
+            email,
+            senha, 
+            saldo: 0, // Adicionando saldo padrão
+            viagens: 0, // Adicionando viagens padrão
+            rotasFavoritas: []
+        };
+
+        users.push(newUser);
+        await writeJsonFile(usersFilePath, users);
+        console.log(`Usuário ${newUser.email} registrado e salvo.`);
+
+        res.status(201).json({ message: 'Registro bem-sucedido!', user: { nome: newUser.nome, email: newUser.email } });
     } catch (error) {
-        return res.status(500).json({ success: false, message: 'Erro ao salvar o usuário' });
+        console.error("Erro no registro:", error);
+        res.status(500).json({ message: 'Erro interno do servidor durante o registro.' });
     }
 });
 
-server.post('/login', (req:any, res:any) => {
-    const { email, senha } = req.body;
-
+// Rota de login
+server.post('/login', async (req: any, res: any) => {
+    const { email, senha } = req.body as any;
     if (!email || !senha) {
-        return res.status(400).json({ message: 'Email e senha são obrigatórios' });
+        console.log("Erro: Email ou senha vazios.");
+        return res.status(400).json({ message: 'E-mail e senha são obrigatórios.' });
     }
 
-    const usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const usuario = usuarios.find((u:any) => u.email === email && u.senha === senha);
+    try {
+        const users = await readJsonFile(usersFilePath);
+        console.log("Usuários carregados do arquivo 'usuarios.json':", users);
 
-    if (!usuario) {
-        return res.status(401).json({ message: 'Email ou senha incorretos' });
-    }
+        const user = users.find((u: any) => u.email === email && u.senha === senha);
 
-    return res.json({ nome: usuario.nome, email: usuario.email });
+        if (!user) {
+            console.log("Nenhum usuário encontrado com as credenciais fornecidas.");
+            return res.status(401).json({ message: 'E-mail ou senha incorretos.' });
+        }
+        res.status(200).json({ message: 'Login bem-sucedido!', user: { nome: user.nome, email: user.email } });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor durante o login.' });
+    } 
 });
 
+// =======================================================
+// ROTAS DE ROTAS FAVORITAS
+// =======================================================
 
-/*server.delete('/usuarios/:email', (req, res) => {
-    const { email } = req.params;
+server.get('/favoritas/:email', async (req: any, res: any) => {
+    const userEmail = req.params.email;
 
-    const usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const index = usuarios.findIndex((u) => u.email === email);
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const user = users.find((u: any) => u.email === userEmail);
 
-    if (index === -1) {
-        return res.status(404).json({ message: 'Usuário não encontrado' });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        res.status(200).json({ rotasFavoritas: user.rotasFavoritas || [] });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor.' });
     }
-
-    const usuarioRemovido = usuarios.splice(index, 1)[0];
-    fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
-
-    return res.json({ message: 'Usuário removido', usuario: usuarioRemovido });
-});*/
-
-// Obter saldo e viagens de um usuário
-server.get('/saldo/:email', (req: any, res: any) => {
-    const { email } = req.params;
-    const usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const usuario = usuarios.find((u: any) => u.email === email);
-
-    if (!usuario) {
-        return res.status(404).json({ message: "Usuário não encontrado." });
-    }
-
-    res.json({ saldo: usuario.saldo, viagens: usuario.viagens });
 });
 
-// Atualizar saldo e viagens
-server.put('/saldo/:email', (req: any, res: any) => {
-    const { email } = req.params;
-    const { saldo, viagens } = req.body;
+// Rota para adicionar uma rota favorita a um usuário
+server.post('/favoritas/:email', async (req: any, res: any) => {
+    const userEmail = req.params.email;
+    const { rota } = req.body as { rota: string };
 
-    let usuarios = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const index = usuarios.findIndex((u: any) => u.email === email);
-
-    if (index === -1) {
-        return res.status(404).json({ message: "Usuário não encontrado." });
+    if (!rota) {
+        return res.status(400).json({ message: 'O nome da rota é obrigatório.' });
     }
 
-    if (typeof saldo === 'number') usuarios[index].saldo = saldo;
-    if (typeof viagens === 'number') usuarios[index].viagens = viagens;
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const userIndex = users.findIndex((u: any) => u.email === userEmail);
 
-    fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
-    res.json({ message: "Saldo atualizado com sucesso." });
+        if (userIndex === -1) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        const user = users[userIndex];
+        if (!user.rotasFavoritas) {
+            user.rotasFavoritas = [];
+        }
+
+        if (user.rotasFavoritas.includes(rota)) {
+            return res.status(409).json({ message: 'Esta rota já está nos favoritos.' });
+        }
+
+        user.rotasFavoritas.push(rota);
+        await writeJsonFile(usersFilePath, users);
+
+        res.status(200).json({ message: 'Rota adicionada aos favoritos!', rotasFavoritas: user.rotasFavoritas });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor.' });
+    }
 });
 
+// Rota para remover uma rota favorita de um usuário
+server.delete('/favoritas/:email/:rota', async (req: any, res: any) => {
+    const userEmail = req.params.email;
+    const rotaToRemove = decodeURIComponent(req.params.rota);
 
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const userIndex = users.findIndex((u: any) => u.email === userEmail);
 
-const porta = 3000;
-server.listen(porta, () => {
-    console.log(`Servidor rodando na porta ${porta}`);
+        if (userIndex === -1) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        const user = users[userIndex];
+        if (!user.rotasFavoritas || !user.rotasFavoritas.includes(rotaToRemove)) {
+            return res.status(404).json({ message: 'Rota favorita não encontrada para este usuário.' });
+        }
+
+        user.rotasFavoritas = user.rotasFavoritas.filter((r: string) => r !== rotaToRemove);
+        await writeJsonFile(usersFilePath, users);
+
+        res.status(200).json({ message: 'Rota removida dos favoritos!', rotasFavoritas: user.rotasFavoritas });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor.' });
+    }
+});
+
+server.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
