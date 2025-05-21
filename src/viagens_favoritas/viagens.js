@@ -1,31 +1,36 @@
-
 const btnAdicionar = document.getElementById('adicionar');
-const inputDestino = document.getElementById('destino');
+// Change this line to target your select element
+const selectLinha = document.getElementById('searchSelectStart');
 const listaDestinos = document.getElementById('lista-destinos');
 
+let iconeCoracao = '❤ ';
 
-let iconeCoracao = '❤ '; 
 btnAdicionar.addEventListener('click', () => {
-    const destino = inputDestino.value.trim();
+    // Get the selected value from the select element
+    const destino = selectLinha.value.trim();
 
-    if (destino !== "") {
+    // Check if a valid option was selected (not the "Selecione a linha" option)
+    if (destino !== "" && destino !== "Selecione a linha") {
         const li = document.createElement('li');
         li.className = 'trip-item';
 
         const heart = document.createElement('span');
         heart.className = 'heart';
-        heart.textContent = iconeCoracao; 
+        heart.textContent = iconeCoracao;
 
         const span = document.createElement('span');
         span.textContent = destino;
-        span.className = 'destino'; 
+        span.className = 'destino';
 
         li.appendChild(heart);
         li.appendChild(span);
 
         listaDestinos.appendChild(li);
 
-        inputDestino.value = "";
+        // Reset the select to its default option after adding
+        selectLinha.value = "";
+    } else {
+        alert("Por favor, selecione uma linha válida para adicionar aos favoritos.");
     }
 });
 
@@ -36,7 +41,7 @@ listaDestinos.addEventListener('click', (e) => {
     }
 });
 
-// Evento para mostrar o tempo de metrô ao clicar no destino 
+// Evento para mostrar o tempo de metrô ao clicar no destino
 listaDestinos.addEventListener('click', (e) => {
     if (e.target.classList.contains('destino')) {
         // Simular a obtenção do tempo de metrô em minutos
@@ -46,17 +51,17 @@ listaDestinos.addEventListener('click', (e) => {
 });
 
 function alterarIconeCoracao(novoIcone) {
-    iconeCoracao = novoIcone; 
+    iconeCoracao = novoIcone;
 }
 
 // Script para exibir a saudação
 document.addEventListener("DOMContentLoaded", function () {
     const loggedInUser = localStorage.getItem("loggedInUser");
     const greetingMessage = document.getElementById("greetingMessage");
-    
+
     if (greetingMessage && loggedInUser) {
         greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
     } else {
         greetingMessage.textContent = "Bem-vindo ao Metrô!";
     }
-    });
+});

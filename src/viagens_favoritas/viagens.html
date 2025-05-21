@@ -20,8 +20,15 @@
         
         <!-- Campo de adicionar viagem favorita -->
         <div class="favorite-trips">
-            <h2>Viagens Favoritas</h2>
-            <input type="text" id="destino" placeholder="Digite o destino">
+            <h2>Linhas favoritas</h2>
+            <select id="searchSelectStart" name="pesquisaStart">
+          <option value="">Selecione a linha</option>
+          <optgroup label="Linhas">
+            <option value="Linha 1 – Azul">Linha 1 - Azul</option>
+            <option value="Linha 13 – Jade">Linha 13 - Jade</option>
+            <option value="Linha 4 – Vermelha">Linha 4 - Vermelha</option>
+          </optgroup>
+        </select>
             <button id="adicionar">Adicionar</button>
             <ul id="lista-destinos" class="trip-list"></ul>
         </div>
