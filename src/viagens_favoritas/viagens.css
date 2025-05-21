@@ -2,14 +2,14 @@
 
 * {
     font-family: "Jost", sans-serif;
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-    /* Add padding-bottom to body to ensure content doesn't get hidden by fixed footer */
-    padding-bottom: 70px; /* Adjust this value based on your footer's height */
+    padding-bottom: 70px;
 }
 
 header img {
@@ -24,8 +24,8 @@ header img {
     padding-top: 10px;
     text-align: center;
     width: 100%;
-    position: relative; /* Keep it in normal flow */
-    z-index: 10; /* Keep it above other content if needed */
+    position: relative;
+    z-index: 10;
 }
 
 .welcome-message h1 {
@@ -38,10 +38,11 @@ h2 {
     font-size: 32px;
     text-align: center;
     margin-bottom: 20px;
-    color: #333; /* Ensure a readable color */
+    color: #333;
 }
 
-.container { /* This class might be unused in your current HTML, but kept for consistency */
+/* Estas classes 'container' e 'box' não estão no seu HTML atual, mas mantidas por segurança */
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,7 +50,7 @@ h2 {
     margin-top: 20px;
 }
 
-.box { /* This class might be unused in your current HTML, but kept for consistency */
+.box {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     padding: 20px;
@@ -63,7 +64,7 @@ h2 {
     height: max-content;
 }
 
-.box:hover { /* This class might be unused in your current HTML, but kept for consistency */
+.box:hover {
     background-color: #95c2df;
 }
 
@@ -74,13 +75,12 @@ h2 {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
-    box-sizing: border-box;
-    margin-left: auto; /* Center the block */
-    margin-right: auto; /* Center the block */
-    margin-top: 20px; /* Add some margin from header */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
 }
 
-input[type="text"] { /* Kept for other inputs you might have */
+input[type="text"] {
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 10px;
@@ -88,7 +88,7 @@ input[type="text"] { /* Kept for other inputs you might have */
     border-radius: 5px;
 }
 
-/* --- Select Element Styling --- */
+/* --- Estilização do Elemento Select --- */
 #searchSelectStart {
     appearance: none;
     -webkit-appearance: none;
@@ -149,67 +149,78 @@ ul {
     margin-top: 20px;
 }
 
+/* --- Ajuste no layout dos itens da lista para responsividade --- */
 .trip-item {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
     font-size: 1.1em;
-    gap: 10px; /* Space between elements in the list item */
+    gap: 5px;
+    justify-content: flex-start;
 }
 
 .trip-item:last-child {
     border-bottom: none;
 }
 
-.heart {
+/* --- NOVO: Ícone de Lixeira no lugar do Coração --- */
+.delete-icon { /* Usaremos esta classe para o ícone de lixeira agora */
     cursor: pointer;
-    color: #FE0000;
-    margin-right: 10px;
-    font-size: 1.3em;
+    color: #FE0000; /* Cor vermelha para o delete, mantendo o esquema de cores */
+    margin-right: 5px;
+    font-size: 1.2em;
     transition: transform 0.2s ease-in-out;
+    flex-shrink: 0;
 }
 
-.heart:hover {
+.delete-icon:hover {
     transform: scale(1.2);
+    color: #c82333; /* Vermelho um pouco mais escuro no hover */
 }
 
 .destino {
-    flex-grow: 1; /* Allows the line name to take available space */
+    flex-grow: 1;
     text-align: left;
     color: #333;
+    min-width: 120px;
+    white-space: normal;
+    word-break: break-word;
 }
 
-/* --- NEW: Next Train Button Styling --- */
+/* --- NOVO: Botão 'Próximo Trem' no lugar da Lixeira com nova cor --- */
 .next-train-button {
-    background-color: #007bff; /* A nice blue color for the button */
+    background-color: #4CAF50; /* Um verde que pode agregar bem (similar a um "go" ou "ok") */
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 6px 10px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em;
-    margin-left: auto; /* Push the button to the right */
+    font-size: 0.8em;
+    margin-left: auto; /* Empurra para a direita */
     transition: background-color 0.3s ease;
-    white-space: nowrap; /* Prevent button text from wrapping */
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 90px;
+    max-width: 120px;
 }
 
 .next-train-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #45a049; /* Verde um pouco mais escuro no hover */
 }
 
-
-/* --- Footer Styling --- */
+/* --- Estilização do Rodapé --- */
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed; /* Changed to fixed */
-    bottom: 0;       /* Stick to the bottom */
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    z-index: 100; /* Ensure it stays on top of other content */
-    box-sizing: border-box; /* Include padding in width calculation */
+    z-index: 100;
+    box-sizing: border-box;
 }
 
 .footer-container {
@@ -237,23 +248,69 @@ p {
     font-size: 16px;
 }
 
+/* --- Media Queries para responsividade --- */
+@media (max-width: 768px) {
+    .favorite-trips {
+        padding: 15px;
+        margin: 15px auto;
+    }
+    .trip-item {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-message h1 {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    .favorite-trips {
+        width: 90%;
+        padding: 10px;
+    }
+    .trip-item {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Alinhamento dos itens quando quebram para a próxima linha */
+        align-items: flex-start; /* Alinha o texto e o ícone de lixeira no topo */
+    }
+    .destino {
+        flex-basis: calc(100% - 60px);
+        margin-right: 0;
+    }
+    .next-train-button {
+        order: 3; /* Move para a última posição na linha (depois do nome) */
+        margin-top: 5px;
+        margin-left: auto; /* Empurra para a direita */
+        margin-right: 0;
+        flex-basis: auto;
+        min-width: 90px; /* Garante que o botão não encolha demais */
+    }
+    .delete-icon { /* Ícone de lixeira agora no lugar do coração */
+        order: 1; /* Mantém o ícone de lixeira na primeira posição */
+        margin-right: 5px;
+    }
+    .destino {
+        order: 2; /* Mantém o nome da linha na segunda posição */
+    }
+}
+
 @media (max-width: 600px) {
     .footer-icons {
         justify-content: space-around;
+        padding: 0 10px;
     }
 
     .footer-icons a {
-        margin: 10px 0;
+        margin: 0 8px;
     }
-    .favorite-trips {
-        width: 95%;
-        padding: 20px;
+    .footer-icons img {
+        height: 25px;
     }
-    h2 {
-        font-size: 28px;
-    }
-    /* Adjust padding for smaller screens if footer height changes */
     body {
-        padding-bottom: 60px; /* Potentially smaller padding for smaller footer */
+        padding-bottom: 50px;
     }
 }
