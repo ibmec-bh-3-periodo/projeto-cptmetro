@@ -6,7 +6,6 @@
     "saldo": 0,
     "viagens": 0,
     "rotasFavoritas": [
-      "Linha 12 - Safira",
       "Linha 11 - Coral",
       "Linha 13 - Jade"
     ]
@@ -71,6 +70,14 @@
     "nome": "Buccini",
     "email": "lucasmbuccini@teste.com",
     "senha": "Odeioojoao",
+    "saldo": 0,
+    "viagens": 0,
+    "rotasFavoritas": []
+  },
+  {
+    "nome": "Muppet",
+    "email": "muppet@email.com",
+    "senha": "123",
     "saldo": 0,
     "viagens": 0,
     "rotasFavoritas": []

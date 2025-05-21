@@ -1,262 +1,186 @@
-// server.ts
-
-import { error } from "console"; // 'error' is likely unused here, but kept if you have other console uses
-
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const cors = require('cors');
+import express, { Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import fs from 'fs/promises';
+import path from 'path';
 
 const server = express();
-server.use(express.json());
+const PORT = 3000;
+
+server.use(bodyParser.json());
 server.use(cors());
 
-const usuariosPath = path.join(__dirname, 'usuarios.json');
+const usersFilePath = path.join(__dirname, 'usuarios.json');
 
-// Helper function to read users
-const readUsers = () => {
-    if (!fs.existsSync(usuariosPath)) {
-        console.warn("usuarios.json not found. Creating an empty array.");
-        return [];
-    }
-    const data = fs.readFileSync(usuariosPath, 'utf-8');
+async function readJsonFile(filePath: string): Promise<any[]> {
     try {
-        // Handle empty file case
-        if (data.trim() === '') {
-            return [];
-        }
+        const data = await fs.readFile(filePath, 'utf8');
         return JSON.parse(data);
-    } catch (e) {
-        console.error("Error parsing usuarios.json:", e);
-        return [];
+    } catch (error: any) {
+        if (error.code === 'ENOENT') {
+            console.log(`Arquivo não encontrado em ${filePath}. Criando um vazio.`);
+            return []; // Retorna um array vazio se o arquivo não existe
+        }
+        console.error(`Erro ao ler o arquivo ${filePath}:`, error);
+        throw new Error(`Falha ao ler o arquivo: ${error.message}`);
     }
-};
+}
 
-// Helper function to write users
-const writeUsers = (users: any) => {
-    fs.writeFileSync(usuariosPath, JSON.stringify(users, null, 2));
-};
-
-// --- User Management Endpoints ---
-
-server.post('/cadastro', (req:any, res:any) => {
-    const { nome, email, senha } = req.body;
-
-    if (!nome || !email || !senha) {
-        return res.status(400).json({ success: false, message: 'Nome, email e senha são obrigatórios' });
-    }
-
-    const usuarios = readUsers();
-    const existente = usuarios.find((u:any) => u.email === email);
-
-    if (existente) {
-        return res.status(409).json({ success: false, message: 'Email já cadastrado' });
-    }
-
-    // Initialize rotasFavoritas as an empty array for new users
-    const novoUsuario = { nome, email, senha, saldo: 0, viagens: 0, rotasFavoritas: [] };
-    usuarios.push(novoUsuario);
+async function writeJsonFile(filePath: string, data: any[]): Promise<void> {
     try {
-        writeUsers(usuarios);
-        res.status(201).json({ success: true, message: 'Usuário cadastrado com sucesso' });
+        await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
+        console.log(`Dados escritos em ${filePath}.`);
+    } catch (error: any) {
+        throw new Error(`Falha ao escrever no arquivo: ${error.message}`);
+    }
+}
+
+// =======================================================
+// ROTAS DE AUTENTICAÇÃO E USUÁRIOS
+// =======================================================
+
+// Rota de registro
+server.post('/register', async (req: any, res: any) => {
+    // CORREÇÃO: Usando 'nome', 'email', 'senha' para o registro
+    const { nome, email, senha } = req.body as any;
+    if (!nome || !email || !senha) {
+        return res.status(400).json({ message: 'Todos os campos são obrigatórios!' });
+    }
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+
+        if (users.some((user: any) => user.email === email)) {
+            return res.status(409).json({ message: 'Este e-mail já está registrado.' });
+        }
+
+        const newUser = {
+            nome,
+            email,
+            senha, 
+            saldo: 0, // Adicionando saldo padrão
+            viagens: 0, // Adicionando viagens padrão
+            rotasFavoritas: []
+        };
+
+        users.push(newUser);
+        await writeJsonFile(usersFilePath, users);
+        console.log(`Usuário ${newUser.email} registrado e salvo.`);
+
+        res.status(201).json({ message: 'Registro bem-sucedido!', user: { nome: newUser.nome, email: newUser.email } });
     } catch (error) {
-        console.error("Error saving user:", error); // Log server-side errors
-        return res.status(500).json({ success: false, message: 'Erro ao salvar o usuário' });
+        console.error("Erro no registro:", error);
+        res.status(500).json({ message: 'Erro interno do servidor durante o registro.' });
     }
 });
 
-server.post('/login', (req:any, res:any) => {
-    const { email, senha } = req.body;
-
+// Rota de login
+server.post('/login', async (req: any, res: any) => {
+    const { email, senha } = req.body as any;
     if (!email || !senha) {
-        return res.status(400).json({ message: 'Email e senha são obrigatórios' });
+        console.log("Erro: Email ou senha vazios.");
+        return res.status(400).json({ message: 'E-mail e senha são obrigatórios.' });
     }
 
-    const usuarios = readUsers();
-    const usuario = usuarios.find((u:any) => u.email === email && u.senha === senha);
+    try {
+        const users = await readJsonFile(usersFilePath);
+        console.log("Usuários carregados do arquivo 'usuarios.json':", users);
 
-    if (!usuario) {
-        return res.status(401).json({ message: 'Email ou senha incorretos' });
-    }
+        const user = users.find((u: any) => u.email === email && u.senha === senha);
 
-    // Return the user's name, email, and favorite routes
-    return res.json({ nome: usuario.nome, email: usuario.email, rotasFavoritas: usuario.rotasFavoritas || [] });
+        if (!user) {
+            console.log("Nenhum usuário encontrado com as credenciais fornecidas.");
+            return res.status(401).json({ message: 'E-mail ou senha incorretos.' });
+        }
+        res.status(200).json({ message: 'Login bem-sucedido!', user: { nome: user.nome, email: user.email } });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor durante o login.' });
+    } 
 });
 
-server.get('/saldo/:email', (req: any, res: any) => {
-    const { email } = req.params;
-    const usuarios = readUsers();
-    const usuario = usuarios.find((u: any) => u.email === email);
+// =======================================================
+// ROTAS DE ROTAS FAVORITAS
+// =======================================================
 
-    if (!usuario) {
-        return res.status(404).json({ message: "Usuário não encontrado." });
+server.get('/favoritas/:email', async (req: any, res: any) => {
+    const userEmail = req.params.email;
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const user = users.find((u: any) => u.email === userEmail);
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        res.status(200).json({ rotasFavoritas: user.rotasFavoritas || [] });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor.' });
     }
-
-    res.json({ saldo: usuario.saldo, viagens: usuario.viagens });
 });
 
-server.put('/saldo/:email', (req: any, res: any) => {
-    const { email } = req.params;
-    const { saldo, viagens } = req.body;
-
-    let usuarios = readUsers();
-    const index = usuarios.findIndex((u: any) => u.email === email);
-
-    if (index === -1) {
-        return res.status(404).json({ message: "Usuário não encontrado." });
-    }
-
-    if (typeof saldo === 'number') usuarios[index].saldo = saldo;
-    if (typeof viagens === 'number') usuarios[index].viagens = viagens;
-
-    writeUsers(usuarios);
-    res.json({ message: "Saldo atualizado com sucesso." });
-});
-
-// --- Favorite Routes Endpoints ---
-
-server.get('/favoritas/:email', (req: any, res: any) => {
-    const { email } = req.params;
-    const usuarios = readUsers();
-    const usuario = usuarios.find((u: any) => u.email === email);
-
-    if (!usuario) {
-        // It's often better to return an empty array for favorites if user not found,
-        // or a 404 if the user genuinely doesn't exist. Let's return 404 if no user.
-        return res.status(404).json({ message: "Usuário não encontrado." });
-    }
-
-    res.json({ rotasFavoritas: usuario.rotasFavoritas || [] });
-});
-
-server.post('/favoritas/:email', (req: any, res: any) => {
-    const { email } = req.params;
-    const { rota } = req.body;
+// Rota para adicionar uma rota favorita a um usuário
+server.post('/favoritas/:email', async (req: any, res: any) => {
+    const userEmail = req.params.email;
+    const { rota } = req.body as { rota: string };
 
     if (!rota) {
-        return res.status(400).json({ message: "O nome da rota é obrigatório." });
+        return res.status(400).json({ message: 'O nome da rota é obrigatório.' });
     }
 
-    let usuarios = readUsers();
-    const index = usuarios.findIndex((u: any) => u.email === email);
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const userIndex = users.findIndex((u: any) => u.email === userEmail);
 
-    if (index === -1) {
-        return res.status(404).json({ message: "Usuário não encontrado." });
-    }
+        if (userIndex === -1) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
 
-    if (!usuarios[index].rotasFavoritas) {
-        usuarios[index].rotasFavoritas = [];
-    }
+        const user = users[userIndex];
+        if (!user.rotasFavoritas) {
+            user.rotasFavoritas = [];
+        }
 
-    if (!usuarios[index].rotasFavoritas.includes(rota)) {
-        usuarios[index].rotasFavoritas.push(rota);
-        writeUsers(usuarios);
-        return res.status(200).json({ message: "Rota favorita adicionada com sucesso.", rotasFavoritas: usuarios[index].rotasFavoritas });
-    } else {
-        return res.status(409).json({ message: "Esta rota já está na sua lista de favoritos." });
-    }
-});
+        if (user.rotasFavoritas.includes(rota)) {
+            return res.status(409).json({ message: 'Esta rota já está nos favoritos.' });
+        }
 
-server.delete('/favoritas/:email/:rota', (req: any, res: any) => {
-    const { email, rota } = req.params;
+        user.rotasFavoritas.push(rota);
+        await writeJsonFile(usersFilePath, users);
 
-    let usuarios = readUsers();
-    const index = usuarios.findIndex((u: any) => u.email === email);
-
-    if (index === -1) {
-        return res.status(404).json({ message: "Usuário não encontrado." });
-    }
-
-    if (!usuarios[index].rotasFavoritas) {
-        usuarios[index].rotasFavoritas = [];
-    }
-
-    const initialLength = usuarios[index].rotasFavoritas.length;
-    usuarios[index].rotasFavoritas = usuarios[index].rotasFavoritas.filter((fav: string) => fav !== rota);
-
-    if (usuarios[index].rotasFavoritas.length < initialLength) {
-        writeUsers(usuarios);
-        return res.status(200).json({ message: "Rota favorita removida com sucesso.", rotasFavoritas: usuarios[index].rotasFavoritas });
-    } else {
-        return res.status(404).json({ message: "Rota favorita não encontrada." });
+        res.status(200).json({ message: 'Rota adicionada aos favoritos!', rotasFavoritas: user.rotasFavoritas });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor.' });
     }
 });
 
-// --- Train Times Endpoint ---
+// Rota para remover uma rota favorita de um usuário
+server.delete('/favoritas/:email/:rota', async (req: any, res: any) => {
+    const userEmail = req.params.email;
+    const rotaToRemove = decodeURIComponent(req.params.rota);
 
-server.get('/train-time/:lineName', (req: any, res: any) => {
-    const { lineName } = req.params;
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const userIndex = users.findIndex((u: any) => u.email === userEmail);
 
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
+        if (userIndex === -1) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
 
-    let nextTrainHour: number = currentHour;
-    let nextTrainMinute: number = currentMinute;
-    let foundLine = true;
+        const user = users[userIndex];
+        if (!user.rotasFavoritas || !user.rotasFavoritas.includes(rotaToRemove)) {
+            return res.status(404).json({ message: 'Rota favorita não encontrada para este usuário.' });
+        }
 
-    // --- IMPORTANT: Replace this with your actual database lookup logic ---
-    // This is a simulation based on current time and fixed intervals.
-    switch (lineName) {
-        case "Linha 1 - Azul":
-            nextTrainMinute = currentMinute + (5 - (currentMinute % 5));
-            if (nextTrainMinute >= 60) {
-                nextTrainMinute -= 60;
-                nextTrainHour = (currentHour + 1) % 24;
-            }
-            break;
-        case "Linha 13 - Jade":
-            nextTrainMinute = currentMinute + (10 - (currentMinute % 10));
-            if (nextTrainMinute >= 60) {
-                nextTrainMinute -= 60;
-                nextTrainHour = (currentHour + 1) % 24;
-            }
-            break;
-        case "Linha 4 - Vermelha":
-            nextTrainMinute = currentMinute + (7 - (currentMinute % 7));
-            if (nextTrainMinute >= 60) {
-                nextTrainMinute -= 60;
-                nextTrainHour = (currentHour + 1) % 24;
-            }
-            break;
-        default:
-            foundLine = false;
+        user.rotasFavoritas = user.rotasFavoritas.filter((r: string) => r !== rotaToRemove);
+        await writeJsonFile(usersFilePath, users);
+
+        res.status(200).json({ message: 'Rota removida dos favoritos!', rotasFavoritas: user.rotasFavoritas });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro interno do servidor.' });
     }
-
-    if (!foundLine) {
-        return res.status(404).json({ message: "Linha de trem não encontrada ou sem previsão." });
-    }
-
-    const formattedNextTrainTime = `${String(nextTrainHour).padStart(2, '0')}:${String(nextTrainMinute).padStart(2, '0')}`;
-
-    const nextTrainDate = new Date();
-    nextTrainDate.setHours(nextTrainHour, nextTrainMinute, 0, 0);
-
-    // Adjust if the calculated time is in the past (meaning it's for the next cycle)
-    // This logic ensures that if a train "just left", it calculates the next one.
-    if (nextTrainDate.getTime() < now.getTime()) {
-        if (lineName === "Linha 1 - Azul") nextTrainDate.setMinutes(nextTrainDate.getMinutes() + 5);
-        else if (lineName === "Linha 13 - Jade") nextTrainDate.setMinutes(nextTrainDate.getMinutes() + 10);
-        else if (lineName === "Linha 4 - Vermelha") nextTrainDate.setMinutes(nextTrainDate.getMinutes() + 7);
-    }
-
-    const timeUntilNextTrainMs = nextTrainDate.getTime() - now.getTime();
-    let timeUntilNextTrainMinutes = Math.ceil(timeUntilNextTrainMs / (1000 * 60));
-
-    // Ensure minimum of 1 minute if time is very close (e.g., 0 minutes means "now" or less than a minute)
-    if (timeUntilNextTrainMinutes <= 0) {
-        timeUntilNextTrainMinutes = 1;
-    }
-
-    res.json({
-        line: lineName,
-        nextTrainTime: formattedNextTrainTime,
-        timeUntilNextTrainMinutes: timeUntilNextTrainMinutes
-    });
 });
 
-
-const porta = 3000;
-server.listen(porta, () => {
-    console.log(`Servidor rodando na porta ${porta}`);
+server.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

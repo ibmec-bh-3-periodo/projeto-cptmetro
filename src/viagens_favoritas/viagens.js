@@ -4,53 +4,145 @@ const btnAdicionar = document.getElementById('adicionar');
 const selectLinha = document.getElementById('searchSelectStart');
 const listaDestinos = document.getElementById('lista-destinos');
 
-// Não precisamos mais do ícone de coração como string, pois usaremos Font Awesome diretamente
-const API_BASE_URL = 'http://localhost:3000'; // Verifique se este endereço corresponde ao seu servidor
+const API_BASE_URL = 'http://localhost:3000';
 
-// Função para obter o email do usuário logado do localStorage
+let linhasData = [];
+
+// Funções Auxiliares para Cálculo do Trem
+function timeToMinutes(timeStr) {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    return hours * 60 + minutes;
+}
+
+function minutesToTime(totalMinutes) {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    const displayHours = hours === 24 ? 0 : hours;
+    return `${String(displayHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
+function getDiaDaSemana() {
+    const now = new Date();
+    const dayOfWeek = now.getDay();
+
+    if (dayOfWeek === 0) {
+        return "Domingos e Feriados";
+    } else if (dayOfWeek === 6) {
+        return "Sábados";
+    } else {
+        return "Dias Úteis";
+    }
+}
+
+// Lógica de Cálculo do Próximo Trem no Frontend
+function calcularProximoTrem(lineName) {
+    const now = new Date();
+    const currentMinutes = timeToMinutes(`${now.getHours()}:${now.getMinutes()}`);
+    const currentDayType = getDiaDaSemana();
+
+    const line = linhasData.find(l => l.linha === lineName);
+
+    if (!line) {
+        return { error: `Linha "${lineName}" não encontrada.` };
+    }
+
+    const daySchedule = line.horarios.find(h => h.dia === currentDayType);
+
+    if (!daySchedule) {
+        return { error: `Horário para "${currentDayType}" não encontrado para a linha ${lineName}.` };
+    }
+
+    let nextTrainTimeMinutes = -1;
+    let foundSchedule = false;
+
+    for (const faixa of daySchedule.faixas) {
+        const inicioMinutes = timeToMinutes(faixa.inicio);
+        const fimMinutes = timeToMinutes(faixa.fim);
+        const intervalo = faixa.intervalo_minutos;
+
+        let effectiveFimMinutes = fimMinutes;
+        if (faixa.fim === "24:00") {
+            effectiveFimMinutes = 24 * 60;
+        }
+
+        if (currentMinutes >= inicioMinutes && currentMinutes < effectiveFimMinutes) {
+            const minutesIntoFaixa = currentMinutes - inicioMinutes;
+            const intervalsPassed = Math.floor(minutesIntoFaixa / intervalo);
+            nextTrainTimeMinutes = inicioMinutes + (intervalsPassed + 1) * intervalo;
+            foundSchedule = true;
+            break;
+        }
+        else if (currentMinutes < inicioMinutes) {
+            nextTrainTimeMinutes = inicioMinutes;
+            foundSchedule = true;
+            break;
+        }
+    }
+
+    if (!foundSchedule || nextTrainTimeMinutes > timeToMinutes("24:00")) {
+        const firstScheduleOfNextDay = daySchedule.faixas[0];
+        const firstTrainNextDayMinutes = timeToMinutes(firstScheduleOfNextDay.inicio);
+
+        nextTrainTimeMinutes = (24 * 60 - currentMinutes) + firstTrainNextDayMinutes;
+
+        if (nextTrainTimeMinutes < currentMinutes) {
+            nextTrainTimeMinutes += (24 * 60);
+        }
+    }
+
+    let timeUntilNextTrainMinutes = nextTrainTimeMinutes - currentMinutes;
+    if (timeUntilNextTrainMinutes < 0) {
+        timeUntilNextTrainMinutes += (24 * 60);
+    }
+    if (nextTrainTimeMinutes === (24 * 60)) {
+        nextTrainTimeMinutes = 0;
+    }
+
+    return {
+        line: lineName,
+        nextTrainTime: minutesToTime(nextTrainTimeMinutes),
+        timeUntilNextTrainMinutes: timeUntilNextTrainMinutes
+    };
+}
+
+
 function getLoggedInUserEmail() {
     const userEmail = localStorage.getItem("loggedInUserEmail");
-    console.log("DEBUG: getLoggedInUserEmail() returned:", userEmail);
     return userEmail;
 }
 
-// Função para renderizar (mostrar) as rotas favoritas na interface
 function renderFavoriteRoutes(routes) {
-    listaDestinos.innerHTML = ''; // Limpa a lista existente antes de renderizar
+    listaDestinos.innerHTML = '';
     routes.forEach(route => {
         const li = document.createElement('li');
         li.className = 'trip-item';
 
-        // --- NOVO: Cria o ícone de Lixeira no lugar do Coração ---
         const deleteIcon = document.createElement('span');
-        deleteIcon.className = 'delete-icon'; // Usando a nova classe para estilização
-        deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Ícone de lixeira do Font Awesome
-        deleteIcon.dataset.routeName = route; // Armazena o nome da rota para a exclusão
+        deleteIcon.className = 'delete-icon';
+        deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        deleteIcon.dataset.routeName = route;
 
         const span = document.createElement('span');
         span.textContent = route;
         span.className = 'destino';
         span.dataset.routeName = route;
 
-        // Cria o botão "Próximo Trem"
         const nextTrainButton = document.createElement('button');
         nextTrainButton.className = 'next-train-button';
         nextTrainButton.textContent = 'Próximo Trem';
         nextTrainButton.dataset.lineName = route;
 
-        li.appendChild(deleteIcon); // Adiciona o ícone de lixeira primeiro
+        li.appendChild(deleteIcon);
         li.appendChild(span);
-        li.appendChild(nextTrainButton); // Adiciona o botão "Próximo Trem"
+        li.appendChild(nextTrainButton);
 
         listaDestinos.appendChild(li);
     });
 }
 
-// Função para carregar as rotas favoritas do backend
 async function loadFavoriteRoutes() {
     const userEmail = getLoggedInUserEmail();
     if (!userEmail) {
-        console.log("Nenhum usuário logado, não é possível carregar favoritos.");
         return;
     }
 
@@ -59,7 +151,6 @@ async function loadFavoriteRoutes() {
         if (!response.ok) {
             const errorData = await response.json();
             if (response.status === 404) {
-                 console.log("Usuário não encontrado ou sem rotas favoritas ainda.");
                  renderFavoriteRoutes([]);
                  return;
             }
@@ -73,7 +164,6 @@ async function loadFavoriteRoutes() {
     }
 }
 
-// Listener de evento para adicionar uma rota favorita
 btnAdicionar.addEventListener('click', async () => {
     const destino = selectLinha.value.trim();
     const userEmail = getLoggedInUserEmail();
@@ -111,10 +201,8 @@ btnAdicionar.addEventListener('click', async () => {
     }
 });
 
-// Listener de evento principal para cliques na lista (delegation)
 listaDestinos.addEventListener('click', async (e) => {
-    // --- NOVO: Lógica de clique no ícone de lixeira (agora no lugar do coração) ---
-    if (e.target.closest('.delete-icon')) { // Usa .closest para pegar o span.delete-icon mesmo se clicar no <i>
+    if (e.target.closest('.delete-icon')) {
         const deleteIconElement = e.target.closest('.delete-icon');
         const routeToRemove = deleteIconElement.dataset.routeName;
         const userEmail = getLoggedInUserEmail();
@@ -125,7 +213,7 @@ listaDestinos.addEventListener('click', async (e) => {
         }
 
         if (!confirm(`Tem certeza que deseja remover "${routeToRemove}" dos seus favoritos?`)) {
-            return; // Usuário cancelou
+            return;
         }
 
         try {
@@ -145,7 +233,6 @@ listaDestinos.addEventListener('click', async (e) => {
             alert(`Erro ao remover rota favorita: ${error.message}`);
         }
     }
-    // Lógica de clique no botão "Próximo Trem"
     else if (e.target.classList.contains('next-train-button')) {
         const lineName = e.target.dataset.lineName;
         if (!lineName) {
@@ -153,44 +240,37 @@ listaDestinos.addEventListener('click', async (e) => {
             return;
         }
 
-        try {
-            const encodedLineName = encodeURIComponent(lineName);
-            const response = await fetch(`${API_BASE_URL}/train-time/${encodedLineName}`);
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || `Erro HTTP! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            alert(`Próximo trem para ${data.line}: Chega às ${data.nextTrainTime} (aproximadamente em ${data.timeUntilNextTrainMinutes} minutos).`);
-
-        } catch (error) {
-            console.error("Erro ao buscar horário do trem:", error);
-            alert(`Erro ao buscar horário do trem: ${error.message}`);
+        if (linhasData.length === 0) {
+            alert("Dados de horários das linhas ainda não carregados. Tente novamente em instantes.");
+            return;
         }
-    }
-    // Lógica de clique no texto do destino (se ainda quiser mantê-la)
-    else if (e.target.classList.contains('destino')) {
-        // Exemplo: alert sobre tempo de metro (se ainda for relevante)
-        // const tempoMetro = Math.floor(Math.random() * 30) + 1;
-        // alert(`O metrô leva aproximadamente ${tempoMetro} minutos para ${e.target.textContent}.`);
+
+        const result = calcularProximoTrem(lineName);
+
+        if (result.error) {
+            alert(`Erro ao calcular próximo trem: ${result.error}`);
+        } else {
+            alert(`Próximo trem para ${result.line}: Chega às ${result.nextTrainTime} (em ${result.timeUntilNextTrainMinutes} minutos).`);
+        }
     }
 });
 
-// A função alterarIconeCoracao não é mais necessária já que o coração foi removido
-// function alterarIconeCoracao(novoIcone) {
-//     iconeCoracao = novoIcone;
-// }
+async function loadLinesData() {
+    try {
+        const response = await fetch('linhas.json');
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar linhas.json: ${response.statusText}`);
+        }
+        linhasData = await response.json();
+    } catch (error) {
+        console.error("Erro ao carregar dados das linhas:", error);
+        alert("Não foi possível carregar os dados de horários das linhas.");
+    }
+}
 
-// Script para exibir a saudação e carregar rotas favoritas ao carregar a página
 document.addEventListener("DOMContentLoaded", function () {
     const loggedInUser = localStorage.getItem("loggedInUser");
-    const loggedInUserEmail = localStorage.getItem("loggedInUserEmail");
     const greetingMessage = document.getElementById("greetingMessage");
-
-    console.log("DEBUG: On DOMContentLoaded - loggedInUser:", loggedInUser);
-    console.log("DEBUG: On DOMContentLoaded - loggedInUserEmail:", loggedInUserEmail);
 
     if (greetingMessage && loggedInUser) {
         greetingMessage.textContent = `Bem-vindo ao Metrô, ${loggedInUser}!`;
@@ -198,11 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
         greetingMessage.textContent = "Bem-vindo ao Metrô!";
     }
 
-    if (loggedInUserEmail) {
-        loadFavoriteRoutes();
-    } else {
-        console.log("DEBUG: Nenhum loggedInUserEmail encontrado, não carregando rotas favoritas.");
-        // Opcional: redirecionar para a página de login se não houver usuário logado
-        // window.location.href = "../login/login.html";
-    }
+    loadLinesData();
+    loadFavoriteRoutes();
 });
