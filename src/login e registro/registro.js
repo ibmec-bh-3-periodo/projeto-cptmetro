@@ -1,3 +1,5 @@
+// login.js
+
 document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registerForm");
     const loginForm = document.getElementById("loginForm");
@@ -22,13 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     const data = await response.json();
 
                     if (data.success) {
-                        window.location.href = "../../index.html";
-                        alert(data.message);
+                        alert(data.message); // Alert first
+                        window.location.href = "../../index.html"; // Then redirect
                     } else {
                         alert("Erro: " + data.message);
                     }
                 } catch (err) {
-                    console.error(err);
+                    console.error("Erro ao cadastrar:", err); // More specific error log
                     alert("Erro ao conectar com o servidor.");
                 }
             } else {
@@ -54,16 +56,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const data = await response.json();
 
-                if (response.ok) {
+                if (response.ok) { // Check response.ok for 2xx status codes
                     localStorage.setItem("loggedInUser", data.nome);
-                    localStorage.setItem("loggedInEmail", data.email);
+                    localStorage.setItem("loggedInUserEmail", data.email); // <<< FIXED TYPO HERE!
+
                     alert("Login bem-sucedido!");
-                    window.location.href = "./src/homepage/home.html";
+                    window.location.href = "./src/homepage/home.html"; // Or wherever your main home page is
                 } else {
-                    alert("Erro: " + data.message);
+                    // Handle non-2xx responses (e.g., 401 Unauthorized, 400 Bad Request)
+                    alert("Erro: " + (data.message || "Credenciais inválidas."));
                 }
             } catch (err) {
-                console.error(err);
+                console.error("Erro ao logar:", err); // More specific error log
                 alert("Erro ao conectar com o servidor.");
             }
         });

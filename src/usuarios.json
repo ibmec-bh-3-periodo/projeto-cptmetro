@@ -5,7 +5,9 @@
     "senha": "joao123",
     "saldo": 0,
     "viagens": 0,
-    "rotasFavoritas": []
+    "rotasFavoritas": [
+      "Linha 1 - Azul"
+    ]
   },
   {
     "nome": "Vitor Neves",

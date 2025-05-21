@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viagens Favoritas</title>
-    <link rel="stylesheet" href="viagens.css"> <!-- Importando o CSS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="viagens.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -14,26 +13,25 @@
         <header class="header">
             <img src="../icones/logo-branco-sem-fundo.png" alt="Logo da CPTM" class="logo">
             <div class="welcome-message">
-                <h1 id="greetingMessage">Bem-vindo!</h1> 
+                <h1 id="greetingMessage">Bem-vindo!</h1>
             </div>
         </header>
-        
-        <!-- Campo de adicionar viagem favorita -->
+
         <div class="favorite-trips">
             <h2>Linhas favoritas</h2>
             <select id="searchSelectStart" name="pesquisaStart">
-          <option value="">Selecione a linha</option>
-          <optgroup label="Linhas">
-            <option value="Linha 1 – Azul">Linha 1 - Azul</option>
-            <option value="Linha 13 – Jade">Linha 13 - Jade</option>
-            <option value="Linha 4 – Vermelha">Linha 4 - Vermelha</option>
+          <option value="Selecione a linha">Selecione a linha</option> <optgroup label="Linhas">
+            <option value="Linha 1 - Azul">Linha 1 - Azul</option>
+            <option value="Linha 13 - Jade">Linha 13 - Jade</option>
+            <option value="Linha 4 - Vermelha">Linha 4 - Vermelha</option>
           </optgroup>
         </select>
             <button id="adicionar">Adicionar</button>
             <ul id="lista-destinos" class="trip-list"></ul>
         </div>
+    </main>
 
-<footer>
+    <footer>
         <div class="footer-container">
             <div class="footer-icons">
                 <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
@@ -43,11 +41,7 @@
             </div>
             <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
         </div>
-</footer>
-    </div>
-</main>
+    </footer>
 
-    <script src="viagens.js"></script> <!-- Importando o JavaScript -->
-</body>
+    <script src="viagens.js"></script> </body>
 </html>
-

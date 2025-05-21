@@ -1,3 +1,5 @@
+/* viagens.css */
+
 * {
     font-family: "Jost", sans-serif;
 }
@@ -6,7 +8,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-    /* Removed height: 100vh; display: flex; flex-direction: column; */
     /* Add padding-bottom to body to ensure content doesn't get hidden by fixed footer */
     padding-bottom: 70px; /* Adjust this value based on your footer's height */
 }
@@ -23,8 +24,7 @@ header img {
     padding-top: 10px;
     text-align: center;
     width: 100%;
-    /* Ensure it's at the top, though usually default flow handles this */
-    position: relative; /* Changed from fixed to relative to keep it in normal flow */
+    position: relative; /* Keep it in normal flow */
     z-index: 10; /* Keep it above other content if needed */
 }
 
@@ -41,16 +41,15 @@ h2 {
     color: #333; /* Ensure a readable color */
 }
 
-.container {
+.container { /* This class might be unused in your current HTML, but kept for consistency */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     margin-top: 20px;
-    /* Removed flex-grow: 1; as body is no longer a flex container */
 }
 
-.box {
+.box { /* This class might be unused in your current HTML, but kept for consistency */
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     padding: 20px;
@@ -64,7 +63,7 @@ h2 {
     height: max-content;
 }
 
-.box:hover {
+.box:hover { /* This class might be unused in your current HTML, but kept for consistency */
     background-color: #95c2df;
 }
 
@@ -81,7 +80,7 @@ h2 {
     margin-top: 20px; /* Add some margin from header */
 }
 
-input[type="text"] {
+input[type="text"] { /* Kept for other inputs you might have */
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 10px;
@@ -156,6 +155,7 @@ ul {
     padding: 12px 0;
     border-bottom: 1px solid #eee;
     font-size: 1.1em;
+    gap: 10px; /* Space between elements in the list item */
 }
 
 .trip-item:last-child {
@@ -175,10 +175,29 @@ ul {
 }
 
 .destino {
-    flex-grow: 1;
+    flex-grow: 1; /* Allows the line name to take available space */
     text-align: left;
     color: #333;
 }
+
+/* --- NEW: Next Train Button Styling --- */
+.next-train-button {
+    background-color: #007bff; /* A nice blue color for the button */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: auto; /* Push the button to the right */
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.next-train-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
 
 /* --- Footer Styling --- */
 footer {
