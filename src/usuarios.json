@@ -3,7 +3,7 @@
     "nome": "João Pedro",
     "email": "joao.pedro@example.com",
     "senha": "joao123",
-    "saldo": 0,
+    "saldo": 8.80,
     "viagens": 0,
     "rotasFavoritas": [
       "Linha 11 - Coral",
