@@ -1,4 +1,5 @@
 const valorUnitario = 4.40;
+let pixFoiCopiado = false;
 
 function atualizarValorTotal() {
   let quantidade = parseInt(document.getElementById("quantidade-tickets").value);
@@ -18,6 +19,7 @@ function copiarChavePix() {
   pixKeyInput.setSelectionRange(0, 99999); // Para mobile
 
   navigator.clipboard.writeText(pixKeyInput.value).then(() => {
+    pixFoiCopiado = true;  // Marca que copiou
     const msg = document.getElementById("copy-msg");
     msg.textContent = "Chave PIX copiada!";
     msg.style.color = "green";
@@ -33,6 +35,11 @@ document.getElementById("copy-pix-btn").addEventListener("click", copiarChavePix
 atualizarValorTotal();
 
 document.getElementById("confirmar-pagamento-btn").addEventListener("click", async () => {
+  if (!pixFoiCopiado) {
+    alert("Por favor, copie a chave PIX antes de confirmar o pagamento.");
+    return;
+  }
+
   const emailUsuario = localStorage.getItem("loggedInUserEmail");
   const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
   const valorTotal = quantidade * valorUnitario;
@@ -76,6 +83,9 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
     const confirmacao = document.getElementById("confirmacao-compra");
     confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Saldo restante: R$ ${usuario.saldo.toFixed(2)}`;
     confirmacao.style.color = "green";
+
+    // Reseta para exigir nova cópia numa próxima compra
+    pixFoiCopiado = false;
 
     setTimeout(() => {
       confirmacao.textContent = "";
