@@ -3,7 +3,7 @@
     "nome": "João Pedro",
     "email": "joao.pedro@example.com",
     "senha": "joao123",
-    "saldo": 8.80,
+    "saldo": 8.8,
     "viagens": 0,
     "rotasFavoritas": [
       "Linha 11 - Coral",
@@ -16,7 +16,11 @@
     "senha": "vitor456",
     "saldo": 0,
     "viagens": 0,
-    "rotasFavoritas": []
+    "rotasFavoritas": [
+      "Linha 12 - Safira",
+      "Linha 13 - Jade",
+      "Linha 11 - Coral"
+    ]
   },
   {
     "nome": "Gabriel Borem",
@@ -32,7 +36,11 @@
     "senha": "meli@2025",
     "saldo": 0,
     "viagens": 0,
-    "rotasFavoritas": []
+    "rotasFavoritas": [
+      "Linha 13 - Jade",
+      "Linha 12 - Safira",
+      "Linha 11 - Coral"
+    ]
   },
   {
     "nome": "Laura",

@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     users = await usersResponse.json();
                 } catch (loadError) {
                     console.error("Erro ao carregar usuários para verificação de login:", loadError);
-                    // Não impede o login via backend, mas registra o erro local
                 }
 
                 const response = await fetch("http://localhost:3000/login", {
@@ -67,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (response.ok) {
                     localStorage.setItem("loggedInUserEmail", data.user.email);
+                    localStorage.setItem("loggedInUser", data.user.nome);
                     alert("Login bem-sucedido!");
                     window.location.href = "./src/homepage/home.html";
                 } else {
