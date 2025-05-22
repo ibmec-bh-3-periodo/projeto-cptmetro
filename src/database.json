@@ -1,6 +1,6 @@
 [
   {
-    "linha": "13 - Jade",
+    "linha": "Linha 13 - Jade",
     "trecho": "Eng. Goulart - Aeroporto Guarulhos",
     "horarios": [
       {
@@ -51,7 +51,7 @@
     ]
   },
   {
-    "linha": "11 - Coral",
+    "linha": "Linha 11 - Coral",
     "trecho": "Luz - Estudantes",
     "horarios": [
       {
@@ -122,7 +122,7 @@
     ]
   },
   {
-    "linha": "12 - Safira",
+    "linha": "Linha 12 - Safira",
     "trecho": "Brás - Calmon Viana",
     "horarios": [
       {

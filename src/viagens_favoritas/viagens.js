@@ -1,4 +1,4 @@
-// viagens.js
+// src/viagens/viagens.js
 
 const btnAdicionar = document.getElementById('adicionar');
 const selectLinha = document.getElementById('searchSelectStart');
@@ -8,7 +8,6 @@ const API_BASE_URL = 'http://localhost:3000';
 
 let linhasData = [];
 
-// Funções Auxiliares para Cálculo do Trem
 function timeToMinutes(timeStr) {
     const [hours, minutes] = timeStr.split(':').map(Number);
     return hours * 60 + minutes;
@@ -34,7 +33,6 @@ function getDiaDaSemana() {
     }
 }
 
-// Lógica de Cálculo do Próximo Trem no Frontend
 function calcularProximoTrem(lineName) {
     const now = new Date();
     const currentMinutes = timeToMinutes(`${now.getHours()}:${now.getMinutes()}`);
@@ -104,8 +102,6 @@ function calcularProximoTrem(lineName) {
         timeUntilNextTrainMinutes: timeUntilNextTrainMinutes
     };
 }
-
-
 function getLoggedInUserEmail() {
     const userEmail = localStorage.getItem("loggedInUserEmail");
     return userEmail;
@@ -141,7 +137,7 @@ function renderFavoriteRoutes(routes) {
 }
 
 async function loadFavoriteRoutes() {
-    const userEmail = getLoggedInUserEmail();
+    const userEmail = localStorage.getItem("loggedInUserEmail"); // Usar diretamente localStorage.getItem
     if (!userEmail) {
         return;
     }
@@ -159,14 +155,18 @@ async function loadFavoriteRoutes() {
         const data = await response.json();
         renderFavoriteRoutes(data.rotasFavoritas);
     } catch (error) {
-        console.error("Erro ao carregar rotas favoritas:", error);
+    console.error("Erro ao carregar rotas favoritas:", error);
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+        alert("Erro de conexão com o servidor. Verifique se o backend está rodando.");
+    } else {
         alert("Erro ao carregar suas rotas favoritas.");
+    }
     }
 }
 
 btnAdicionar.addEventListener('click', async () => {
     const destino = selectLinha.value.trim();
-    const userEmail = getLoggedInUserEmail();
+    const userEmail = localStorage.getItem("loggedInUserEmail"); // Usar diretamente localStorage.getItem
 
     if (!userEmail) {
         alert("Você precisa estar logado para adicionar rotas favoritas.");
@@ -205,7 +205,7 @@ listaDestinos.addEventListener('click', async (e) => {
     if (e.target.closest('.delete-icon')) {
         const deleteIconElement = e.target.closest('.delete-icon');
         const routeToRemove = deleteIconElement.dataset.routeName;
-        const userEmail = getLoggedInUserEmail();
+        const userEmail = localStorage.getItem("loggedInUserEmail"); // Usar diretamente localStorage.getItem
 
         if (!userEmail) {
             alert("Você precisa estar logado para remover rotas favoritas.");
@@ -257,9 +257,9 @@ listaDestinos.addEventListener('click', async (e) => {
 
 async function loadLinesData() {
     try {
-        const response = await fetch('linhas.json');
+        const response = await fetch('/src/database.json'); // Caminho para database.json
         if (!response.ok) {
-            throw new Error(`Erro ao carregar linhas.json: ${response.statusText}`);
+            throw new Error(`Erro ao carregar database.json: ${response.statusText}`);
         }
         linhasData = await response.json();
     } catch (error) {
@@ -268,8 +268,9 @@ async function loadLinesData() {
     }
 }
 
+// Este é o addEventListener da página de viagens
 document.addEventListener("DOMContentLoaded", function () {
-    const loggedInUser = localStorage.getItem("loggedInUser");
+    const loggedInUser = localStorage.getItem("loggedInUser"); // Pega o nome salvo no login.js
     const greetingMessage = document.getElementById("greetingMessage");
 
     if (greetingMessage && loggedInUser) {

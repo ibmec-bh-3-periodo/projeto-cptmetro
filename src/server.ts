@@ -10,7 +10,15 @@ const PORT = 3000;
 server.use(bodyParser.json());
 server.use(cors());
 
-const usersFilePath = path.join(__dirname, 'usuarios.json');
+// A raiz dos arquivos estáticos é a pasta PAI de 'src' (a raiz do seu projeto)
+// Se server.ts está em 'src', então a raiz do projeto é a pasta um nível acima.
+const staticFilesRoot = path.join(__dirname, '../'); // Isso aponta para a raiz do seu projeto
+server.use(express.static(staticFilesRoot));
+
+// Caminhos dos arquivos JSON. Se server.ts está em 'src', e os JSONs também,
+// então o caminho é relativo à pasta 'src'.
+const usersFilePath = path.join(__dirname, 'usuarios.json'); // No mesmo diretório que server.ts
+const linesDataPath = path.join(__dirname, 'database.json');   // No mesmo diretório que server.ts
 
 async function readJsonFile(filePath: string): Promise<any[]> {
     try {
@@ -18,10 +26,10 @@ async function readJsonFile(filePath: string): Promise<any[]> {
         return JSON.parse(data);
     } catch (error: any) {
         if (error.code === 'ENOENT') {
-            console.log(`Arquivo não encontrado em ${filePath}. Criando um vazio.`);
-            return []; // Retorna um array vazio se o arquivo não existe
+            console.log(`[readJsonFile - ${path.basename(filePath)}] Arquivo não encontrado: ${filePath}. Retornando array vazio.`);
+            return [];
         }
-        console.error(`Erro ao ler o arquivo ${filePath}:`, error);
+        console.error(`[readJsonFile - ${path.basename(filePath)}] Erro ao ler o arquivo ${filePath}:`, error);
         throw new Error(`Falha ao ler o arquivo: ${error.message}`);
     }
 }
@@ -29,8 +37,9 @@ async function readJsonFile(filePath: string): Promise<any[]> {
 async function writeJsonFile(filePath: string, data: any[]): Promise<void> {
     try {
         await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
-        console.log(`Dados escritos em ${filePath}.`);
+        console.log(`[writeJsonFile - ${path.basename(filePath)}] Dados escritos com sucesso.`);
     } catch (error: any) {
+        console.error(`[writeJsonFile - ${path.basename(filePath)}] Erro ao escrever no arquivo ${filePath}:`, error);
         throw new Error(`Falha ao escrever no arquivo: ${error.message}`);
     }
 }
@@ -39,9 +48,7 @@ async function writeJsonFile(filePath: string, data: any[]): Promise<void> {
 // ROTAS DE AUTENTICAÇÃO E USUÁRIOS
 // =======================================================
 
-// Rota de registro
 server.post('/register', async (req: any, res: any) => {
-    // CORREÇÃO: Usando 'nome', 'email', 'senha' para o registro
     const { nome, email, senha } = req.body as any;
     if (!nome || !email || !senha) {
         return res.status(400).json({ message: 'Todos os campos são obrigatórios!' });
@@ -57,15 +64,14 @@ server.post('/register', async (req: any, res: any) => {
         const newUser = {
             nome,
             email,
-            senha, 
-            saldo: 0, // Adicionando saldo padrão
-            viagens: 0, // Adicionando viagens padrão
+            senha,
+            saldo: 0,
+            viagens: 0,
             rotasFavoritas: []
         };
 
         users.push(newUser);
         await writeJsonFile(usersFilePath, users);
-        console.log(`Usuário ${newUser.email} registrado e salvo.`);
 
         res.status(201).json({ message: 'Registro bem-sucedido!', user: { nome: newUser.nome, email: newUser.email } });
     } catch (error) {
@@ -74,28 +80,24 @@ server.post('/register', async (req: any, res: any) => {
     }
 });
 
-// Rota de login
 server.post('/login', async (req: any, res: any) => {
     const { email, senha } = req.body as any;
     if (!email || !senha) {
-        console.log("Erro: Email ou senha vazios.");
         return res.status(400).json({ message: 'E-mail e senha são obrigatórios.' });
     }
 
     try {
         const users = await readJsonFile(usersFilePath);
-        console.log("Usuários carregados do arquivo 'usuarios.json':", users);
-
         const user = users.find((u: any) => u.email === email && u.senha === senha);
 
         if (!user) {
-            console.log("Nenhum usuário encontrado com as credenciais fornecidas.");
             return res.status(401).json({ message: 'E-mail ou senha incorretos.' });
         }
         res.status(200).json({ message: 'Login bem-sucedido!', user: { nome: user.nome, email: user.email } });
     } catch (error) {
+        console.error("Erro no login:", error);
         res.status(500).json({ message: 'Erro interno do servidor durante o login.' });
-    } 
+    }
 });
 
 // =======================================================
@@ -115,11 +117,11 @@ server.get('/favoritas/:email', async (req: any, res: any) => {
 
         res.status(200).json({ rotasFavoritas: user.rotasFavoritas || [] });
     } catch (error) {
+        console.error("Erro ao obter rotas favoritas:", error);
         res.status(500).json({ message: 'Erro interno do servidor.' });
     }
 });
 
-// Rota para adicionar uma rota favorita a um usuário
 server.post('/favoritas/:email', async (req: any, res: any) => {
     const userEmail = req.params.email;
     const { rota } = req.body as { rota: string };
@@ -150,11 +152,11 @@ server.post('/favoritas/:email', async (req: any, res: any) => {
 
         res.status(200).json({ message: 'Rota adicionada aos favoritos!', rotasFavoritas: user.rotasFavoritas });
     } catch (error) {
+        console.error("Erro ao adicionar rota favorita:", error);
         res.status(500).json({ message: 'Erro interno do servidor.' });
     }
 });
 
-// Rota para remover uma rota favorita de um usuário
 server.delete('/favoritas/:email/:rota', async (req: any, res: any) => {
     const userEmail = req.params.email;
     const rotaToRemove = decodeURIComponent(req.params.rota);
@@ -177,10 +179,32 @@ server.delete('/favoritas/:email/:rota', async (req: any, res: any) => {
 
         res.status(200).json({ message: 'Rota removida dos favoritos!', rotasFavoritas: user.rotasFavoritas });
     } catch (error) {
+        console.error("Erro ao remover rota favorita:", error);
         res.status(500).json({ message: 'Erro interno do servidor.' });
     }
 });
 
+// =======================================================
+// ROTA ESPECÍFICA PARA database.json
+// =======================================================
+server.get('/database.json', async (req: any, res: any) => {
+    try {
+        const data = await fs.readFile(linesDataPath, 'utf8');
+        console.log(`[GET /database.json] Arquivo lido com sucesso de: ${linesDataPath}`);
+        res.status(200).json(JSON.parse(data));
+    } catch (error: any) {
+        console.error(`[GET /database.json] ERRO ao servir database.json do caminho: ${linesDataPath}. Erro:`, error);
+        if (error.code === 'ENOENT') {
+            return res.status(404).json({ message: 'Arquivo database.json não encontrado no servidor.' });
+        }
+        res.status(500).json({ message: 'Erro interno do servidor ao carregar dados das linhas.' });
+    }
+});
+
+
 server.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`Servindo arquivos estáticos de: ${staticFilesRoot}`);
+    console.log(`Caminho esperado para usuarios.json: ${usersFilePath}`);
+    console.log(`Caminho esperado para database.json: ${linesDataPath}`);
 });
