@@ -1,7 +1,12 @@
 const valorUnitario = 4.40;
 
 function atualizarValorTotal() {
-  const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
+  let quantidade = parseInt(document.getElementById("quantidade-tickets").value);
+  if (isNaN(quantidade) || quantidade < 1) {
+    quantidade = 1;
+    document.getElementById("quantidade-tickets").value = 1;
+  }
+
   const total = (quantidade * valorUnitario).toFixed(2);
   document.getElementById("valor-total").textContent = `Valor total: R$ ${total}`;
   return total;
@@ -27,9 +32,8 @@ document.getElementById("quantidade-tickets").addEventListener("input", atualiza
 document.getElementById("copy-pix-btn").addEventListener("click", copiarChavePix);
 atualizarValorTotal();
 
-// Confirmação de pagamento com backend
 document.getElementById("confirmar-pagamento-btn").addEventListener("click", async () => {
-  const emailUsuario = localStorage.getItem("usuarioLogado");
+  const emailUsuario = localStorage.getItem("loggedInUserEmail");
   const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
   const valorTotal = quantidade * valorUnitario;
 
@@ -42,7 +46,7 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
     const resposta = await fetch(`http://localhost:3000/usuarios?email=${emailUsuario}`);
     const usuarios = await resposta.json();
 
-    if (usuarios.length === 0) {
+    if (!usuarios.length) {
       alert("Usuário não encontrado.");
       return;
     }
@@ -50,7 +54,7 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
     const usuario = usuarios[0];
 
     if (usuario.saldo < valorTotal) {
-      alert("Saldo insuficiente para realizar a compra.");
+      alert(`Saldo insuficiente. Você tem R$ ${usuario.saldo.toFixed(2)} e precisa de R$ ${valorTotal.toFixed(2)}.`);
       return;
     }
 
