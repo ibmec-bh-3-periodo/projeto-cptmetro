@@ -3,73 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Métodos de Pagamento</title>
+    <title>Compra de Tickets - Metrô</title>
     <link rel="stylesheet" href="pagamento.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <header class="header">
-        <img src="../icones/logo-branco-sem-fundo.png" alt="Logo  da CPTM" class="logo">
-        <div class="welcome-message">
-            <h1 id="greetingMessage">Bem-vindo!</h1> <!-- Saudação personalizada -->
-        </div>
+    <header>
+        <h1>Compra de Tickets - Metrô São Paulo</h1>
     </header>
 
-
-    <main class="main-container">
-        <h2>Métodos de Pagamento</h2>
+    <div class="main-container">
+        <h2>Selecione a quantidade de tickets</h2>
         <div class="pagamento-box">
-            <div class="pagamento-opcoes">
-                <h3>PAGAMENTO</h3>
-                <label for="forma-pagamento">Escolha a forma de pagamento</label>
-                <select id="forma-pagamento" class="select-pagamento">
-                    <option value="">Selecione</option>
-                    <option value="pix">PIX</option>
-                    <option value="debito">Cartão de Débito</option>
-                    <option value="credito">Cartão de Crédito</option>
-                </select>
-            </div>
+            <label for="quantidade-tickets">Tickets:</label>
+            <input type="number" id="quantidade-tickets" min="1" max="20" value="1">
+            <p id="valor-total">Valor total: R$ 4,40</p>
 
-           
-            <div id="form-container" class="form-container" style="display: none;">
-               
-                
-                    
-                    <div id="pix-form" style="display: none;">
-                        <label for="pix-key">Chave PIX do Metrô</label>
-                        <input type="text" id="pix-key" value="123.456.789-00" readonly>
-                        <button id="copy-pix-btn" class="btn-cadastrar">Copiar Chave PIX</button>
-                    </div>
-
-                
-                <div id="debito-form" style="display: none;">
-                    <label for="debito-number">Número do Cartão</label>
-                    <input type="text" id="debito-number" placeholder="Número do Cartão">
-                    <label for="debito-name">Nome no Cartão</label>
-                    <input type="text" id="debito-name" placeholder="Nome no Cartão">
-                    <label for="debito-validade">Data de Validade</label>
-                    <input type="text" id="debito-validade" placeholder="MM/AA">
+            <div class="pix-section">
+                <p>Chave PIX para pagamento:</p>
+                <div class="pix-container">
+                    <input type="text" id="pix-key" readonly value="pix-metro@cptm.com">
+                    <button id="copy-pix-btn">Copiar</button>
                 </div>
-
-                
-                <div id="credito-form" style="display: none;">
-                    <label for="credito-number">Número do Cartão</label>
-                    <input type="text" id="credito-number" placeholder="Número do Cartão">
-                    <label for="credito-name">Nome no Cartão</label>
-                    <input type="text" id="credito-name" placeholder="Nome no Cartão">
-                    <label for="credito-validade">Data de Validade</label>
-                    <input type="text" id="credito-validade" placeholder="MM/AA">
-                    <label for="credito-cvv">CVV</label>
-                    <input type="text" id="credito-cvv" placeholder="CVV">
-                </div>
-
-                <button id="submit-btn" class="btn-cadastrar salvar">Salvar Método de Pagamento</button>
+                <span id="copy-msg" class="copy-message"></span>
             </div>
         </div>
-    </main>
+    </div>
+
     <footer>
         <div class="footer-container">
             <div class="footer-icons">
@@ -80,8 +42,8 @@
             </div>
             <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
         </div>
-</footer>
+    </footer>
+
     <script src="pagamento.js"></script>
 </body>
 </html>
-
