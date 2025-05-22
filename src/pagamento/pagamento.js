@@ -1,33 +1,83 @@
 const valorUnitario = 4.40;
 
-// Atualiza o valor total com base na quantidade
 function atualizarValorTotal() {
-    const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
-    const total = (quantidade * valorUnitario).toFixed(2);
-    document.getElementById("valor-total").textContent = `Valor total: R$ ${total}`;
-    return total;
+  const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
+  const total = (quantidade * valorUnitario).toFixed(2);
+  document.getElementById("valor-total").textContent = `Valor total: R$ ${total}`;
+  return total;
 }
 
-// Copia a chave PIX e mostra mensagem
 function copiarChavePix() {
-    const pixKeyInput = document.getElementById("pix-key");
-    pixKeyInput.select();
-    pixKeyInput.setSelectionRange(0, 99999); // Para mobile
+  const pixKeyInput = document.getElementById("pix-key");
+  pixKeyInput.select();
+  pixKeyInput.setSelectionRange(0, 99999); // Para mobile
 
-    navigator.clipboard.writeText(pixKeyInput.value).then(() => {
-        const msg = document.getElementById("copy-msg");
-        msg.textContent = "Chave PIX copiada!";
-        msg.style.color = "green";
+  navigator.clipboard.writeText(pixKeyInput.value).then(() => {
+    const msg = document.getElementById("copy-msg");
+    msg.textContent = "Chave PIX copiada!";
+    msg.style.color = "green";
 
-        setTimeout(() => {
-            msg.textContent = "";
-        }, 2000);
-    });
+    setTimeout(() => {
+      msg.textContent = "";
+    }, 2000);
+  });
 }
 
-// Eventos
 document.getElementById("quantidade-tickets").addEventListener("input", atualizarValorTotal);
 document.getElementById("copy-pix-btn").addEventListener("click", copiarChavePix);
-
-// Inicializa valor
 atualizarValorTotal();
+
+// Confirmação de pagamento com backend
+document.getElementById("confirmar-pagamento-btn").addEventListener("click", async () => {
+  const emailUsuario = localStorage.getItem("usuarioLogado");
+  const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
+  const valorTotal = quantidade * valorUnitario;
+
+  if (!emailUsuario) {
+    alert("Usuário não está logado.");
+    return;
+  }
+
+  try {
+    const resposta = await fetch(`http://localhost:3000/usuarios?email=${emailUsuario}`);
+    const usuarios = await resposta.json();
+
+    if (usuarios.length === 0) {
+      alert("Usuário não encontrado.");
+      return;
+    }
+
+    const usuario = usuarios[0];
+
+    if (usuario.saldo < valorTotal) {
+      alert("Saldo insuficiente para realizar a compra.");
+      return;
+    }
+
+    usuario.saldo -= valorTotal;
+    usuario.viagens += quantidade;
+
+    const atualizar = await fetch(`http://localhost:3000/usuarios/${usuario.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(usuario)
+    });
+
+    if (!atualizar.ok) {
+      throw new Error("Erro ao salvar a compra no servidor.");
+    }
+
+    const confirmacao = document.getElementById("confirmacao-compra");
+    confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Saldo restante: R$ ${usuario.saldo.toFixed(2)}`;
+    confirmacao.style.color = "green";
+
+    setTimeout(() => {
+      confirmacao.textContent = "";
+    }, 3000);
+  } catch (erro) {
+    console.error("Erro na confirmação de pagamento:", erro);
+    alert("Erro ao processar o pagamento. Tente novamente.");
+  }
+});
