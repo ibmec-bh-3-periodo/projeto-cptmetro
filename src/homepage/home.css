@@ -37,6 +37,71 @@ h2 {
     color: #333;
 }
 
+span{
+    font-size: 20px;
+}
+
+.saldo{
+    width: 60%;
+    padding: 5px;
+    margin: 5%;
+
+}
+.btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #EE0000;
+    color: white;
+    border:none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #a1a1a1;
+}
+
+.saldo-info {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    width: 100%;
+}
+
+
+.saldo-box, .viagens-box {
+    padding: 10px;
+    /* padding-left: 30px; */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.saldo-box{
+    background-color: #f8f8f8;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-left: 130px;
+    align-items: center;
+    .main-container{
+    padding: 15px;
+    
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+span{
+    font-size: 20px;
+}
+
 .saldo{
     width: 60%;
     padding: 5px;
@@ -71,16 +136,10 @@ h2 {
     background-color: #f8f8f8;
     width: 100%;
     display: flex;
-    padding: 30px;
-
+    flex-direction: column;
+    padding: 10px 30px 10px 90px;
 }
 
-.saldo-box, .viagens-box {
-    padding: 10px;
-    padding-left: 30px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
 }
 
 .viagens-box{
