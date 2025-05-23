@@ -107,13 +107,17 @@ h2 {
     background: #a1a1a1;
 }
 
+.container {
+    padding-bottom: 80px;
+}
+
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
     width: 100%;
 }
 
