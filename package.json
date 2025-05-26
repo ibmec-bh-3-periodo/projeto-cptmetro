@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "jest",
-    "dev": "ts-node ./src/server.ts && npx tsc"
+    "dev": "ts-node ./src/server.ts && npx tsc",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

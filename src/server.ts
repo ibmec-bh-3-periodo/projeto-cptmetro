@@ -201,9 +201,12 @@ server.get('/database.json', async (req: any, res: any) => {
     }
 });
 
+server.get('/', (req, res) => {
+  res.sendFile('/app/index.html');
+});
 
 server.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`Servidor rodando emhttp://localhost:${PORT}`);
     console.log(`Servindo arquivos estáticos de: ${staticFilesRoot}`);
     console.log(`Caminho esperado para usuarios.json: ${usersFilePath}`);
     console.log(`Caminho esperado para database.json: ${linesDataPath}`);
