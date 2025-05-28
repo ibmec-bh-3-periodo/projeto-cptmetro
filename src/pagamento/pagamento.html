@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compra de Tickets - Metrô</title>
-    <link rel="stylesheet" href="pagamento/pagamento.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compra de Tickets - Metrô</title>
+  <link rel="stylesheet" href="pagamento.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet"/>
 </head>
 <body>
-    <header>
-        <h1>Compra de Tickets - Metrô São Paulo</h1>
-    </header>
+  <header>
+    <h1>Compra de Tickets - Metrô São Paulo</h1>
+  </header>
 
-    <div class="main-container">
-        <h2>Selecione a quantidade de tickets</h2>
-        <div class="pagamento-box">
-            <label for="quantidade-tickets">Tickets:</label>
-            <input type="number" id="quantidade-tickets" min="1" max="20" value="1">
-            <p id="valor-total">Valor total: R$ 4,40</p>
+  <div class="main-container">
+    <h2>Selecione a quantidade de tickets</h2>
+    <div class="pagamento-box">
+      <label for="quantidade-tickets">Tickets:</label>
+      <input type="number" id="quantidade-tickets" min="1" max="20" value="1" />
+      <p id="valor-total">Valor total: R$ 4,40</p>
 
-            <div class="pix-section">
-                <p>Chave PIX para pagamento:</p>
-                <div class="pix-container">
-                    <input type="text" id="pix-key" readonly value="pix-metro@cptm.com">
-                    <button id="copy-pix-btn">Copiar</button>
-                </div>
-                <span id="copy-msg" class="copy-message"></span>
-            </div>
+      <div class="pix-section">
+        <p>Chave PIX para pagamento:</p>
+        <div class="pix-container">
+          <input type="text" id="pix-key" readonly value="pix-metro@cptm.com" />
+          <button id="copy-pix-btn">Copiar</button>
         </div>
+        <span id="copy-msg" class="copy-message"></span>
+      </div>
+
+      <!-- Novo botão de confirmação -->
+      <button id="confirmar-pagamento-btn">Confirmar Pagamento</button>
+      <span id="confirmacao-compra" class="copy-message"></span>
     </div>
+  </div>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-icons">
-                <a href="homepage/home.html" class="link"><img src="icones/home.png" alt="ícone de home"></a>
-                <a href="qrcode/qrcode.html" class="link"><img src="icones/bilhete.png" alt="ícone de qr code"></a>
-                <a href="mapa/mapa.html" class="link"><img src="icones/mapa.png" alt="ícone de mapa"></a>
-                <a href="configuração/config.html" class="link"><img src="icones/configuracoes.png" alt="ícone de configurações"></a>
-            </div>
-            <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-icons">
+        <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home" /></a>
+        <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code" /></a>
+        <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa" /></a>
+        <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de configurações" /></a>
+      </div>
+      <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
-    <script src="pagamento/pagamento.js"></script>
+  <script src="pagamento.js"></script>
 </body>
 </html>
