@@ -43,38 +43,49 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
   }
 
   try {
-    const resposta = await fetch(`http://localhost:3000/usuarios?email=${emailUsuario}`);
-    const usuarios = await resposta.json();
-
-    if (!usuarios.length) {
+    // Buscar usuário pelo email (rota GET /usuarios/:email)
+    const resposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}`);
+    if (!resposta.ok) {
       alert("Usuário não encontrado.");
       return;
     }
+    const usuario = await resposta.json();
 
-    const usuario = usuarios[0];
+    if (usuario.saldo === undefined || usuario.viagens === undefined) {
+      alert("Dados do usuário inválidos.");
+      return;
+    }
 
     if (usuario.saldo < valorTotal) {
       alert(`Saldo insuficiente. Você tem R$ ${usuario.saldo.toFixed(2)} e precisa de R$ ${valorTotal.toFixed(2)}.`);
       return;
     }
 
-    usuario.saldo -= valorTotal;
-    usuario.viagens += quantidade;
+    // Atualizar saldo e viagens localmente
+    const saldoAtualizado = usuario.saldo - valorTotal;
+    const viagensAtualizadas = usuario.viagens + quantidade;
 
-    const atualizar = await fetch(`http://localhost:3000/usuarios/${usuario.id}`, {
+    // Atualizar usuário via PUT /usuarios/:email
+    const atualizarResposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(usuario)
+      body: JSON.stringify({
+        nome: usuario.nome, // manter o nome atual
+        senha: usuario.senha, // manter a senha atual
+        saldo: saldoAtualizado,
+        viagens: viagensAtualizadas,
+        rotasFavoritas: usuario.rotasFavoritas || []
+      })
     });
 
-    if (!atualizar.ok) {
+    if (!atualizarResposta.ok) {
       throw new Error("Erro ao salvar a compra no servidor.");
     }
 
     const confirmacao = document.getElementById("confirmacao-compra");
-    confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Saldo restante: R$ ${usuario.saldo.toFixed(2)}`;
+    confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Saldo restante: R$ ${saldoAtualizado.toFixed(2)}`;
     confirmacao.style.color = "green";
 
     setTimeout(() => {
