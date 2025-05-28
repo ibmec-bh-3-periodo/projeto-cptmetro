@@ -7,24 +7,18 @@ COPY tsconfig.json ./
 
 RUN npm ci
 
-COPY src/ ./src/
+COPY . .
 
 RUN npm run build
 
 FROM node:20-alpine
 
 WORKDIR /app
-COPY src ./src
-COPY index.html ./
-COPY src/login\ e\ registro/login.css ./src/login\ e\ registro/login.css
-COPY src/login\ e\ registro/registro.js ./src/login\ e\ registro/registro.js
-COPY src/icones ./src/icones
-COPY src/homepage/home.html ./src/homepage/home.html
-COPY src/qrcode/qrcode.html ./src/qrcode/qrcode.html
-COPY src/mapa/mapa.html ./src/mapa/mapa.html
-COPY src/configuração/config.html ./src/configuração/config.html
+
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/src ./src
+COPY --from=builder /app/src/index.html ./src/
 
 RUN npm ci --only=production
 
