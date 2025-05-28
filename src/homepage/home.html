@@ -13,23 +13,26 @@
 </head>
 <body>
 
-    <header class="header">
+<header class="header">
         <img src="../icones/logo-branco-sem-fundo.png" alt="Logo CPTM" class="logo">
         <div class="welcome-message">
             <h1 id="greetingMessage">Bem-vindo!</h1>
         </div>
     </header>
+    
     <main class="main-container">
         <div class="saldo-info">
-            <div class="saldo-box">
-                <p>Saldo:</p>
-                <span id="saldo-valor">R$0,00</span>
-                <a href="../pagamento/pagamento.html" class="saldo-link">
-                    <button id="recarregar-saldo-btn" class="saldo btn">Recarregar saldo</button>
-                </a>
-            </div>
+            <a href="../pagamento/pagamento.html" class="saldo-link">
+                <div class="saldo-box">
+                    <h3>Saldo:</h3>
+                    <span id="saldo-valor">R$0,00</span>
+                </div>
+            </a>
             
-            <a href="../viagens_favoritas/viagens.html"><button class="btn viagens-box">Linhas favoritas</button></a>
+            <a href="../viagens_favoritas/viagens.html">
+                <button class="btn viagens-box">Linhas favoritas</button>
+            </a>
+        </div>
     </main>
     <div id="final">
         <a href="../mapa/mapa.html"><div class="map"></div></a>
@@ -67,7 +70,7 @@
         <div class="footer-container">
             <div class="footer-icons">
                 <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
-                <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code"></a>
+                <a href="../pagamento/pagamento.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code"></a>
                 <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa"></a>
                 <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de configurações"></a>
             </div>
