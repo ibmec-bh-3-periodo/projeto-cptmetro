@@ -18,7 +18,7 @@ server.use(express.static(staticFilesRoot));
 // Caminhos dos arquivos JSON. Se server.ts está em 'src', e os JSONs também,
 // então o caminho é relativo à pasta 'src'.
 const usersFilePath = path.join(__dirname, 'usuarios.json'); // No mesmo diretório que server.ts
-const linesDataPath = path.join(__dirname, 'database.json');   // No mesmo diretório que server.ts
+const linesDataPath = path.join(__dirname, 'database.json');   // No mesmo diretório que server.tss
 
 async function readJsonFile(filePath: string): Promise<any[]> {
     try {
