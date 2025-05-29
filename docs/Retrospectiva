@@ -81,3 +81,9 @@
 - Contribuições principais: Adição da página de pagamento no footer de todas as outras, nova ligação com a API, mudança no banco de dados
 - Dificuldade enfrentada: Interligar a API com a nova página de pagamento e o banco de dados
 - Nota para meu desempenho (0 a 10): 9
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: João Pedro Castro
+- Contribuições principais: Ampliei o database de linhas de uma linha para três, arrumei o database de usuários para linhas favoritas e criei a API para salvar linhas favoritas com javascript mostrando o próximo trem, além da tela com design refatorado.
+- Dificuldade enfrentada: Não sabia fazer o javascript mostrar o próximo trem.
+- Nota para meu desempenho (0 a 10): 10
