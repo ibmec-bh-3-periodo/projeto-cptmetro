@@ -90,8 +90,11 @@ API simples desenvolvida em Node.js com Express. Utiliza um arquivo JSON como ba
 
 - Cadastro de usuários
 - Login
-- Consulta de saldo e número de viagens
-- Atualização de saldo e viagens
+- Consulta e atualização de saldo e número de viagens
+- Gerenciamento de rotas favoritas
+- Consulta de dados das linhas de metrô
+
+
 
 ---
 
@@ -103,9 +106,10 @@ http://localhost:3000/
 
 ---
 
-## 📥 POST `/cadastro`
+```markdown
+# 📥 POST /register
 
-### ➤ Descrição
+### ➤ Descrição  
 Cria um novo usuário e o armazena no arquivo `usuarios.json`.
 
 ### 🔸 Body (JSON)
@@ -119,32 +123,35 @@ Cria um novo usuário e o armazena no arquivo `usuarios.json`.
 
 ### 🔸 Respostas
 
-#### ✅ 201 Created
+✅ **201 Created**
 ```json
-{ "success": true, "message": "Usuário cadastrado com sucesso" }
+{
+  "message": "Registro bem-sucedido!",
+  "user": { "nome": "Maria", "email": "maria@example.com" }
+}
 ```
 
-#### ❌ 400 Bad Request
+❌ **400 Bad Request**
 ```json
-{ "success": false, "message": "Nome, email e senha são obrigatórios" }
+{ "message": "Todos os campos são obrigatórios!" }
 ```
 
-#### ❌ 409 Conflict
+❌ **409 Conflict**
 ```json
-{ "success": false, "message": "Email já cadastrado" }
+{ "message": "Este e-mail já está registrado." }
 ```
 
-#### ❌ 500 Internal Server Error
+❌ **500 Internal Server Error**
 ```json
-{ "success": false, "message": "Erro ao salvar o usuário" }
+{ "message": "Erro interno do servidor durante o registro." }
 ```
 
 ---
 
-## 🔐 POST `/login`
+# 🔐 POST /login
 
-### ➤ Descrição
-Realiza a autenticação de um usuário.
+### ➤ Descrição  
+Autentica um usuário.
 
 ### 🔸 Body (JSON)
 ```json
@@ -156,119 +163,184 @@ Realiza a autenticação de um usuário.
 
 ### 🔸 Respostas
 
-#### ✅ 200 OK
+✅ **200 OK**
 ```json
 {
-  "nome": "Maria",
-  "email": "maria@example.com"
+  "message": "Login bem-sucedido!",
+  "user": { "nome": "Maria", "email": "maria@example.com" }
 }
 ```
 
-#### ❌ 400 Bad Request
+❌ **400 Bad Request**
 ```json
-{ "message": "Email e senha são obrigatórios" }
+{ "message": "E-mail e senha são obrigatórios." }
 ```
 
-#### ❌ 401 Unauthorized
+❌ **401 Unauthorized**
 ```json
-{ "message": "Email ou senha incorretos" }
+{ "message": "E-mail ou senha incorretos." }
 ```
 
 ---
 
-## 📊 GET `/saldo/:email`
+# ⭐ GET /favoritas/:email
 
-### ➤ Descrição
-Retorna o saldo e o número de viagens de um usuário.
+### ➤ Descrição  
+Retorna a lista de rotas favoritas do usuário.
 
-### 🔸 Parâmetro de URL
-- `email`: Email do usuário.
+### 🔸 Parâmetros de URL  
+email: Email do usuário.
 
 ### 🔸 Respostas
 
-#### ✅ 200 OK
+✅ **200 OK**
 ```json
-{ "saldo": 50, "viagens": 10 }
+{ "rotasFavoritas": ["Linha Azul", "Linha Vermelha"] }
 ```
 
-#### ❌ 404 Not Found
+❌ **404 Not Found**
 ```json
 { "message": "Usuário não encontrado." }
 ```
 
+❌ **500 Internal Server Error**
+```json
+{ "message": "Erro interno do servidor." }
+```
+
 ---
 
-## ✏️ PUT `/saldo/:email`
+# ➕ POST /favoritas/:email
 
-### ➤ Descrição
-Atualiza o saldo e/ou número de viagens de um usuário.
-
-### 🔸 Parâmetro de URL
-- `email`: Email do usuário.
+### ➤ Descrição  
+Adiciona uma rota à lista de favoritos do usuário.
 
 ### 🔸 Body (JSON)
 ```json
-{
-  "saldo": 100,
-  "viagens": 5
-}
+{ "rota": "Linha Verde" }
 ```
-
-- Os campos são opcionais, mas ao menos um deve ser enviado.
 
 ### 🔸 Respostas
 
-#### ✅ 200 OK
+✅ **200 OK**
 ```json
-{ "message": "Saldo atualizado com sucesso." }
+{
+  "message": "Rota adicionada aos favoritos!",
+  "rotasFavoritas": ["Linha Azul", "Linha Vermelha", "Linha Verde"]
+}
 ```
 
-#### ❌ 404 Not Found
+❌ **400 Bad Request**
+```json
+{ "message": "O nome da rota é obrigatório." }
+```
+
+❌ **404 Not Found**
 ```json
 { "message": "Usuário não encontrado." }
 ```
 
----
-
-## 🚫 DELETE `/usuarios/:email` _(Comentado no código)_
-
-> Essa rota permitiria excluir um usuário com base no email.  
-> Está comentada no código-fonte, mas pode ser ativada conforme necessidade.
-
----
-
-## ▶️ Como Rodar o Projeto
-
-```bash
-npm install
-node nome-do-arquivo.js
+❌ **409 Conflict**
+```json
+{ "message": "Esta rota já está nos favoritos." }
 ```
 
-- O servidor será iniciado na porta **3000**
-- Os dados são armazenados em `usuarios.json`
+---
+
+# ❌ DELETE /favoritas/:email/:rota
+
+### ➤ Descrição  
+Remove uma rota favorita de um usuário.
+
+### 🔸 Parâmetros de URL  
+email: Email do usuário.  
+rota: Nome da rota a ser removida (codificado na URL).
+
+### 🔸 Respostas
+
+✅ **200 OK**
+```json
+{
+  "message": "Rota removida dos favoritos!",
+  "rotasFavoritas": ["Linha Azul"]
+}
+```
+
+❌ **404 Not Found**
+```json
+{ "message": "Usuário não encontrado." }
+```
+ou
+```json
+{ "message": "Rota favorita não encontrada para este usuário." }
+```
+
+❌ **500 Internal Server Error**
+```json
+{ "message": "Erro interno do servidor." }
+```
 
 ---
 
-## 🧾 Dependências
+# 🗂️ GET /database.json
 
-- express
-- cors
-- fs (nativo do Node.js)
-- path (nativo do Node.js)
+### ➤ Descrição  
+Retorna o conteúdo do arquivo `database.json`, que contém dados das linhas de metrô.
 
----
+### 🔸 Respostas
 
-## 📂 Exemplo de Estrutura dos Dados
-
+✅ **200 OK**
 ```json
 [
   {
-    "nome": "Maria",
-    "email": "maria@example.com",
-    "senha": "123456",
-    "saldo": 50,
-    "viagens": 2
-  }
+    "linha": "Linha Azul",
+    "estacoes": ["Estação 1", "Estação 2"]
+  },
+  ...
 ]
 ```
 
+❌ **404 Not Found**
+```json
+{ "message": "Arquivo database.json não encontrado no servidor." }
+```
+
+❌ **500 Internal Server Error**
+```json
+{ "message": "Erro interno do servidor ao carregar dados das linhas." }
+```
+
+---
+
+# 🏠 GET /
+
+### ➤ Descrição  
+Serve o arquivo estático `index.html` (página inicial do site).
+
+---
+
+# ▶️ Como Rodar o Projeto
+
+```bash
+npm install  
+npx ts-node src/server.ts
+```
+
+O servidor será iniciado na porta `3000`.  
+Os dados são armazenados nos arquivos `usuarios.json` e `database.json`.
+
+---
+
+# 📂 Estrutura de um Usuário
+
+```json
+{
+  "nome": "Maria",
+  "email": "maria@example.com",
+  "senha": "123456",
+  "saldo": 50,
+  "viagens": 2,
+  "rotasFavoritas": ["Linha Azul"]
+}
+```
+```
