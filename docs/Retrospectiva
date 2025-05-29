@@ -1,4 +1,4 @@
-# 🔄 Retrospectiva da Sprint X
+# 🔄 Retrospectiva da Sprint 1
 
 ## ✅ O que deu certo?
 - O trabalho em duplas foi muito positivo, pois um ajudou o outro em momentos de dificuldade, promovendo uma boa troca de conhecimento e aprendizado.
@@ -57,3 +57,22 @@
 - Contribuições principais: Centralizar o carrossel, organizar os links que faltaram e atualização da página de notícias
 - Dificuldade enfrentada: Não teve dificuldade enfrentada
 - Nota para meu desempenho (0 a 10): 10
+
+#🔄 Retrospectiva da Sprint 2
+
+## ✅ O que deu certo?
+- O trabalho em duplas foi extremamente positivo, com os membros se ajudando mutuamente em momentos de dificuldade, proporcionando uma excelente troca de conhecimento e aprendizado.
+- A integração das APIs foi concluída com sucesso. Todos os membros conseguiram aplicar a integração de maneira eficaz e sem grandes complicações.
+- A parte de testes unitários foi bem executada, sendo aprendida e realizada satisfatoriamente por todos os membros, garantindo a confiabilidade do código.
+
+##🚫 O que não deu certo?
+- Surgiram alguns conflitos com a branch principal no merge, o que causou atrasos em algumas tarefas e exigiu tempo adicional para resolver os conflitos de código.
+
+##🛠️ O que podemos melhorar para a próxima sprint?
+- Melhorar a gestão do tempo, visando entregar as tarefas mais cedo e com mais antecedência, para evitar pressa na fase final do desenvolvimento.
+- Distribuir mais tarefas para os membros que tiveram maior facilidade com as tarefas atribuídas, equilibrando melhor a carga de trabalho entre todos.
+
+##🧠 Aprendizados da sprint
+- Aprendemos a realizar testes unitários de maneira eficiente, garantindo que cada parte do código estivesse funcionando corretamente.
+- Aprendemos a integrar APIs de maneira fluida no projeto e a lidar com a comunicação entre elas, o que resultou em uma maior funcionalidade do sistema.
+

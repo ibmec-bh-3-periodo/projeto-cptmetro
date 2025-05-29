@@ -149,3 +149,100 @@ vou mandar p cada um, muda so oq vc achar necessario ai, mas tp, vc vai precisar
 
 ## 🗓️ Próximo passo
 •⁠  ⁠Buscar novas atribuições para contribuir com o trabalho.
+
+-------Sprint 2-------
+
+📆 Relatório de Acompanhamento - Antônia
+🙋 O que eu fiz desde o último relatório?
+•⁠ ⁠Dia 1/7 (23/05): Trabalhei na correção de links e no ajuste do botão de exibição das notícias.
+•⁠ ⁠Dia 2/7 (25/05): Fiz ajustes no HTML para melhorar a exibição de informações na página inicial e corrigi o carrossel de notícias.
+•⁠ ⁠Dia 3/7 (26/05): Fiz modificações no layout, incluindo a adição de imagens e títulos nas notícias.
+•⁠ ⁠Dia 4/7 (27/05): Atualizei a documentação, focando nas mudanças de estrutura e nas correções de bugs.
+•⁠ ⁠Dia 5/7 (28/05): Continuei os ajustes de integração com Docker e corrigi problemas de exibição no footer da página de pagamento.
+
+🚧 O que estou fazendo agora?
+•⁠ ⁠Continuo trabalhando na finalização dos ajustes no frontend, incluindo a organização e estilização de imagens, e corrigindo alguns erros de layout na página de pagamento.
+
+🧱 Quais dificuldades encontrei?
+•⁠ ⁠Dia 3/7: Houve algumas dificuldades em relação ao carrossel de notícias que não estava funcionando como esperado.
+•⁠ ⁠Dia 4/7: Tive problemas na atualização de links e no botão de exibição de notícias.
+
+🧠 O que aprendi até agora?
+•⁠ ⁠Melhorei minha compreensão de como manipular imagens em um layout e otimizar a estrutura de exibição das notícias.
+
+🗓️ Próximo passo
+•⁠ ⁠Finalizar os ajustes de layout e garantir que todas as imagens e links estejam funcionando corretamente nas páginas principais.
+
+📆 Relatório de Acompanhamento - João
+🙋 O que eu fiz desde o último relatório?
+•⁠ ⁠Dia 1/7 (20/05): Trabalhei na adição de linhas no banco de dados e modifiquei as viagens favoritas para linhas favoritas.
+•⁠ ⁠Dia 2/7 (22/05): Concluí ajustes no localStorage do login, garantindo que as linhas favoritas funcionassem corretamente.
+•⁠ ⁠Dia 3/7 (23/05): Corrigi erros de CSS e fiz algumas melhorias na integração do banco de dados com as funcionalidades de linha.
+•⁠ ⁠Dia 4/7 (24/05): Continuei os ajustes no sistema de favoritar linhas e finalizei a adição de linhas no banco de dados.
+•⁠ ⁠Dia 5/7 (28/05): Revisei o sistema de favoritos, corrigindo erros do banco de dados e melhorando a usabilidade.
+
+🚧 O que estou fazendo agora?
+•⁠ ⁠Estou trabalhando na melhoria das funcionalidades de favoritos, corrigindo pequenos bugs e refinando o CSS da página de pagamento.
+
+🧱 Quais dificuldades encontrei?
+•⁠ ⁠Dia 1/7: Encontrei dificuldades ao integrar as linhas favoritas no banco de dados, o que exigiu várias mudanças no schema de dados.
+•⁠ ⁠Dia 2/7: Houve problemas de compatibilidade entre o localStorage e a seleção de linhas favoritas, o que precisou de ajustes no código JavaScript.
+
+🧠 O que aprendi até agora?
+•⁠ ⁠Como manipular dados no banco de dados de forma eficaz e como melhorar a interação com o localStorage no frontend.
+
+🗓️ Próximo passo
+•⁠ ⁠Concluir a refatoração do sistema de favoritos, garantir a estabilidade do localStorage e fazer mais testes no sistema de pagamento.
+
+📆 Relatório de Acompanhamento - Laura
+🙋 O que eu fiz desde o último relatório?
+•⁠ ⁠Dia 1/7 (25/05): Trabalhei na modificação do banco de dados para incluir novas informações e adicionei o layout da página de pagamento.
+•⁠ ⁠Dia 2/7 (27/05): Fiz ajustes na integração da API e continuei a modificação do footer para se ajustar ao novo layout de pagamento.
+•⁠ ⁠Dia 3/7 (28/05): Fiz ajustes no banco de dados para garantir que as informações de pagamento fossem corretamente armazenadas e exibidas.
+
+🚧 O que estou fazendo agora?
+•⁠ ⁠Focada na finalização da integração da API e melhorias nas partes de layout do frontend, com foco na página de pagamento.
+
+🧱 Quais dificuldades encontrei?
+•⁠ ⁠Dia 1/7: Tive dificuldades com a atualização da API para o novo banco de dados.
+
+🧠 O que aprendi até agora?
+•⁠ ⁠Aprendi a integrar APIs de maneira mais eficiente e como gerenciar modificações no banco de dados sem comprometer o desempenho do sistema.
+
+🗓️ Próximo passo
+•⁠ ⁠Finalizar as modificações do footer e testar as últimas alterações na API2. Também vou continuar os ajustes de layout.
+
+📆 Relatório de Acompanhamento - Vitor
+🙋 O que eu fiz desde o último relatório?
+•⁠ ⁠Dia 1/7 (24/05): Concluí a integração do Docker, corrigindo erros nas configurações do arquivo Dockerfile e dockerignore.
+•⁠ ⁠Dia 2/7 (28/05): Trabalhei na correção de algumas falhas nas integrações do projeto e finalizei o processo de integração no Docker.
+
+🚧 O que estou fazendo agora?
+•⁠ ⁠Finalizando as últimas revisões e ajudando a equipe nas correções finais do Docker e na documentação do projeto.
+
+🧱 Quais dificuldades encontrei?
+•⁠ ⁠Dia 1/7: Algumas falhas nas integrações do Docker causaram erros no fluxo de execução, o que exigiu ajustes nos arquivos de configuração.
+
+🧠 O que aprendi até agora?
+•⁠ ⁠Aprendi como integrar Docker em um projeto de forma eficiente e como resolver conflitos de configuração em ambientes de desenvolvimento.
+
+🗓️ Próximo passo
+•⁠ ⁠Ajudar na finalização das últimas etapas do projeto e garantir que a integração com Docker esteja completamente funcional.
+
+📆 Relatório de Acompanhamento - Melina
+🙋 O que eu fiz desde o último relatório?
+•⁠ ⁠Dia 1/7 (20/05): Trabalhei na correção de erros no sistema de pagamento e na implementação de um botão de confirmação de pagamento.
+•⁠ ⁠Dia 2/7 (22/05): Finalizei ajustes na página de pagamento e comecei a testar as integrações de backend com o frontend.
+
+🚧 O que estou fazendo agora?
+•⁠ ⁠Realizando ajustes finais no sistema de pagamento e monitorando o comportamento do botão de confirmação de pagamento.
+
+🧱 Quais dificuldades encontrei?
+•⁠ ⁠Dia 1/7: Encontrei dificuldades com a funcionalidade do botão de pagamento, pois ele não estava funcionando corretamente em todos os cenários.
+
+🧠 O que aprendi até agora?
+•⁠ ⁠Como gerenciar a funcionalidade de pagamento de forma eficiente e como garantir que o frontend e o backend estejam bem integrados.
+
+🗓️ Próximo passo
+•⁠ ⁠Finalizar o teste do sistema de pagamento e garantir que todas as funções de backend estejam funcionando sem problemas.
+
