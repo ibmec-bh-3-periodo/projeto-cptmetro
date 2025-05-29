@@ -50,3 +50,14 @@ Tarefa: Criação da data base
 Tarefa: Testes unitários:
 
 •⁠  Todos os integrantes (1 por cada) 
+
+Tarefa: Criação do Docker e funcionamento dele com as APIs
+
+•⁠  Vitor
+•⁠  João
+•⁠  Laura
+
+Tarefa: Criação do GithubAction: 
+- Teste automatizado dos testes únitarios
+
+•⁠  Antônia
