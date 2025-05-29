@@ -28,31 +28,35 @@
         <a href="./contatos.html" class="box">
             <img src="../icones/atendimento-ao-cliente.png" alt="ícone de atendimento ao cliente" > Contato
         </a>
-        <a href="../login e registro/registro.html" class="box" id="logoutButton">
-            <img src="../icones/sair.png" alt="Ícone de sair da conta" > Sair da Conta
-        </a>
+        <!-- Sair da conta (sem <a href>) -->
+        <div class="box" id="logoutButton">
+            <img src="../icones/sair.png" alt="Ícone de sair da conta"> Sair da Conta
+        </div>
+
     </div>
 </main>
 <footer>
-    <div class="footer-container">
-        <div class="footer-icons">
-            <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
-            <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code"></a>
-            <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa"></a>
-            <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de Configurações"></a>
+        <div class="footer-container">
+            <div class="footer-icons">
+                <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
+                <a href="../pagamento/pagamento.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code"></a>
+                <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa"></a>
+                <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de configurações"></a>
+            </div>
+            <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
         </div>
-        <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
-    </div>
-</footer>
-<script> 
-        document.getElementById("logoutButton").addEventListener("click", function (event) {
-        event.preventDefault(); 
-        localStorage.removeItem("loggedInUser"); // Remove o usuário logado do localStorage
-        alert("Você saiu da conta.");
-        window.location.href = "../login e registro/registro.html"; // Redireciona para a página de login
-    });
+    </footer>
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            localStorage.removeItem("currentUser");
+            alert("Você saiu da conta.");
     
-</script>
+            // Redireciona para o index.html na raiz do projeto
+            window.location.href = "/index.html";
+        });
+    </script>
+    
 
 </body>
 </html>

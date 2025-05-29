@@ -149,3 +149,146 @@ vou mandar p cada um, muda so oq vc achar necessario ai, mas tp, vc vai precisar
 
 ## 🗓️ Próximo passo
 •⁠  ⁠Buscar novas atribuições para contribuir com o trabalho.
+
+-------Sprint 2-------
+
+📆 # 📊 Relatório de Acompanhamento - Sprint 2
+
+---
+
+## 📆 Antônia
+
+### 🙋 O que eu fiz desde o último relatório?
+- **Dia 1/7 (23/05):** Correção de links e ajuste do botão de exibição das notícias.  
+- **Dia 2/7 (25/05):** Ajustes no HTML e correção do carrossel de notícias.  
+- **Dia 3/7 (26/05):** Modificações no layout com adição de imagens e títulos.  
+- **Dia 4/7 (27/05):** Atualização da documentação com foco em estrutura e bugs.  
+- **Dia 5/7 (28/05):** Ajustes de integração com Docker e correções no footer da página de pagamento.
+
+### 🚧 O que estou fazendo agora?
+- Finalização de ajustes no frontend: organização/estilização de imagens e correções de layout na página de pagamento.
+
+### 🧱 Quais dificuldades encontrei?
+- **Dia 3/7:** Problemas com o carrossel de notícias.  
+- **Dia 4/7:** Dificuldades com atualização de links e botão de exibição.
+
+### 🧠 O que aprendi até agora?
+- Melhor compreensão sobre manipulação de imagens em layouts e estrutura de exibição de notícias.
+
+### 🗓️ Próximo passo
+- Finalizar ajustes de layout e garantir funcionalidade correta de imagens e links.
+
+---
+
+## 📆 João
+
+### 🙋 O que eu fiz desde o último relatório?
+- **Dia 1/7 (20/05):** Inclusão de linhas no banco de dados e modificação para "linhas favoritas".  
+- **Dia 2/7 (22/05):** Ajustes no localStorage de login.  
+- **Dia 3/7 (23/05):** Correções de CSS e melhorias na integração com banco de dados.  
+- **Dia 4/7 (24/05):** Finalização da adição de linhas e ajustes no sistema de favoritos.  
+- **Dia 5/7 (28/05):** Revisão e melhorias no sistema de favoritos.
+
+### 🚧 O que estou fazendo agora?
+- Melhorias nas funcionalidades de favoritos, correção de bugs e refinamento do CSS na página de pagamento.
+
+### 🧱 Quais dificuldades encontrei?
+- **Dia 1/7:** Integração das linhas favoritas no banco exigiu mudanças no schema.  
+- **Dia 2/7:** Problemas de compatibilidade entre localStorage e seleção de favoritos.
+
+### 🧠 O que aprendi até agora?
+- Manipulação eficiente de dados no banco e uso do localStorage no frontend.
+
+### 🗓️ Próximo passo
+- Finalizar a refatoração dos favoritos, garantir estabilidade do localStorage e testar o sistema de pagamento.
+
+---
+
+## 📆 Laura
+
+### 🙋 O que eu fiz desde o último relatório?
+- **Dia 1/7 (25/05):** Modificação no banco de dados e layout da página de pagamento.  
+- **Dia 2/7 (27/05):** Integração da API e ajuste do footer para o novo layout.  
+- **Dia 3/7 (28/05):** Ajustes para exibir corretamente as informações de pagamento.
+
+### 🚧 O que estou fazendo agora?
+- Finalização da integração da API e melhorias no layout da página de pagamento.
+
+### 🧱 Quais dificuldades encontrei?
+- **Dia 1/7:** Dificuldades na atualização da API com o novo banco de dados.
+
+### 🧠 O que aprendi até agora?
+- Integração eficiente de APIs e gerenciamento de modificações no banco de dados.
+
+### 🗓️ Próximo passo
+- Finalizar modificações no footer e testar alterações na API. Continuar ajustes de layout.
+
+---
+
+## 📆 Vitor
+
+### 🙋 O que eu fiz desde o último relatório?
+- **Dia 1/7 (26/05):** Adição de Dockerfile e .dockerignore ao projeto (#65).  
+- **Dia 2/7 (28/05):** Integração do projeto com Docker e resolução de conflitos de merge (#68, #71).  
+- **Dia 3/7 (28/05):** Correções em integrações do Docker e ajustes na estrutura de arquivos (#70).  
+- **Dia 4/7 (28/05):** Continuação dos ajustes no Docker e nas configurações de ambiente.
+
+### 🚧 O que estou fazendo agora?
+- Finalização da integração Docker e validação das integrações.
+
+### 🧱 Quais dificuldades encontrei?
+- **Dia 2/7:** Conflitos de merge durante integração com Docker.  
+- **Dia 3/7:** Integrações demoradas devido a falhas nas configurações.
+
+### 🧠 O que aprendi até agora?
+- Integração do Docker em projetos existentes, resolução de merges e importância da estrutura de arquivos no Docker.
+
+### 🗓️ Próximo passo
+- Concluir configurações do Docker e validar funcionamento de todas as integrações.
+
+---
+
+## 📆 Melina
+
+### 🙋 O que eu fiz desde o último relatório?
+- **Dia 1/7 (26/05):** Modificação do layout da página de pagamento (#60).  
+- **Dia 2/7 (27/05):** Criação do botão de confirmação e seleção de número de bilhetes (#60).  
+- **Dia 3/7 (28/05):** Finalização de ajustes e início de testes de integração backend/frontend.
+
+### 🚧 O que estou fazendo agora?
+- Ajustes finais no sistema de pagamento e testes do botão de confirmação.
+
+### 🧱 Quais dificuldades encontrei?
+- **Dia 1/7:** Problemas com funcionalidade do botão de pagamento.
+
+### 🧠 O que aprendi até agora?
+- Gestão eficiente do sistema de pagamento e integração entre backend e frontend.
+
+### 🗓️ Próximo passo
+- Finalizar testes do sistema de pagamento e assegurar funcionalidade do backend.
+
+---
+
+## 📆 Gabriel
+
+### 🙋 O que eu fiz desde o último relatório?
+- **Dia 1/7 (20/05):** Implementação da API de login (#54) e ajustes de integração.  
+- **Dia 2/7 (22/05):** Estrutura do banco de dados de usuários e início da integração (#55).  
+- **Dia 3/7 (23/05):** Correção de link e finalização da API de login (#56).  
+- **Dia 4/7 (26/05):** Ajustes finais e testes com banco de dados (#57).  
+- **Dia 5/7 (28/05):** Revisão da estrutura de usuários e configurações de login.
+
+### 🚧 O que estou fazendo agora?
+- Ajustes no banco de dados e revisão da API de login com integração frontend.
+
+### 🧱 Quais dificuldades encontrei?
+- **Dia 2/7:** Integração da API com o banco de dados de usuários.  
+- **Dia 3/7:** Links de navegação quebrados e correção de fluxo com a home.
+
+### 🧠 O que aprendi até agora?
+- Implementação e integração eficaz de API de login com rotas e banco de dados.  
+- Importância dos testes para validar o fluxo de dados.
+
+### 🗓️ Próximo passo
+- Finalizar correções de links e testar login com o banco de dados.
+

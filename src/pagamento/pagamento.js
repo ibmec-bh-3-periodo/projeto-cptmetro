@@ -33,9 +33,8 @@ document.getElementById("copy-pix-btn").addEventListener("click", copiarChavePix
 atualizarValorTotal();
 
 document.getElementById("confirmar-pagamento-btn").addEventListener("click", async () => {
-  const emailUsuario = localStorage.getItem("loggedInUserEmail");
+  const emailUsuario = (localStorage.getItem("loggedInUserEmail") || "").trim().toLowerCase();
   const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
-  const valorTotal = quantidade * valorUnitario;
 
   if (!emailUsuario) {
     alert("Usuário não está logado.");
@@ -43,38 +42,41 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
   }
 
   try {
-    const resposta = await fetch(`http://localhost:3000/usuarios?email=${emailUsuario}`);
-    const usuarios = await resposta.json();
-
-    if (!usuarios.length) {
+    // Buscar usuário pelo email (rota GET /usuarios/:email)
+    const resposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}`);
+    if (!resposta.ok) {
       alert("Usuário não encontrado.");
       return;
     }
+    // Recebe o usuário sem a senha
+    const usuario = await resposta.json();
 
-    const usuario = usuarios[0];
+    // Atualizar tickets (adicionando a quantidade comprada)
+    const ticketsAtualizados = (usuario.tickets || 0) + quantidade;
 
-    if (usuario.saldo < valorTotal) {
-      alert(`Saldo insuficiente. Você tem R$ ${usuario.saldo.toFixed(2)} e precisa de R$ ${valorTotal.toFixed(2)}.`);
-      return;
-    }
-
-    usuario.saldo -= valorTotal;
-    usuario.viagens += quantidade;
-
-    const atualizar = await fetch(`http://localhost:3000/usuarios/${usuario.id}`, {
+    // Atualizar usuário via PUT /usuarios/:email
+    const atualizarResposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}/tickets`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(usuario)
+      body: JSON.stringify({
+        tickets: quantidade
+      })
     });
+    
 
-    if (!atualizar.ok) {
+    if (!atualizarResposta.ok) {
       throw new Error("Erro ao salvar a compra no servidor.");
     }
 
+    // Atualiza o localStorage para refletir os tickets atualizados
+    let usuarioAtualizado = { ...usuario, tickets: ticketsAtualizados };
+    localStorage.setItem("currentUser", JSON.stringify(usuarioAtualizado));
+
     const confirmacao = document.getElementById("confirmacao-compra");
-    confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Saldo restante: R$ ${usuario.saldo.toFixed(2)}`;
+    alert(`Pagamento confirmado!\nVocê comprou ${quantidade} ticket(s).\nAgora você tem ${ticketsAtualizados} tickets.`);
+    confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Total de tickets: ${ticketsAtualizados}`;
     confirmacao.style.color = "green";
 
     setTimeout(() => {
