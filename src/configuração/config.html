@@ -28,9 +28,11 @@
         <a href="./contatos.html" class="box">
             <img src="../icones/atendimento-ao-cliente.png" alt="ícone de atendimento ao cliente" > Contato
         </a>
-        <a href="../login e registro/registro.html" class="box" id="logoutButton">
-            <img src="../icones/sair.png" alt="Ícone de sair da conta" > Sair da Conta
-        </a>
+        <!-- Sair da conta (sem <a href>) -->
+        <div class="box" id="logoutButton">
+            <img src="../icones/sair.png" alt="Ícone de sair da conta"> Sair da Conta
+        </div>
+
     </div>
 </main>
 <footer>
@@ -44,16 +46,17 @@
             <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
         </div>
     </footer>
-<script> 
-        document.getElementById("logoutButton").addEventListener("click", function (event) {
-        event.preventDefault(); 
-        localStorage.removeItem("loggedInUser"); // Remove o usuário logado do localStorage
-        localStorage.removeItem('currentUser');
-        alert("Você saiu da conta.");
-        window.location.href = "src/index.html"; // Redireciona para a página de login
-    });
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            localStorage.removeItem("currentUser");
+            alert("Você saiu da conta.");
     
-</script>
+            // Redireciona para o index.html na raiz do projeto
+            window.location.href = "/index.html";
+        });
+    </script>
+    
 
 </body>
 </html>
