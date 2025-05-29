@@ -65,7 +65,7 @@ server.post('/register', async (req: any, res: any) => {
             nome,
             email,
             senha,
-            saldo: 0,
+            tickets: 0,
             viagens: 0,
             rotasFavoritas: []
         };
@@ -205,9 +205,42 @@ server.get('/', (req, res) => {
   res.sendFile('/app/index.html');
 });
 
+// ROTA PARA ATUALIZAR O NÚMERO DE TICKETS
+server.patch('/usuarios/:email/tickets', async (req: any, res: any) => {
+    const { email } = req.params;
+    const { tickets } = req.body;  // Número de tickets que o usuário comprou
+
+    // Validação simples para garantir que o número de tickets seja válido
+    if (typeof tickets !== 'number' || tickets <= 0) {
+        return res.status(400).json({ message: 'O número de tickets deve ser um valor positivo.' });
+    }
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const userIndex = users.findIndex((u: any) => u.email === email);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        const user = users[userIndex];
+        user.tickets += tickets;  // Atualiza o número de tickets do usuário
+
+        await writeJsonFile(usersFilePath, users);  // Atualiza o arquivo JSON
+
+        res.status(200).json(user);  // Retorna os dados atualizados do usuário
+    } catch (error) {
+        console.error("Erro ao atualizar tickets:", error);
+        res.status(500).json({ message: 'Erro interno do servidor ao atualizar os tickets.' });
+    }
+});
+
+
+
 server.listen(PORT, () => {
     console.log(`Servidor rodando emhttp://localhost:${PORT}`);
     console.log(`Servindo arquivos estáticos de: ${staticFilesRoot}`);
     console.log(`Caminho esperado para usuarios.json: ${usersFilePath}`);
     console.log(`Caminho esperado para database.json: ${linesDataPath}`);
 });
+

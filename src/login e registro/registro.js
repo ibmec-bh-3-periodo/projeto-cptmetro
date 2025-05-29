@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const data = await response.json();
 
                 if (response.ok) {
-                    localStorage.setItem("loggedInUserEmail", data.user.email);
+                    localStorage.setItem("loggedInUserEmail", email.trim().toLowerCase());
                     localStorage.setItem("loggedInUser", data.user.nome);
                     alert("Login bem-sucedido!");
                     window.location.href = "./src/homepage/home.html";

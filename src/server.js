@@ -19,18 +19,15 @@ server.use((req, res, next) => {
 // Criar usuário
 server.post('/usuarios', (req, res) => {
     const { nome, email, senha } = req.body;
-    if (!nome || !email || !senha) {
-        return res.status(400).json({ message: 'Nome, email e senha são obrigatórios' });
-    }
-
     const usuariosData = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const existente = usuariosData.find((u) => u.email === email);
+    const emailNormalizado = email.trim().toLowerCase();
+    const existente = usuariosData.find((u) => u.email.toLowerCase() === emailNormalizado);
 
     if (existente) {
-        return res.status(409).json({ message: 'Email já cadastrado' });
+        return res.status(409).json({ message: 'Usuário já existe' });
     }
 
-    const novoUsuario = { nome, email, senha };
+    const novoUsuario = { nome, email: emailNormalizado, senha, tickets: 0, rotasFavoritas: [] };
     usuariosData.push(novoUsuario);
     fs.writeFileSync(usuariosPath, JSON.stringify(usuariosData, null, 2));
 
@@ -41,11 +38,11 @@ server.post('/usuarios', (req, res) => {
 server.get('/usuarios/:email', (req, res) => {
     const { email } = req.params;
     const usuariosData = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const usuario = usuariosData.find((u) => u.email === email);
+    // Torna a busca insensível a maiúsculas/minúsculas
+    const usuario = usuariosData.find((u) => u.email.toLowerCase() === email.toLowerCase());
     if (!usuario) {
         return res.status(404).json({ message: 'Usuário não encontrado' });
     }
-    // Não retorna a senha
     const { senha, ...dadosUsuario } = usuario;
     return res.json(dadosUsuario);
 });
@@ -53,23 +50,27 @@ server.get('/usuarios/:email', (req, res) => {
 // Atualizar usuário
 server.put('/usuarios/:email', (req, res) => {
     const { email } = req.params;
-    const { nome, senha } = req.body;
+    const { nome, tickets, viagens, rotasFavoritas } = req.body;
     const usuariosData = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const index = usuariosData.findIndex((u) => u.email === email);
+    // Torna a busca insensível a maiúsculas/minúsculas
+    const index = usuariosData.findIndex((u) => u.email.toLowerCase() === email.toLowerCase());
     if (index === -1) {
         return res.status(404).json({ message: 'Usuário não encontrado' });
     }
     if (nome) usuariosData[index].nome = nome;
-    if (senha) usuariosData[index].senha = senha;
+    if (typeof tickets === "number") usuariosData[index].tickets = tickets;
+    if (typeof viagens === "number") usuariosData[index].viagens = viagens;
+    if (rotasFavoritas) usuariosData[index].rotasFavoritas = rotasFavoritas;
     fs.writeFileSync(usuariosPath, JSON.stringify(usuariosData, null, 2));
-    return res.json(usuariosData[index]);
+    const { senha, ...dadosUsuario } = usuariosData[index];
+    return res.json(dadosUsuario);
 });
 
 // Remover usuário
 server.delete('/usuarios/:email', (req, res) => {
     const { email } = req.params;
     const usuariosData = JSON.parse(fs.readFileSync(usuariosPath, 'utf-8'));
-    const index = usuariosData.findIndex((u) => u.email === email);
+    const index = usuariosData.findIndex((u) => u.email.toLowerCase() === email.toLowerCase());
     if (index === -1) {
         return res.status(404).json({ message: 'Usuário não encontrado' });
     }

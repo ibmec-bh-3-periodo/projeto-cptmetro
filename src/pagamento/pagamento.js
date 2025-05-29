@@ -33,9 +33,8 @@ document.getElementById("copy-pix-btn").addEventListener("click", copiarChavePix
 atualizarValorTotal();
 
 document.getElementById("confirmar-pagamento-btn").addEventListener("click", async () => {
-  const emailUsuario = localStorage.getItem("loggedInUserEmail");
+  const emailUsuario = (localStorage.getItem("loggedInUserEmail") || "").trim().toLowerCase();
   const quantidade = parseInt(document.getElementById("quantidade-tickets").value) || 1;
-  const valorTotal = quantidade * valorUnitario;
 
   if (!emailUsuario) {
     alert("Usuário não está logado.");
@@ -49,21 +48,11 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
       alert("Usuário não encontrado.");
       return;
     }
+    // Recebe o usuário sem a senha
     const usuario = await resposta.json();
 
-    if (usuario.saldo === undefined || usuario.viagens === undefined) {
-      alert("Dados do usuário inválidos.");
-      return;
-    }
-
-    if (usuario.saldo < valorTotal) {
-      alert(`Saldo insuficiente. Você tem R$ ${usuario.saldo.toFixed(2)} e precisa de R$ ${valorTotal.toFixed(2)}.`);
-      return;
-    }
-
-    // Atualizar saldo e viagens localmente
-    const saldoAtualizado = usuario.saldo - valorTotal;
-    const viagensAtualizadas = usuario.viagens + quantidade;
+    // Atualizar tickets (adicionando a quantidade comprada)
+    const ticketsAtualizados = (usuario.tickets || 0) + quantidade;
 
     // Atualizar usuário via PUT /usuarios/:email
     const atualizarResposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}`, {
@@ -72,10 +61,10 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        nome: usuario.nome, // manter o nome atual
-        senha: usuario.senha, // manter a senha atual
-        saldo: saldoAtualizado,
-        viagens: viagensAtualizadas,
+        nome: usuario.nome,
+        // senha não é retornada pelo GET, então não envie senha aqui!
+        tickets: ticketsAtualizados,
+        viagens: usuario.viagens || 0,
         rotasFavoritas: usuario.rotasFavoritas || []
       })
     });
@@ -84,8 +73,12 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
       throw new Error("Erro ao salvar a compra no servidor.");
     }
 
+    // Atualiza o localStorage para refletir os tickets atualizados
+    let usuarioAtualizado = { ...usuario, tickets: ticketsAtualizados };
+    localStorage.setItem("currentUser", JSON.stringify(usuarioAtualizado));
+
     const confirmacao = document.getElementById("confirmacao-compra");
-    confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Saldo restante: R$ ${saldoAtualizado.toFixed(2)}`;
+    confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Total de tickets: ${ticketsAtualizados}`;
     confirmacao.style.color = "green";
 
     setTimeout(() => {

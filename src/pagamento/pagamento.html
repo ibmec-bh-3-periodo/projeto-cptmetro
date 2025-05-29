@@ -48,5 +48,37 @@
         </div>
     </footer>
   <script src="pagamento.js"></script>
+  <script>
+    document.getElementById('confirmPaymentButton').addEventListener('click', async function() {
+        const user = JSON.parse(localStorage.getItem('user'));  // Pegue os dados do usuário logado
+        const ticketsToAdd = 5;  // Aqui, você definiria o número de tickets comprados
+
+        if (!user) {
+            alert('Você precisa estar logado para comprar tickets!');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3000/usuarios/${user.email}/tickets`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ tickets: ticketsToAdd }),  // Envia os tickets para o backend
+            });
+
+            if (response.ok) {
+                const updatedUser = await response.json();
+                alert('Pagamento confirmado e tickets atualizados!');
+                localStorage.setItem('user', JSON.stringify(updatedUser));  // Atualiza os dados do usuário no localStorage
+            } else {
+                alert('Erro ao processar o pagamento!');
+            }
+        } catch (error) {
+            console.error('Erro ao confirmar pagamento:', error);
+            alert('Ocorreu um erro ao confirmar o pagamento.');
+        }
+    });
+  </script>
 </body>
 </html>
