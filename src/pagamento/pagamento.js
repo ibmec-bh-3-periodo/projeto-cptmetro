@@ -55,19 +55,16 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
     const ticketsAtualizados = (usuario.tickets || 0) + quantidade;
 
     // Atualizar usuário via PUT /usuarios/:email
-    const atualizarResposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}`, {
+    const atualizarResposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}/tickets`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        nome: usuario.nome,
-        // senha não é retornada pelo GET, então não envie senha aqui!
-        tickets: ticketsAtualizados,
-        viagens: usuario.viagens || 0,
-        rotasFavoritas: usuario.rotasFavoritas || []
+        tickets: quantidade
       })
     });
+    
 
     if (!atualizarResposta.ok) {
       throw new Error("Erro ao salvar a compra no servidor.");
@@ -78,6 +75,7 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
     localStorage.setItem("currentUser", JSON.stringify(usuarioAtualizado));
 
     const confirmacao = document.getElementById("confirmacao-compra");
+    alert(`Pagamento confirmado!\nVocê comprou ${quantidade} ticket(s).\nAgora você tem ${ticketsAtualizados} tickets.`);
     confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Total de tickets: ${ticketsAtualizados}`;
     confirmacao.style.color = "green";
 

@@ -205,8 +205,29 @@ server.get('/', (req, res) => {
   res.sendFile('/app/index.html');
 });
 
+server.get('/usuarios/:email', async (req:any, res:any) => {
+    const email = req.params.email.toLowerCase();
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const user = users.find((u: any) => u.email.toLowerCase() === email);
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        // Retorne o usuário sem a senha
+        const { senha, ...userSemSenha } = user;
+        res.status(200).json(userSemSenha);
+    } catch (error) {
+        console.error("Erro ao buscar usuário:", error);
+        res.status(500).json({ message: 'Erro interno do servidor.' });
+    }
+});
+
+
 // ROTA PARA ATUALIZAR O NÚMERO DE TICKETS
-server.patch('/usuarios/:email/tickets', async (req: any, res: any) => {
+server.put('/usuarios/:email/tickets', async (req: any, res: any) => {
     const { email } = req.params;
     const { tickets } = req.body;  // Número de tickets que o usuário comprou
 
@@ -220,7 +241,7 @@ server.patch('/usuarios/:email/tickets', async (req: any, res: any) => {
         const userIndex = users.findIndex((u: any) => u.email === email);
 
         if (userIndex === -1) {
-            return res.status(404).json({ message: 'Usuário não encontrado.' });
+            return res.status(404).json({ success: false, message: 'Usuário não encontrado.' });
         }
 
         const user = users[userIndex];
@@ -228,7 +249,7 @@ server.patch('/usuarios/:email/tickets', async (req: any, res: any) => {
 
         await writeJsonFile(usersFilePath, users);  // Atualiza o arquivo JSON
 
-        res.status(200).json(user);  // Retorna os dados atualizados do usuário
+        res.status(200).json({success: true, user});  // Retorna os dados atualizados do usuário
     } catch (error) {
         console.error("Erro ao atualizar tickets:", error);
         res.status(500).json({ message: 'Erro interno do servidor ao atualizar os tickets.' });
