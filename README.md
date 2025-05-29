@@ -269,3 +269,14 @@ node nome-do-arquivo.js
 ]
 ```
 
+## ▶️ Como Executar o Projeto com o Docker
+
+1. Build da imagem :
+docker build -t projeto-metro
+
+2. Executar com Docker:
+docker run -p 3000:3000 projeto-metro
+
+3. Acesse no navegador:
+http://localhost:3000
+  
