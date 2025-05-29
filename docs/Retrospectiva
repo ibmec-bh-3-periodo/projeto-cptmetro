@@ -76,3 +76,8 @@
 - Aprendemos a realizar testes unitários de maneira eficiente, garantindo que cada parte do código estivesse funcionando corretamente.
 - Aprendemos a integrar APIs de maneira fluida no projeto e a lidar com a comunicação entre elas, o que resultou em uma maior funcionalidade do sistema.
 
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Laura Furtado dos Reis
+- Contribuições principais: Adição da página de pagamento no footer de todas as outras, nova ligação com a API, mudança no banco de dados
+- Dificuldade enfrentada: Interligar a API com a nova página de pagamento e o banco de dados
+- Nota para meu desempenho (0 a 10): 9
