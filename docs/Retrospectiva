@@ -87,3 +87,12 @@
 - Contribuições principais: Ampliei o database de linhas de uma linha para três, arrumei o database de usuários para linhas favoritas e criei a API para salvar linhas favoritas com javascript mostrando o próximo trem, além da tela com design refatorado.
 - Dificuldade enfrentada: Não sabia fazer o javascript mostrar o próximo trem.
 - Nota para meu desempenho (0 a 10): 10
+<<<<<<< HEAD
+=======
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Vitor Neves de Lima
+- Contribuições principais: Ampliei a database de usuários, bem como linkei o saldo da database com o aplicativo, para ficar de acordo com cada pessoa registrada. Alem disso fui responsável pelo docker.
+- Dificuldade enfrentada: Tive muita dificuldade em linkar os arquivos, css e js no docker.
+- Nota para meu desempenho (0 a 10): 10
+>>>>>>> d153bbd137807bcf23986ba64bf9938b93dbcb95

@@ -37,17 +37,48 @@
   </div>
 
   <footer>
-    <div class="footer-container">
-      <div class="footer-icons">
-        <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home" /></a>
-        <a href="../qrcode/qrcode.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code" /></a>
-        <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa" /></a>
-        <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de configurações" /></a>
-      </div>
-      <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
-    </div>
-  </footer>
-
+        <div class="footer-container">
+            <div class="footer-icons">
+                <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
+                <a href="../pagamento/pagamento.html" class="link"><img src="../icones/bilhete.png" alt="ícone de qr code"></a>
+                <a href="../mapa/mapa.html" class="link"><img src="../icones/mapa.png" alt="ícone de mapa"></a>
+                <a href="../configuração/config.html" class="link"><img src="../icones/configuracoes.png" alt="ícone de configurações"></a>
+            </div>
+            <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
+        </div>
+    </footer>
   <script src="pagamento.js"></script>
+  <script>
+    document.getElementById('confirmPaymentButton').addEventListener('click', async function() {
+        const user = JSON.parse(localStorage.getItem('user'));  // Pegue os dados do usuário logado
+        const ticketsToAdd = 5;  // Aqui, você definiria o número de tickets comprados
+
+        if (!user) {
+            alert('Você precisa estar logado para comprar tickets!');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3000/usuarios/${user.email}/tickets`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ tickets: ticketsToAdd }),  // Envia os tickets para o backend
+            });
+
+            if (response.ok) {
+                const updatedUser = await response.json();
+                alert('Pagamento confirmado e tickets atualizados!');
+                localStorage.setItem('user', JSON.stringify(updatedUser));  // Atualiza os dados do usuário no localStorage
+            } else {
+                alert('Erro ao processar o pagamento!');
+            }
+        } catch (error) {
+            console.error('Erro ao confirmar pagamento:', error);
+            alert('Ocorreu um erro ao confirmar o pagamento.');
+        }
+    });
+  </script>
 </body>
 </html>
