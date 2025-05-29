@@ -40,6 +40,9 @@ Exemplo: fix/correcao-falha-autenticacao
 - chore/: Usado para pequenas tarefas ou atualizações técnicas que não afetam o código funcional.
 Exemplo: chore/atualizacao-da-documentacao
 
+-docs/: Usado para modificações nos documentos
+Exemplo: docs/adicao-de-dailies
+
 ### Tipos de Commits
 
 - add: Adição de uma nova funcionalidade.
