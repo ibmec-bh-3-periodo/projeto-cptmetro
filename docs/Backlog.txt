@@ -75,3 +75,5 @@ Tarefa: Criação da apresentação do trabalho
 - Slides e material
 
 Tarefa: Atualização dos documentos e README
+
+Tarefa: Ligação do projeto inteiro com o docker
