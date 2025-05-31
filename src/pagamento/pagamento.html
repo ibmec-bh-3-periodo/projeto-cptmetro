@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Compra de Tickets - Metrô</title>
-  <link rel="stylesheet" href="pagamento.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="pagamento.css">
 </head>
 <body>
   <header>
@@ -22,7 +21,7 @@
       <p id="valor-total">Valor total: R$ 4,40</p>
 
       <div class="pix-section">
-        <p>Chave PIX para pagamento:</p>
+        <p><i class="fa-brands fa-pix"></i> Chave PIX para pagamento:</p>
         <div class="pix-container">
           <input type="text" id="pix-key" readonly value="pix-metro@cptm.com" />
           <button id="copy-pix-btn">Copiar</button>
@@ -30,13 +29,12 @@
         <span id="copy-msg" class="copy-message"></span>
       </div>
 
-      <!-- Novo botão de confirmação -->
       <button id="confirmar-pagamento-btn">Confirmar Pagamento</button>
       <span id="confirmacao-compra" class="copy-message"></span>
     </div>
   </div>
 
-  <footer>
+<footer>
         <div class="footer-container">
             <div class="footer-icons">
                 <a href="../homepage/home.html" class="link"><img src="../icones/home.png" alt="ícone de home"></a>
@@ -47,37 +45,53 @@
             <p>&copy; 2024 Site do Metrô. Todos os direitos reservados.</p>
         </div>
     </footer>
-  <script src="pagamento.js"></script>
+
   <script>
-    document.getElementById('confirmPaymentButton').addEventListener('click', async function() {
-        const user = JSON.parse(localStorage.getItem('user'));  // Pegue os dados do usuário logado
-        const ticketsToAdd = 5;  // Aqui, você definiria o número de tickets comprados
+    const quantidadeInput = document.getElementById("quantidade-tickets");
+    const valorTotal = document.getElementById("valor-total");
+    const valorUnitario = 4.40;
 
-        if (!user) {
-            alert('Você precisa estar logado para comprar tickets!');
-            return;
+    quantidadeInput.addEventListener("input", () => {
+      const qtd = parseInt(quantidadeInput.value);
+      valorTotal.textContent = `Valor total: R$ ${(qtd * valorUnitario).toFixed(2)}`;
+    });
+
+    document.getElementById("copy-pix-btn").addEventListener("click", () => {
+      const pixInput = document.getElementById("pix-key");
+      pixInput.select();
+      document.execCommand("copy");
+      document.getElementById("copy-msg").textContent = "Chave copiada!";
+      setTimeout(() => document.getElementById("copy-msg").textContent = "", 2000);
+    });
+
+    document.getElementById("confirmar-pagamento-btn").addEventListener("click", async function () {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const ticketsToAdd = parseInt(quantidadeInput.value);
+
+      if (!user) {
+        alert("Você precisa estar logado para comprar tickets!");
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:3000/usuarios/${user.email}/tickets`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ tickets: ticketsToAdd })
+        });
+
+        if (response.ok) {
+          const updatedUser = await response.json();
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          document.getElementById("confirmacao-compra").textContent = "Pagamento confirmado!";
+          setTimeout(() => document.getElementById("confirmacao-compra").textContent = "", 3000);
+        } else {
+          alert("Erro ao processar o pagamento!");
         }
-
-        try {
-            const response = await fetch(`http://localhost:3000/usuarios/${user.email}/tickets`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ tickets: ticketsToAdd }),  // Envia os tickets para o backend
-            });
-
-            if (response.ok) {
-                const updatedUser = await response.json();
-                alert('Pagamento confirmado e tickets atualizados!');
-                localStorage.setItem('user', JSON.stringify(updatedUser));  // Atualiza os dados do usuário no localStorage
-            } else {
-                alert('Erro ao processar o pagamento!');
-            }
-        } catch (error) {
-            console.error('Erro ao confirmar pagamento:', error);
-            alert('Ocorreu um erro ao confirmar o pagamento.');
-        }
+      } catch (error) {
+        console.error("Erro ao confirmar pagamento:", error);
+        alert("Erro inesperado.");
+      }
     });
   </script>
 </body>
