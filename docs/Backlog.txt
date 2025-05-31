@@ -74,6 +74,9 @@ Tarefa: Criação da página de QR code
 Tarefa: Ligação da página de QR code com o banco de dados 
 • João
 
+Tarefa: Ligação da página de pagamentos com o banco de dados
+• João
+
 Tarefa: Criação da apresentação do trabalho
 - Slides e material
 • Melina
