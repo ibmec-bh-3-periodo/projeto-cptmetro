@@ -61,3 +61,34 @@ Tarefa: Criação do GithubAction:
 - Teste automatizado dos testes únitarios
 
 •⁠  Antônia
+
+Tarefa: Mudança nos links dos botões da home
+• Laura
+
+Tarefa: Modificações no design da página de pagamentos
+• Laura
+
+Tarefa: Criação da página de QR code e mudança do link dos footers
+• Laura
+
+Tarefa: Ligação da página de QR code com o banco de dados 
+• João
+
+Tarefa: Ligação da página de pagamentos com o banco de dados
+• João
+
+Tarefa: Criação da apresentação do trabalho
+- Slides e material
+• Melina
+
+Tarefa: Atualização dos documentos e README
+• Antônia
+
+Tarefa: Ligação do projeto inteiro com o docker
+• Vitor
+
+Tarefa: Ajustes na página de notícias
+• Antônia
+
+Tarefa: Ajustes na funcionalidade do carrossel
+• Melina
