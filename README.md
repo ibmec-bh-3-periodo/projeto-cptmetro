@@ -40,6 +40,9 @@ Exemplo: fix/correcao-falha-autenticacao
 - chore/: Usado para pequenas tarefas ou atualizações técnicas que não afetam o código funcional.
 Exemplo: chore/atualizacao-da-documentacao
 
+- docs/: Usado para modificações nos documentos.
+Exemplo: docs/atualizacao-de-dailys
+
 ### Tipos de Commits
 
 - add: Adição de uma nova funcionalidade.
@@ -269,3 +272,14 @@ node nome-do-arquivo.js
 ]
 ```
 
+## ▶️ Como Executar o Projeto com o Docker
+
+1. Build da imagem :
+docker build -t projeto-metro
+
+2. Executar com Docker:
+docker run -p 3000:3000 projeto-metro
+
+3. Acesse no navegador:
+http://localhost:3000
+  

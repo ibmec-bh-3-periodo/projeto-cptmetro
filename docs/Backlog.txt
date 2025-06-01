@@ -68,7 +68,7 @@ Tarefa: Mudança nos links dos botões da home
 Tarefa: Modificações no design da página de pagamentos
 • Laura
 
-Tarefa: Criação da página de QR code 
+Tarefa: Criação da página de QR code e mudança do link dos footers
 • Laura
 
 Tarefa: Ligação da página de QR code com o banco de dados 

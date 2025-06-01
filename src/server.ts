@@ -12,13 +12,22 @@ server.use(cors());
 
 // A raiz dos arquivos estáticos é a pasta PAI de 'src' (a raiz do seu projeto)
 // Se server.ts está em 'src', então a raiz do projeto é a pasta um nível acima.
-const staticFilesRoot = path.join(__dirname, '../'); // Isso aponta para a raiz do seu projeto
+const staticFilesRoot = path.join(__dirname, '../src');
 server.use(express.static(staticFilesRoot));
+server.use('/src', express.static(staticFilesRoot));
+
+// Adicionar middleware para lidar com caminhos relativos
+server.use((req, res, next) => {
+    if (req.path.startsWith('/src/')) {
+        req.url = req.url.replace('/src/', '/');
+    }
+    next();
+});
 
 // Caminhos dos arquivos JSON. Se server.ts está em 'src', e os JSONs também,
 // então o caminho é relativo à pasta 'src'.
 const usersFilePath = path.join(__dirname, 'usuarios.json'); // No mesmo diretório que server.ts
-const linesDataPath = path.join(__dirname, 'database.json');   // No mesmo diretório que server.ts
+const linesDataPath = path.join(__dirname, 'database.json');   // No mesmo diretório que server.tss
 
 async function readJsonFile(filePath: string): Promise<any[]> {
     try {
@@ -65,7 +74,7 @@ server.post('/register', async (req: any, res: any) => {
             nome,
             email,
             senha,
-            saldo: 0,
+            tickets: 0,
             viagens: 0,
             rotasFavoritas: []
         };
@@ -202,8 +211,61 @@ server.get('/database.json', async (req: any, res: any) => {
 });
 
 server.get('/', (req, res) => {
-  res.sendFile('/app/index.html');
+  res.sendFile(path.join(__dirname, '../src/index.html'));
 });
+
+server.get('/usuarios/:email', async (req:any, res:any) => {
+    const email = req.params.email.toLowerCase();
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const user = users.find((u: any) => u.email.toLowerCase() === email);
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        // Retorne o usuário sem a senha
+        const { senha, ...userSemSenha } = user;
+        res.status(200).json(userSemSenha);
+    } catch (error) {
+        console.error("Erro ao buscar usuário:", error);
+        res.status(500).json({ message: 'Erro interno do servidor.' });
+    }
+});
+
+
+// ROTA PARA ATUALIZAR O NÚMERO DE TICKETS
+server.put('/usuarios/:email/tickets', async (req: any, res: any) => {
+    const { email } = req.params;
+    const { tickets } = req.body;  // Número de tickets que o usuário comprou
+
+    // Validação simples para garantir que o número de tickets seja válido
+    if (typeof tickets !== 'number' || tickets <= 0) {
+        return res.status(400).json({ message: 'O número de tickets deve ser um valor positivo.' });
+    }
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const userIndex = users.findIndex((u: any) => u.email === email);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ success: false, message: 'Usuário não encontrado.' });
+        }
+
+        const user = users[userIndex];
+        user.tickets += tickets;  // Atualiza o número de tickets do usuário
+
+        await writeJsonFile(usersFilePath, users);  // Atualiza o arquivo JSON
+
+        res.status(200).json({success: true, user});  // Retorna os dados atualizados do usuário
+    } catch (error) {
+        console.error("Erro ao atualizar tickets:", error);
+        res.status(500).json({ message: 'Erro interno do servidor ao atualizar os tickets.' });
+    }
+});
+
+
 
 server.listen(PORT, () => {
     console.log(`Servidor rodando emhttp://localhost:${PORT}`);
@@ -211,3 +273,4 @@ server.listen(PORT, () => {
     console.log(`Caminho esperado para usuarios.json: ${usersFilePath}`);
     console.log(`Caminho esperado para database.json: ${linesDataPath}`);
 });
+

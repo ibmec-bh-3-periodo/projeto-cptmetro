@@ -1,4 +1,4 @@
-# 🔄 Retrospectiva da Sprint X
+# 🔄 Retrospectiva da Sprint 1
 
 ## ✅ O que deu certo?
 - O trabalho em duplas foi muito positivo, pois um ajudou o outro em momentos de dificuldade, promovendo uma boa troca de conhecimento e aprendizado.
@@ -51,3 +51,59 @@
 - Contribuições principais: Implementação do design de reconfiguração de saldo, ajuste do botão de recarga de saldo e mudanças significativas na página de pagamento.
 - Dificuldade enfrentada: Integração da API nos pontos trabalhados 
 - Nota para meu desempenho (0 a 10): 10
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Antônia Villela Monteiro
+- Contribuições principais: Centralizar o carrossel, organizar os links que faltaram e atualização da página de notícias
+- Dificuldade enfrentada: Não teve dificuldade enfrentada
+- Nota para meu desempenho (0 a 10): 10
+
+#🔄 Retrospectiva da Sprint 2
+
+## ✅ O que deu certo?
+- O trabalho em duplas foi extremamente positivo, com os membros se ajudando mutuamente em momentos de dificuldade, proporcionando uma excelente troca de conhecimento e aprendizado.
+- A integração das APIs foi concluída com sucesso. Todos os membros conseguiram aplicar a integração de maneira eficaz e sem grandes complicações.
+- A parte de testes unitários foi bem executada, sendo aprendida e realizada satisfatoriamente por todos os membros, garantindo a confiabilidade do código.
+
+##🚫 O que não deu certo?
+- Surgiram alguns conflitos com a branch principal no merge, o que causou atrasos em algumas tarefas e exigiu tempo adicional para resolver os conflitos de código.
+
+##🛠️ O que podemos melhorar para a próxima sprint?
+- Melhorar a gestão do tempo, visando entregar as tarefas mais cedo e com mais antecedência, para evitar pressa na fase final do desenvolvimento.
+- Distribuir mais tarefas para os membros que tiveram maior facilidade com as tarefas atribuídas, equilibrando melhor a carga de trabalho entre todos.
+
+##🧠 Aprendizados da sprint
+- Aprendemos a realizar testes unitários de maneira eficiente, garantindo que cada parte do código estivesse funcionando corretamente.
+- Aprendemos a integrar APIs de maneira fluida no projeto e a lidar com a comunicação entre elas, o que resultou em uma maior funcionalidade do sistema.
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Laura Furtado dos Reis
+- Contribuições principais: Adição da página de pagamento no footer de todas as outras, nova ligação com a API, mudança no banco de dados
+- Dificuldade enfrentada: Interligar a API com a nova página de pagamento e o banco de dados
+- Nota para meu desempenho (0 a 10): 9
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: João Pedro Castro
+- Contribuições principais: Ampliei o database de linhas de uma linha para três, arrumei o database de usuários para linhas favoritas e criei a API para salvar linhas favoritas com javascript mostrando o próximo trem, além da tela com design refatorado.
+- Dificuldade enfrentada: Não sabia fazer o javascript mostrar o próximo trem.
+- Nota para meu desempenho (0 a 10): 10
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Vitor Neves de Lima
+- Contribuições principais: Ampliei a database de usuários, bem como linkei o saldo da database com o aplicativo, para ficar de acordo com cada pessoa registrada. Alem disso fui responsável pelo docker.
+- Dificuldade enfrentada: Tive muita dificuldade em linkar os arquivos, css e js no docker.
+- Nota para meu desempenho (0 a 10): 10
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Melina Pissolato de Moraes
+- Contribuições principais: Ajuste da home page (no carroussel), página de pagamento e página de notícias
+- Dificuldade enfrentada: Tive dificuldade em linkar o carroussel com o a home.
+- Nota para meu desempenho (0 a 10): 10
+
+## 🙋 Avaliação individual (cada aluno preenche)
+- Nome: Antônia 
+- Contribuições principais: Atualizei a pagina de notícias e arrumei a home.
+- Dificuldade enfrentada: Tive dificuldade no layout das notícias.
+- Nota para meu desempenho (0 a 10): 10
+
+

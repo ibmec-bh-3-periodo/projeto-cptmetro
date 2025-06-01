@@ -14,14 +14,19 @@ async function loadUserDatabase() {
     }
 }
 
-function updateSaldoDisplay() {
-    const saldoValorElement = document.getElementById("saldo-valor");
-    if (saldoValorElement && currentUser) {
-        saldoValorElement.innerText = `R$${currentUser.saldo.toFixed(2).replace('.', ',')}`;
+function updateTicketsDisplay() {
+    const ticketsValorElement = document.getElementById("saldo-valor");
+    let usuarioAtualizado = localStorage.getItem("currentUser");
+    if (usuarioAtualizado) {
+        usuarioAtualizado = JSON.parse(usuarioAtualizado);
+        ticketsValorElement.innerText = usuarioAtualizado.tickets ?? 0;
+    } else if (currentUser) {
+        ticketsValorElement.innerText = currentUser.tickets ?? 0;
     } else {
-        saldoValorElement.innerText = `R$0,00`;
+        ticketsValorElement.innerText = `0`;
     }
 }
+
 
 const recarregarBtn = document.getElementById("recarregar-saldo-btn");
 if (recarregarBtn) {
@@ -36,17 +41,23 @@ document.addEventListener("DOMContentLoaded", async function () {
     const greetingMessage = document.getElementById("greetingMessage");
     
     if (loggedInUserEmail) {
+        // Sempre busca o usuário atualizado do banco de dados
         currentUser = userDatabase.find(user => user.email === loggedInUserEmail);
 
         if (currentUser) {
             greetingMessage.textContent = `Bem-vindo ao Metrô, ${currentUser.nome}!`;
-            updateSaldoDisplay();
+            // Atualiza o localStorage com os dados mais recentes do banco
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+            updateTicketsDisplay();
         } else {
             greetingMessage.textContent = "Bem-vindo ao Metrô!";
             console.error("Erro: Usuário logado via 'loggedInUserEmail' não encontrado no banco de dados carregado.");
             localStorage.removeItem('loggedInUserEmail');
+            localStorage.removeItem('currentUser');
+            updateTicketsDisplay();
         }
     } else {
         greetingMessage.textContent = "Bem-vindo ao Metrô!";
+        updateTicketsDisplay();
     }
 });
