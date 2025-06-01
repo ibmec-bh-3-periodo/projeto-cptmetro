@@ -35,7 +35,9 @@ h1{
     flex-grow: 1;
     padding: 15px;
     text-align: center;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;}
 
 h2 {
     margin-bottom: 20px;
@@ -46,7 +48,7 @@ h2 {
 .qrcode-box {
     width: 200px;
     height: 200px;
-    margin: 10vh;
+    /* margin: 10vh; */
     margin-top: 7vh;
     margin-bottom: 7vh;
     border: 1px solid #ccc;
