@@ -3,10 +3,11 @@
     "nome": "João Pedro",
     "email": "joao.pedro@example.com",
     "senha": "joao123",
-    "tickets": 2,
+    "tickets": 17,
     "rotasFavoritas": [
       "Linha 13 - Jade",
-      "Linha 11 - Coral"
+      "Linha 11 - Coral",
+      "Linha 12 - Safira"
     ]
   },
   {
