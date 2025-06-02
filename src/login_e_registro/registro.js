@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if (response.ok) {
                         alert(data.message);
-                        window.location.href = "../../index.html";
+                        window.location.href = "src/homepage/home.html";
                     } else {
                         alert("Erro: " + (data.message || "Ocorreu um erro no cadastro."));
                     }
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Carrega usuários para validação local (opcional, já que o backend valida)
                 let users = [];
                 try {
-                    const usersResponse = await fetch('../usuarios.json'); // Caminho corrigido!
+                    const usersResponse = await fetch('src/usuarios.json'); // Caminho corrigido!
                     if (!usersResponse.ok) {
                         throw new Error(`Erro ao carregar usuários para login! Status: ${usersResponse.status}`);
                     }
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.setItem("loggedInUserEmail", data.user.email);
                     localStorage.setItem("loggedInUser", data.user.nome);
                     alert("Login bem-sucedido!");
-                    window.location.href = "./src/homepage/home.html";
+                    window.location.href = "/src/homepage/home.html";
                 } else {
                     alert("Erro: " + (data.message || "Credenciais inválidas."));
                 }
