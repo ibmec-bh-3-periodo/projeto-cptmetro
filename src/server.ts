@@ -265,6 +265,31 @@ server.put('/usuarios/:email/tickets', async (req: any, res: any) => {
     }
 });
 
+server.put('/usuarios/:email/usarticket', async (req: any, res: any) => {
+    const { email } = req.params;
+
+    try {
+        const users = await readJsonFile(usersFilePath);
+        const userIndex = users.findIndex((u: any) => u.email === email);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ success: false, message: 'Usuário não encontrado.' });
+        }
+
+        const user = users[userIndex];
+
+        if (user.tickets > 0) {
+            user.tickets -= 1;
+            await writeJsonFile(usersFilePath, users);
+            return res.status(200).json({ success: true, ticketsRestantes: user.tickets });
+        } else {
+            return res.status(400).json({ success: false, message: 'Sem tickets disponíveis.' });
+        }
+    } catch (error) {
+        console.error("Erro ao usar ticket:", error);
+        res.status(500).json({ message: 'Erro interno do servidor.' });
+    }
+});
 
 
 server.listen(PORT, () => {

@@ -139,5 +139,12 @@ p {
     .footer-icons a {
         margin: 10px 0;
     }
+    .status-container {
+        margin: 15px 0;
+        font-size: 18px;
+        font-weight: 500;
 }
+}
+
+
 

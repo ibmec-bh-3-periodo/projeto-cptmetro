@@ -1,66 +1,57 @@
-let saldoAtual = 0;
-let viagensRestantes = 0;
-let email = localStorage.getItem("loggedInEmail");
-
 document.addEventListener("DOMContentLoaded", async function () {
-    await carregarSaldo();
+    const email = localStorage.getItem("loggedInUserEmail");
+    let viagensRestantes = 0;
+
+    await carregarTickets();
 
     document.getElementById("generate-qrcode-btn").addEventListener("click", async () => {
-        if (saldoAtual >= 4.40 && viagensRestantes > 0) {
-            saldoAtual -= 4.40;
+        if (viagensRestantes > 0) {
+            await consumirTicket();
             viagensRestantes -= 1;
             atualizarTela();
-            await salvarSaldo();
-            gerarQRCode(); 
+            gerarQRCode();
+            document.getElementById("qrcode-msg").textContent = "QR Code gerado com sucesso!";
         } else {
-            alert("Saldo ou viagens insuficientes para gerar o QR Code.");
+            alert("Você não possui tickets disponíveis.");
         }
     });
 
-    document.getElementById("recarregar-saldo-btn").addEventListener("click", async () => {
-        saldoAtual += 4.40;
-        viagensRestantes += 1;
-        atualizarTela();
-        await salvarSaldo();
-    });
-});
-
-async function carregarSaldo() {
-    try {
-        const response = await fetch(`http://localhost:3000/saldo/${email}`);
-        const data = await response.json();
-        saldoAtual = data.saldo;
-        viagensRestantes = data.viagens;
-        atualizarTela();
-    } catch (err) {
-        console.error("Erro ao carregar saldo:", err);
+    async function carregarTickets() {
+        try {
+            const response = await fetch(`http://localhost:3000/usuarios/${email}`);
+            if (!response.ok) throw new Error("Erro ao buscar usuário.");
+            const data = await response.json();
+            viagensRestantes = data.tickets;
+            atualizarTela();
+        } catch (error) {
+            console.error("Erro ao carregar tickets:", error);
+        }
     }
-}
 
-async function salvarSaldo() {
-    try {
-        await fetch(`http://localhost:3000/saldo/${email}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ saldo: saldoAtual, viagens: viagensRestantes })
+    async function consumirTicket() {
+        try {
+            const response = await fetch(`http://localhost:3000/usuarios/${email}/usarticket`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" }
+            });
+            if (!response.ok) throw new Error("Erro ao consumir ticket.");
+        } catch (error) {
+            console.error("Erro ao consumir ticket:", error);
+        }
+    }
+
+    function atualizarTela() {
+        document.getElementById("viagens-restantes").textContent = `Tickets: ${viagensRestantes}`;
+    }
+
+    function gerarQRCode() {
+        const container = document.getElementById("qrcode");
+        container.innerHTML = "";
+
+        new QRCode(container, {
+            text: `Usuário: ${email} | Tickets restantes: ${viagensRestantes}`,
+            width: 180,
+            height: 180
         });
-    } catch (err) {
-        console.error("Erro ao salvar saldo:", err);
     }
-}
-
-function atualizarTela() {
-    document.getElementById("saldo-valor").textContent = `R$${saldoAtual.toFixed(2)}`;
-    document.getElementById("viagens-restantes").textContent = viagensRestantes;
-}
-
-function gerarQRCode() {
-    const container = document.getElementById("qrcode");
-    container.innerHTML = ""; 
-
-    const qrCode = new QRCode(container, {
-        text: `Usuário: ${email} | Saldo: R$${saldoAtual.toFixed(2)} | Viagens: ${viagensRestantes}`,
-        width: 180,
-        height: 180
-    });
-}
+});
