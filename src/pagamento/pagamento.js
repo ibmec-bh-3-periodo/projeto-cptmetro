@@ -48,7 +48,7 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
     }
 
     const usuario = await resposta.json();
-    const ticketsAtualizados = (usuario.tickets || 0) + quantidade;
+    const ticketsAtualizados = quantidade;
 
     const atualizarResposta = await fetch(`http://localhost:3000/usuarios/${encodeURIComponent(emailUsuario)}/tickets`, {
       method: "PUT",
@@ -64,7 +64,7 @@ document.getElementById("confirmar-pagamento-btn").addEventListener("click", asy
     localStorage.setItem("loggedInUserTickets", ticketsAtualizados);
 
     const confirmacao = document.getElementById("confirmacao-compra");
-    alert(`Pagamento confirmado!\nVocê comprou ${quantidade} ticket(s).\nAgora você tem ${ticketsAtualizados} tickets.`);
+    alert(`Pagamento confirmado!\nVocê comprou ${quantidade} ticket(s).\nAgora você tem ${(usuario.tickets || 0) + quantidade} tickets.`);
     confirmacao.textContent = `Compra confirmada: ${quantidade} ticket(s)! Total: ${ticketsAtualizados}`;
     confirmacao.style.color = "green";
 
