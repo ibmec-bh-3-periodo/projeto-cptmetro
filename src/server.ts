@@ -293,7 +293,7 @@ server.put('/usuarios/:email/usarticket', async (req: any, res: any) => {
 
 
 server.listen(PORT, () => {
-    console.log(`Servidor rodando emhttp://localhost:${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
     console.log(`Servindo arquivos estáticos de: ${staticFilesRoot}`);
     console.log(`Caminho esperado para usuarios.json: ${usersFilePath}`);
     console.log(`Caminho esperado para database.json: ${linesDataPath}`);
