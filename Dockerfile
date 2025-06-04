@@ -12,12 +12,14 @@ RUN npm run build
 
 FROM node:20-alpine
 
+LABEL name="cptmetro"
+
 WORKDIR /app
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/src ./src
-COPY --from=builder /app/src/index.html ./src/
+COPY --from=builder /app/index.html ./src/
 
 RUN npm ci --only=production
 
