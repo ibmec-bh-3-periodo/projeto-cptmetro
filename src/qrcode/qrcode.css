@@ -37,7 +37,8 @@ h1{
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;}
+    align-items: center;
+}
 
 h2 {
     margin-bottom: 20px;
@@ -48,12 +49,27 @@ h2 {
 .qrcode-box {
     width: 200px;
     height: 200px;
-    /* margin: 10vh; */
     margin-top: 7vh;
     margin-bottom: 7vh;
     border: 1px solid #ccc;
-
+    /* Adicionados para centralizar o QR Code e dar um fundo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma pequena sombra */
+    border-radius: 8px; /* Cantos arredondados */
+    overflow: hidden; /* Garante que nada saia da caixa */
 }
+
+/* --- ESTILOS ADICIONADOS/AJUSTADOS PARA O QR CODE CABER --- */
+.qrcode-box img {
+    max-width: 100%; /* Garante que a largura da imagem não exceda a do pai */
+    max-height: 100%; /* Garante que a altura da imagem não exceda a do pai */
+    display: block; /* Remove espaço extra que alguns navegadores adicionam por padrão */
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar ou esticar, mantendo a proporção */
+}
+/* -------------------------------------------------------- */
 
 a{
     text-decoration: none;
@@ -62,6 +78,7 @@ a{
 .btn {
     display: block;
     width: 80%;
+    max-width: 300px; /* Adicionado um max-width para o botão não ficar muito largo em telas grandes */
     margin: 10px auto;
     padding: 10px;
     background-color: #EE0000;
@@ -76,6 +93,17 @@ a{
 .btn:hover {
     background-color: #a1a1a1;
 }
+
+/* --- ESTILOS ADICIONADOS/AJUSTADOS PARA O STATUS CONTAINER --- */
+.status-container {
+    margin: 20px 0; /* Margens gerais */
+    /* Estilos base para o texto do saldo/viagens */
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #555;
+}
+/* -------------------------------------------------------- */
+
 
 .saldo-info {
     display: flex;
@@ -99,9 +127,10 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; 
-    bottom: 0;
+    position: relative;
+    /* bottom: 0; */ /* 'bottom: 0' com position relative/absolute pode causar problemas com flexbox 'min-height: 100vh;' */
     width: 100%;
+    margin-top: auto; /* Empurra o footer para o final da página com display:flex no body */
 }
 
 .footer-container {
@@ -139,12 +168,9 @@ p {
     .footer-icons a {
         margin: 10px 0;
     }
-    .status-container {
-        margin: 15px 0;
+    /* O status-container já tem estilos base, aqui você pode sobreescrever se necessário */
+    /* .status-container {
         font-size: 18px;
         font-weight: 500;
+    } */
 }
-}
-
-
-
