@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "dev": "ts-node ./src/server.ts && npx tsc",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",

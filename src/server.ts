@@ -16,6 +16,10 @@ const staticFilesRoot = path.join(__dirname, '../src');
 server.use(express.static(staticFilesRoot));
 server.use('/src', express.static(staticFilesRoot));
 
+server.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../index.html"));
+  });
+
 // Adicionar middleware para lidar com caminhos relativos
 server.use((req, res, next) => {
     if (req.path.startsWith('/src/')) {
@@ -210,9 +214,6 @@ server.get('/database.json', async (req: any, res: any) => {
     }
 });
 
-server.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../src/index.html'));
-});
 
 server.get('/usuarios/:email', async (req:any, res:any) => {
     const email = req.params.email.toLowerCase();
@@ -290,6 +291,7 @@ server.put('/usuarios/:email/usarticket', async (req: any, res: any) => {
         res.status(500).json({ message: 'Erro interno do servidor.' });
     }
 });
+
 
 
 server.listen(PORT, () => {

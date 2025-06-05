@@ -50,10 +50,9 @@
         document.getElementById("logoutButton").addEventListener("click", function () {
             localStorage.removeItem("loggedInUser");
             localStorage.removeItem("currentUser");
+            localStorage.clear();
+            window.location.href = "/";
             alert("Você saiu da conta.");
-    
-            // Redireciona para o index.html na raiz do projeto
-            window.location.href = "/index.html";
         });
     </script>
     

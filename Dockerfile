@@ -1,27 +1,27 @@
-FROM node:20-alpine AS builder
+# Etapa 1: build com dependências completas
+FROM node:18 as builder
 
 WORKDIR /app
 
 COPY package*.json ./
-COPY tsconfig.json ./
-RUN npm ci
+RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-FROM node:20-alpine
-
-LABEL name="cptmetro"
+# Etapa 2: imagem final mais leve (produção)
+FROM node:18-slim
 
 WORKDIR /app
 
-COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/src ./src
-COPY --from=builder /app/index.html ./src/
+RUN npm install --omit=dev
 
-RUN npm ci --only=production
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/src/usuarios.json ./src/usuarios.json
+COPY --from=builder /app/src/database.json ./src/database.json
+COPY --from=builder /app/index.html ./index.html
 
 EXPOSE 3000
 
