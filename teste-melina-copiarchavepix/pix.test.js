@@ -4,8 +4,7 @@ describe("Função copiarChavePix", () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <input type="text" id="pix-key" value="minha@chavepix.com" />
-      <p id="copy-msg"></p>
-    `;
+      <p id="copy-msg"></p>`;
 
     // Mock do clipboard
     Object.assign(navigator, {
