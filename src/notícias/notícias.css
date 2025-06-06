@@ -15,10 +15,12 @@ body {
 .header {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
+    padding: 10px 20px;
     position: relative;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header img {
@@ -50,7 +52,6 @@ h2 {
 
 p {
     font-size: 16px;
-    color: #333;
     margin-bottom: 10px;
     text-align: left;
 }
@@ -114,7 +115,7 @@ footer {
     background: linear-gradient(to right, #FE0000, #930707);
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0;
     width: 100%;
     margin-top: auto;
 }
@@ -135,6 +136,10 @@ footer {
 .footer-icons img {
     height: 30px;
 }
+footer p{
+    padding-left: 20px;
+}
+
 
 @media (max-width: 600px) {
     h1 {
