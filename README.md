@@ -1,7 +1,7 @@
 
 # 🚇 Projeto CPTMetrô
 
-Sistema web que visa facilitar e automatizar a experiência do usuário no uso do metrô de São Paulo. O aplicativo oferece funcionalidades como compra de bilhetes, visualização de mapas, situação das linhas, notícias, QR Code para acesso, entre outros.
+Sistema web que visa facilitar e automatizar a experiência do usuário no uso do metrô de São Paulo. O aplicativo oferece funcionalidades como compra de bilhetes, visualização de mapas, situação das linhas, notícias, QR Code para acesso, entre outros
 
 ---
 
