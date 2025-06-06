@@ -43,8 +43,11 @@
     "nome": "Laura",
     "email": "laura@example.com",
     "senha": "laura321",
-    "tickets": 9,
-    "rotasFavoritas": []
+    "tickets": 7,
+    "rotasFavoritas": [
+      "Linha 11 - Coral",
+      "Linha 12 - Safira"
+    ]
   },
   {
     "nome": "Antonia",

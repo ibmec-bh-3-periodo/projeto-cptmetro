@@ -210,6 +210,34 @@ ul {
     background-color: #45a049; /* Verde um pouco mais escuro no hover */
 }
 
+.seta {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+}
+
+.seta img {
+    height: 30px;
+    width: 30px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 22px;
+    margin: 15px 0 10px;
+    color: #333;
+    text-align: left;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
 /* --- Estilização do Rodapé --- */
 footer {
     background: linear-gradient(to right, #FE0000, #930707);
@@ -246,6 +274,7 @@ footer {
 p {
     margin: 0;
     font-size: 16px;
+    margin-left: 20px;
 }
 
 /* --- Media Queries para responsividade --- */
