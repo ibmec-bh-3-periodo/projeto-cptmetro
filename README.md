@@ -71,6 +71,46 @@ Exemplo: chore: atualização de responsividade
 - Páginas relacionadas organizadas na mesma pasta (ex: página de redes sociais e de configuração).
 - Pasta docs -> Documentação do projeto, com Aberturas de sprints, backlog, daily e a retrospectiva.
 
+projeto-cptmetro/
+├── .github/                      # Configurações relacionadas ao GitHub (workflows, issue templates, etc.)
+├── .vscode/                      # Configurações específicas para o ambiente de desenvolvimento VS Code
+├── docs/                         # Documentação do projeto, incluindo artefatos de metodologia ágil
+│   ├── Abertura Sprint           # Documento ou pasta detalhando o planejamento da Sprint
+│   ├── Backlog.txt               # Backlog do produto ou da Sprint em formato de texto
+│   ├── Dailys                    # Documentos ou registros das reuniões diárias (Dailys)
+│   └── Retrospectiva             # Documentos ou análises de retrospectivas de Sprints
+├── node_modules/                 # Dependências do Node.js instaladas (gerado pelo npm install)
+├── src/                          # Diretório principal para todo o código-fonte da aplicação
+│   ├── configuração/             # Pode conter arquivos de configuração específicos da aplicação
+│   ├── homepage/                 # Contém arquivos relacionados à página principal após o login
+│   │   └── home.html             # Exemplo: Página HTML da homepage
+│   ├── horários/                 # Provavelmente contém arquivos relacionados a exibição de horários
+│   ├── icones/                   # Armazena arquivos de ícones (imagens, SVGs)
+│   ├── img/                      # Armazena outras imagens gerais do projeto
+│   ├── login_e_registro/         # Contém arquivos HTML/CSS/JS para as páginas de login e registro
+│   ├── mapa/                     # Pode conter arquivos relacionados à funcionalidade de mapa de linhas
+│   ├── notícias/                 # Provavelmente contém recursos para exibir notícias ou atualizações
+│   ├── pagamento/                # Contém arquivos relacionados a funcionalidades de pagamento
+│   ├── qrcode/                   # Contém arquivos específicos para a funcionalidade de QR Code (geração, leitura)
+│   ├── viagens_favorit./         # Contém arquivos da funcionalidade de viagens favoritas (viagens.html, viagens.js)
+│   ├── database.json             # Armazena dados das linhas de trem e seus horários
+│   ├── server.js                 # Versão JavaScript compilada do server.ts (gerado pelo TypeScript)
+│   ├── server.ts                 # Código-fonte do servidor Node.js (backend) em TypeScript
+│   └── usuarios.json             # Armazena dados de usuários e suas rotas favoritas
+├── teste_logout_laura/           # Pastas de teste/ramo de desenvolvimento específico (indica branch/feature antiga)
+├── teste_mapa_vitor/             # Pastas de teste/ramo de desenvolvimento específico
+├── teste_qrcode_ga.../           # Pastas de teste/ramo de desenvolvimento específico
+├── teste_registro_a.../          # Pastas de teste/ramo de desenvolvimento específico
+├── teste_saudacao.../            # Pastas de teste/ramo de desenvolvimento específico
+├── .dockerignore                 # Define arquivos e pastas a serem ignorados ao construir imagens Docker
+├── .gitignore                    # Define arquivos e pastas a serem ignorados pelo Git
+├── Dockerfile                    # Instruções para construir a imagem Docker do aplicativo
+├── index.html                    # Página inicial principal do site (geralmente a página de login/cadastro)
+├── package-lock.json             # Registro exato das versões das dependências instaladas
+├── package.json                  # Configurações do projeto Node.js e lista de dependências
+├── README.md                     # Documentação principal do projeto
+└── tsconfig.json                 # Configurações do compilador TypeScript
+
 ### 5. Requisitos Funcionais
 
 1. **Cadastro de Usuários:** Permite o registro de novos usuários.
