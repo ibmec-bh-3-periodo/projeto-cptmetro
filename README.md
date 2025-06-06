@@ -216,7 +216,7 @@ Realiza a autenticação de um usuário.
 
 ---
 
-## 📊 GET `/saldo/:email`
+## 📊 GET `/tickets/:email`
 
 ### ➤ Descrição
 Retorna o saldo e o número de viagens de um usuário.
@@ -228,7 +228,7 @@ Retorna o saldo e o número de viagens de um usuário.
 
 #### ✅ 200 OK
 ```json
-{ "saldo": 50, "viagens": 10 }
+{ "tickets": 5 }
 ```
 
 #### ❌ 404 Not Found
@@ -238,7 +238,7 @@ Retorna o saldo e o número de viagens de um usuário.
 
 ---
 
-## ✏️ PUT `/saldo/:email`
+## ✏️ PUT `/tickets/:email`
 
 ### ➤ Descrição
 Atualiza o saldo e/ou número de viagens de um usuário.
@@ -249,8 +249,7 @@ Atualiza o saldo e/ou número de viagens de um usuário.
 ### 🔸 Body (JSON)
 ```json
 {
-  "saldo": 100,
-  "viagens": 5
+  "tickets": 3
 }
 ```
 
@@ -281,7 +280,7 @@ Atualiza o saldo e/ou número de viagens de um usuário.
 
 ```bash
 npm install
-node nome-do-arquivo.js
+npm run dev
 ```
 
 - O servidor será iniciado na porta **3000**
@@ -306,8 +305,8 @@ node nome-do-arquivo.js
     "nome": "Maria",
     "email": "maria@example.com",
     "senha": "123456",
-    "saldo": 50,
-    "viagens": 2
+    "tickets": 3,
+    "rotasFavoritas": []
   }
 ]
 ```
