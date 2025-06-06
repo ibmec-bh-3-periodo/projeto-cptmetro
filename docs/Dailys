@@ -263,28 +263,4 @@ MODELO:
 ### 🗓️ Próximo passo
 - Finalizar testes do sistema de pagamento e assegurar funcionalidade do backend.
 
----
-
-## 📆 Gabriel
-
-### 🙋 O que eu fiz desde o último relatório?
-- **Dia 1/7 (20/05):** Implementação da API de login (#54) e ajustes de integração.  
-- **Dia 2/7 (22/05):** Estrutura do banco de dados de usuários e início da integração (#55).  
-- **Dia 3/7 (23/05):** Correção de link e finalização da API de login (#56).  
-- **Dia 4/7 (26/05):** Ajustes finais e testes com banco de dados (#57).  
-- **Dia 5/7 (28/05):** Revisão da estrutura de usuários e configurações de login.
-
-### 🚧 O que estou fazendo agora?
-- Ajustes no banco de dados e revisão da API de login com integração frontend.
-
-### 🧱 Quais dificuldades encontrei?
-- **Dia 2/7:** Integração da API com o banco de dados de usuários.  
-- **Dia 3/7:** Links de navegação quebrados e correção de fluxo com a home.
-
-### 🧠 O que aprendi até agora?
-- Implementação e integração eficaz de API de login com rotas e banco de dados.  
-- Importância dos testes para validar o fluxo de dados.
-
-### 🗓️ Próximo passo
-- Finalizar correções de links e testar login com o banco de dados.
 
